@@ -4,12 +4,23 @@ import HorizontalCard from "../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../lib/createSlug"
 
+const page = {
+  title: "Imran Khan | Optics, Imaging & AI",
+  description:
+    "Ph.D. physicist specializing in optics, computational modeling, SEM metrology, and AI-driven imaging. Explore projects in SEM image quality, chest X-ray classification, California housing regression, and plasmonic scattering simulations.",
+};
+
+const sideBarActiveItemID = "home";
+
 const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
+
 const last_posts = posts.slice(0, 3);
+
+
 ---
 
-<BaseLayout sideBarActiveItemID="home">
+<BaseLayout page={page} sideBarActiveItemID={sideBarActiveItemID}>
   <div class="pb-12 mt-5">
     <!-- <div class="text-xl py-1">Hey there 👋</div> -->
     <div class="text-5xl font-bold"> Hi, I’m Imran Khan </div>

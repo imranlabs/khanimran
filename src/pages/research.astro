@@ -1,8 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
+const page = {
+  title: "Research & Simulation | Plasmonics, Scattering & SEM",
+  description:
+    "Research deep dives by Imran Khan on plasmonic cloaking, nanoplasmonic scattering, and experimental validation using AuNP-coated microspheres, combining full-wave modeling, numerical methods, and SEM-based optical characterization.",
+};
+
+const sideBarActiveItemID = "research";
 ---
-<BaseLayout title = "Research & Simulation" sideBarActiveItemID="research">
+<BaseLayout page={page} sideBarActiveItemID={sideBarActiveItemID}>
   <div>
    <div class="text-3xl w-full font-bold mb-5">Research & Simulation</div> 
     <!--h1 class="text-2xl font-bold mb-4">Research & Simulation</h1> -->

@@ -1,9 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
+const page = {
+  title: "Work History | Imran Khan",
+  description:
+    "Work history and CV for Imran Khan, Ph.D. physicist with experience in CD-SEM metrology at Intel, optics, computational modeling, and imaging-focused data analysis and automation.",
+};
+
+const sideBarActiveItemID = "cv";
 ---
 
-<BaseLayout title="Imran Khan | Portfolio " sideBarActiveItemID="cv">
+<BaseLayout page={page} sideBarActiveItemID={sideBarActiveItemID}>
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">Profile</div>
   </div>
@@ -44,7 +51,7 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
     <ul class="list-disc list-inside mt-3 text-base text-gray-700">
     <li>Primary tool owner of four CD-SEM systems and co-owner of four additional tools in a high-volume 24/7 manufacturing environment.</li>
     <li>Maintained SPC charts for fleet-wide metrology tools to monitor tool health and measurement stability.</li>
-    <li>Designed and deployed a Python dashboard for monitoring key SEM parameters (probe current, stigmation, beam alignment), enabling fast anomaly detection.</li>
+    <li>Designed and deployed a Python dashboard for monitoring key CD-SEM tool health (beam parameters and subsystem trends) enabling fast anomaly detection.</li>
     <li>Automated DCCD round-robin analysis with Python, improving consistency checks and reporting accuracy across the SEM fleet.</li>
     <li>Built a computer vision toolkit for automated SEM image quality assessment (sharpness, CNR, FFT-sharpness, GLCM texture metrics). </li>
     <li>Developed Python workflows for processing FCCD datasets and integrating results into long-term SPC systems.</li>
@@ -60,7 +67,7 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
     <b>Computational Modeling & Nano-fabrication of Plasmonic Metastructures:</b>
     <li>Developed a full-wave computational model combining MFS and Foldy–Lax theory to simulate scattering from 3D plasmonic nanostructures.</li>
     <li>Implemented Python and MATLAB solvers to compute far-field patterns, extinction spectra, and design parameter sweeps.</li>
-    <li>Performed nano-fabrication of metashell structures and correlated experimental measurements with simulation results.</li>
+    <li>Performed nano-fabrication of the core-shell meta structures and correlated experimental measurements with simulation results.</li>
     <b>Optical Metrology for Energy Transfer in Nanoclusters:</b>
     <li>Characterized NSET/FRET dynamics using time-resolved photoluminescence (TRPL).</li>
     <li>Built and aligned custom optical setups with improved SNR for dilute samples.</li>
