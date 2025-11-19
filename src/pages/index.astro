@@ -11,68 +11,104 @@ const last_posts = posts.slice(0, 3);
 
 <BaseLayout sideBarActiveItemID="home">
   <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
+    <!-- <div class="text-xl py-1">Hey there 👋</div> -->
+    <div class="text-5xl font-bold"> Hi, I’m Imran Khan </div>
+    <div class="text-lg text-gray-500">A physicist by training, exploring the world through computation and light-matter interaction .</div>
+    <!--<div class="text-lg text-gray-500">Nano optics imaging, and deep learning to build intelligent visual systems.</div>-->
     <div class="py-2">
       <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
+        I’ve always been captivated by how nature works and how to explain it —I am curiously exploring and learning from the laws of physics and using intelligent systems and tools. 
+        This site reflects my journey to bridge these two realms, sharing projects, research.
       </text>
     </div>
     <div class="mt-8">
-      <a class="btn" href="https://twitter.com/manuelernestog" target="_blank"> Let's connect!</a>
-      <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5">
-        Get This template
+      <a href="/imran_resume.pdf" download class="btn ml-5" >Download Résumé
+      <a class="btn ml-5" href="https://www.linkedin.com/in/imrankahn/" target="_blank"> Let's connect!</a>
+      <a href="https://github.com/imranlabs" target="_blank" class="btn ml-5">
+        github
       </a>
     </div>
+
   </div>
 
   <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+    <div class="text-3xl w-full font-bold mb-2">Featured AI/CV projects {"</>"}</div>
   </div>
 
+<div class="space-y-4">
+  <!--Project-3-Nov-17-2025-->
   <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
+    title="Chest X-Ray Pneumonia Classification"
+    img="/public/files/images/projects/chest_xray/X_ray_image.png"
+    desc={`End-to-end exploration of pneumonia detection( Normal, Viral, and Bacterial) on chest X-rays using both
+          classical machine learning(PCA, SVM) and deep convolutional networks and transfer learning(Resnet-50).`}
+    url="projects/chestxray"
+    badge="Multi-Class CNN (Normal / Viral / Bacterial)"
   />
 
+ <div class="space-y-4">
+  <!--Project-2-Nov-11-2025-->
+  <HorizontalCard
+    title="Automated Image Quality Assessment (IQA) for SEM Metrology"
+    img="/public/files/images/projects/sem_iqa/sem_hero.jpg"
+    desc={`SSIM,PSNR,for full reference image quality assesment . 
+        Normalized Variance Focus Score (Normvar), and BRISQUE for No-reference. Domain specific quantification methods such as Histogram comparison and Frequency-domain (FFT)
+        for SEM tool health assesment.`}
+    url="/projects/sem_iqa"
+    badge="SEM Metrology"
+  />
+    </div>
+  <div class="divider my-0"></div>
+  <!--Project-1-Nov-4-2025-->
+  <HorizontalCard
+    title="California Housing Price Prediction"
+    img="/public/files/images/projects/california_housing/hero.png"
+    desc={`A rigorous, end-to-end machine learning
+      workflow to predict median house values in California census block
+      groups. The primary goal was to systematically compare the performance
+      of diverse modeling techniques—from classical regression to advanced
+      boosting.`}
+    url="/projects/california_housing"
+    badge="MLOPS"
+  />
+   
   <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Featured research projects</div>
   </div>
 
-  {
-    last_posts.map((post) => (
-      <>
-        <HorizontalCard
-          title={post.data.title}
-          img={post.data.heroImage}
-          desc={post.data.description}
-          url={"/blog/" + createSlug(post.data.title, post.slug)}
-          target="_self"
-          badge={post.data.badge}
-        />
-        <div class="divider my-0" />
-      </>
-    ))
-  }
+<!--creation date Nov-18,2025--> 
+<HorizontalCard
+    title="Scattering by Nanoplasmonic Mesoscale Assemblies"
+    img="/files/images/projects/scattering/schematic.png"
+    desc={`Studied how gold nanoparticle shells reshape the angular scattering of dielectric microspheres. 
+          Using a hybrid MFS + Foldy–Lax model, showed that AuNP coatings suppress Mie sidelobes 
+          and enhance forward scattering through phase decoherence and plasmonic multiple scattering.`}
+    url="/research/scattering"
+    
+    badge="Angular Scattering Modeling"
+  />
+
+  <HorizontalCard
+    title="Modeling Broadband Cloaking Using Nano-Assembled Plasmonic Meta-Structures"
+    img="/files/images/projects/broadbandscattering/broadband.png"
+    desc={`Developed a hybrid computational model combining MFS and Foldy–Lax theory to study plasmonic nano-shells. 
+          Demonstrated how dense AuNP coatings cancel Mie scattering through multipole interference, 
+          enabling broadband optical cloaking and tunable far-field response.`}
+    url="/research/broadbandscattering"
+    
+    badge="Computational EM | Plasmonics Cloaking"
+  />
+
+<!--creation date Nov-18,2025--> 
+<HorizontalCard
+    title="Experimental demonstration of Scattering Suppression in AuNP-Coated Dielectric Microspheres"
+    img="/files/images/projects/cloakexperiment/exp_hero.png"
+    desc={`Experimentally demonstrated scattering suppression in AuNP-coated silica microspheres through nano-fabrication, 
+            SEM characterization, and integrating-sphere measurements. 
+            Validated key trends predicted by plasmonic cloaking simulations, showing reduced scattering intensity in the 400–600 nm band.`}
+    url="/research/cloakexperiment"
+    
+    badge="Experimental Optics | SEM"
+  />
+
 </BaseLayout>

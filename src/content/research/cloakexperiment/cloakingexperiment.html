@@ -1,0 +1,367 @@
+<section class="space-y-3">
+<h1 id="Experimental-demonstration-of-scattering-suppression-in-AuNp-coated-dielectric-microspheres">Experimental
+Demonstration of Scattering Suppression in AuNP-Coated Dielectric
+Microspheres</h1>
+<p><strong>Md. Imran Khan — A proof of concept(POC) experiment</strong></p>
+<hr />
+<h2 id="introduction-motivation">1. Introduction &amp; Motivation</h2>
+<p>Plasmonic cloaking via nano-assembled AuNP shells has been
+extensively studied in modeling and simulation. This analysis is a
+<strong>experimental validation</strong> of these concepts through the
+fabrication, characterization, and optical measurement of AuNP-coated
+dielectric microbeads. </p>
+<p>This analysis focuses on:</p>
+<ul>
+<li>Fabrication of 3D plasmonic metashells<br />
+</li>
+<li>SEM analysis and surface coverage estimation<br />
+</li>
+<li>Integrating sphere measurements to quantify scattering
+suppression<br />
+</li>
+<li>Comparison of experimental results with simulation predictions<br />
+</li>
+<li>Discussion of discrepancies, limitations, and implications</li>
+</ul>
+<p>This experimental workflow demonstrates an end-to-end
+proof-of-concept that the plasmonic cloaking effect predicted by
+simulations can be observed in physical systems.</p>
+<div class="flex-figures">
+  <figure>
+    <img src="/files/images/projects/cloakexperiment/schematic.png" 
+    alt="schematic" style="width:45%; border-radius:6px;">
+    <figcaption>Figure : Schematic of the plasmonic meta-structure. 
+        Spherical silica core (blue) decorated with randomly distributed gold nanoparticles (yellow). 
+    </figcaption>
+  </figure>
+</div>
+
+<hr />
+<h2 id="fabrication-of-plasmonic-metastructures">2. Fabrication of
+Plasmonic Metastructures</h2>
+<h3 id="materials">2.1 Materials</h3>
+<ul>
+<li>Silica microspheres 500nm , and 700nm <br />
+</li>
+<li>20 nm citrate-stabilized AuNPs<br />
+</li>
+<li>N-[3-(Trimethoxysilyl)propyl]ethylenediamine (TMSPA) for surface
+functionalization<br />
+</li>
+<li>Ethanol, DI water</li>
+</ul>
+<h3 id="functionalization-procedure">2.2 Functionalization
+Procedure</h3>
+<ol type="1">
+<li>Silica microspheres were cleaned in ethanol/water mixtures.<br />
+</li>
+<li>Surface functionalization with <strong>1% TMSPA </strong> created a
+positively charged surface.<br />
+</li>
+<li>Functionalized beads were washed to remove unbound silane
+compounds.</li>
+</ol>
+<h3 id="aunp-coating">2.3 AuNP Coating</h3>
+<ol start="4" type="1">
+<li>Beads were suspended in AuNP solution.<br />
+</li>
+<li>Electrostatic attraction enabled <strong>AuNP self-assembly</strong>
+onto the functionalized surface.<br />
+</li>
+<li>Centrifuge duration controlled <strong>filling fraction</strong>.<br />
+</li>
+<li>Suspensions were centrifuged and rewashed to remove excess
+AuNPs.</li>
+</ol>
+<p>A monolayer plasmonic shell was formed through this self-assembly
+mechanism.</p>
+<hr />
+<h2 id="sem-imaging-filling-fraction-analysis">3. SEM Imaging &amp;
+Filling Fraction Analysis</h2>
+<h3 id="sample-preparation">3.1 Sample Preparation</h3>
+<ul>
+<li>A drop of coated beads was placed on glass sides for optical characterization.<br />
+</li>
+<li>Samples were dried and sputter-coated with a thin layer (when
+required for charging mitigation) of a silicon substrate for SEM characterization.</li>
+</ul>
+<h3 id="sem-imaging">3.2 Characterization</h3>
+<p>UV-Vis spectroscopy:</p> 
+<ul>
+<li>As-obtained AuNP from the manufacturer showed much higher absorbance compared to the TMSPA functionalized silica core.</li>
+</ul>
+<p>SEM was used to:</p>
+<ul>
+<li>BSD (backscatter detector) was used dominantly</li> 
+<li>verify coating uniformity<br />
+</li>
+<li>assess AuNP distribution<br />
+</li>
+<li>quantify surface coverage</li>
+</ul>
+<p>Images were acquired at several magnifications between 5k× and
+40k×.</p>
+
+<div class="flex-figures">
+  <figure>
+    <img src="/files/images/projects/cloakexperiment/sem_image_set1.png" 
+    alt="sem_image_set_1 " style="width:65%; border-radius:6px;">
+    <figcaption>Figure : Scanning electron micrograph of bare silica cores and AuNP coated silica spheres. 
+                        [top left] Bare silica sphere with diameter 500 nm. (top right) AuNP coated 500 nm silica spheres. 
+                        (bottom left) 700 nm silica spheres coated with AuNPs. 
+                        (bottom right) BSD image of 700 nm silica spheres coated with AuNP. The AuNPs appear brighter with respect to the background in BSD images.
+    </figcaption>
+  </figure>
+</div>
+<p> Silica spheres showed varied  distribution of AuNPs on the surface. <p>
+    <div class="flex-figures">
+  <figure>
+    <img src="/files/images/projects/cloakexperiment/500nm_BSD.png" 
+    alt="sem_image_set_2 " style="width:85%; border-radius:6px;">
+    <figcaption>Figure : Scanning electron micrograph(BSD) of 500 nm silica cores coated with 20nm AuNPs. 
+                        [left] Wide range of filling fractions of AuNPs on the silica surface [right] Single core-shell meta structure.  
+    </figcaption>
+  </figure>
+</div>
+
+
+<h3 id="aunp-filling-fraction-using-imagej">3.3 AuNP Filling Fraction
+Using ImageJ</h3>
+<ol type="1">
+<li>SEM image converted to grayscale.<br />
+</li>
+<li>Thresholding applied to isolate nanoparticles.<br />
+</li>
+<li>Particle counting performed using ImageJ’s <strong>Analyze
+Particles</strong> module.<br />
+</li>
+<li>Surface coverage percentage computed as:<br />
+\[
+f = \frac{N_{\text{AuNP}} \, \pi r_{NP}^2}{4\pi a^2}
+\]</li>
+</ol>
+<p>Typical filling fractions were <strong>25–32%</strong>, consistent
+with simulation assumptions.</p>
+<div class="flex-figures">
+  <figure>
+    <img src="/files/images/projects/cloakexperiment/filling_fraction.png" 
+    alt="filling fractions " style="width:85%; border-radius:6px;">
+    <figcaption>Figure : Surface coverage computation process via image processing using ImageJ.  
+                BSD image of a 500 nm core-shell structure with highlighted AuNPs(red). Removal of the background and, finally, obtaining AuNP clusters are shown from left to right.  
+    </figcaption>
+  </figure>
+</div>
+<hr />
+<h2 id="integrating-sphere-setup-for-scattering-measurement">4.
+Integrating Sphere Setup for Scattering Measurement</h2>
+<h3 id="measurement-concept">4.1 Measurement Concept</h3>
+
+<div class="flex-figures">
+  <figure>
+    <img src="/files/images/projects/cloakexperiment/experiment_schematic.png" 
+    alt="experiment_setup " style="width:80%; border-radius:6px;">
+    <figcaption>Figure: Experimental schematic of scattering cross-section measurements.
+  </figure>
+</div>
+
+
+<p>An <strong>integrating sphere spectrophotometer</strong> was used to
+capture the total scattering.</p>
+<h3 id="optical-setup">4.2 Optical Setup</h3>
+<ul>
+<li>Tunable laser source<br />
+</li>
+<li>Monochromator<br />
+</li>
+<li>Integrating sphere with &gt;97% reflectance<br />
+</li>
+<li>Sample port designed for drop-cast bead films</li>
+</ul>
+<h3 id="sample-preparation-1">4.3 Sample Preparation</h3>
+<ul>
+<li>AuNP-coated and bare beads were drop-cast on glass slides<br />
+</li>
+<li>Dried to form thin monolayers/clusters<br />
+</li>
+<li>Ensured consistent sample morphology across runs</li>
+</ul>
+<h3 id="calibration-process">4.4 Calibration Process</h3>
+<ul>
+<li>Baseline (bare substrate)<br />
+</li>
+<li>Reference (BaSO₄ standard)</li>
+</ul>
+<p>Ensured accurate scattering extraction independent of
+substrate/reflection contributions.</p>
+<hr />
+<h2 id="scattering-measurement-procedure">5. Scattering Measurement
+Procedure</h2>
+<ol type="1">
+<li>Mono chromatic light passed through the sample.<br />
+</li>
+<li>Scattered light integrated by the sphere.<br />
+</li>
+<li>Wavelength scanned from <strong>350–800 nm</strong>.<br />
+</li>
+<li>Measurements taken for both bare and coated beads.<br />
+</li>
+<li>Suppression quantified as:<br />
+  \[
+   S(\lambda) = \frac{\sigma_{\mathrm{sca,\,coated}}(\lambda)}{\sigma_{\mathrm{sca,\,bare}}(\lambda)}
+  \]</li>
+</ol>
+<hr />
+<h2 id="experimental-results">6. Experimental Results</h2>
+
+<div class="flex-figures">
+  <figure>
+    <img src="/files/images/projects/cloakexperiment/exp_500nm.png" 
+    alt="experiment_set_1 " style="width:90%; border-radius:6px;">
+    <figcaption>Figure : [left]Measure scattering cross-section of 500 nm bare silica sphere (black dots) and AuNP coated silica sphere (red dots) of the same size. 
+                     [right]Simulated scattering cross-section of the bare core and core-shell structures for 30% filling fraction.  
+  </figure>
+</div>
+
+<div class="flex-figures">
+  <figure>
+    <img src="/files/images/projects/cloakexperiment/exp_700nm.png" 
+    alt="experiment_set_2 " style="width:90%; border-radius:6px;">
+    <figcaption>Figure : [left]Measured scattering cross-section (left) of 700 nm bare silica sphere (black dots) and AuNP coated silica sphere (red dots) of the same size. 
+                         [right]Simulated scattering cross-section of the bare core and core-shell structures for 30% filling fraction.   
+  </figure>
+</div>
+
+
+
+<h3 id="key-findings">Key Findings</h3>
+<ul>
+<li>Clear <strong>scattering reduction</strong> observed in
+<strong>400–600 nm</strong>, corresponding to AuNP plasmon
+resonance.<br />
+</li>
+<li>Suppression magnitude: <strong>10–20%</strong> relative to bare
+beads.<br />
+</li>
+<li>Enhancement above 650 nm consistent with simulation
+predictions.<br />
+</li>
+<li>Spectral dip matches the <strong>AuNP extinction spectrum</strong>,
+confirming plasmonic contributions.</li>
+</ul>
+<hr />
+<h2 id="comparison-with-simulation-predictions">7. Comparison with
+Simulation Predictions</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Simulation</th>
+<th>Experiment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Suppression Window</td>
+<td>380–600 nm</td>
+<td>420–560 nm</td>
+</tr>
+<tr>
+<td>Dip Magnitude</td>
+<td>30–40%</td>
+<td>10–20%</td>
+</tr>
+<tr>
+<td>Angular Redistribution</td>
+<td>Strong forward bias</td>
+<td>Weak but present</td>
+</tr>
+<tr>
+<td>NP Distribution</td>
+<td>uniform</td>
+<td>partial clustering</td>
+</tr>
+<tr>
+<td>Filling Fraction</td>
+<td>controlled</td>
+<td>measured 25–32%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Agreement:</strong> Band location + physical trend.<br />
+<strong>Differences:</strong> Due to fabrication variability +
+clustering + substrate effects.</p>
+<hr />
+<h2 id="physical-interpretation">8. Physical Interpretation</h2>
+<h3 id="multiple-scattering-absorption">8.1 Multiple Scattering +
+Absorption</h3>
+<p>AuNPs absorb and re-radiate, damping coherent Mie oscillations.</p>
+<h3 id="cluster-induced-plasmonic-coupling">8.2 Cluster-Induced
+Plasmonic Coupling</h3>
+<p>Clusters increase local plasmonic interactions → modifies extinction
+behavior.</p>
+<h3 id="substrate-interaction">8.3 Substrate Interaction</h3>
+<p>Drop-cast films couple to substrate, shifting scattering minima.</p>
+<h3 id="non-uniform-filling-fraction">8.4 Non-Uniform Filling
+Fraction</h3>
+<p>Ideal monolayer assumption breaks, reducing suppression
+amplitude.</p>
+<hr />
+<h2 id="limitations-future-work">9. Limitations &amp; Future Work</h2>
+<h3 id="limitations">Limitations</h3>
+<ul>
+<li>Drop-cast geometry not uniform<br />
+</li>
+<li>SEM only captures top hemisphere<br />
+</li>
+<li>Substrate modifies scattering behavior<br />
+</li>
+<li>AuNP clustering not controlled</li>
+</ul>
+<h3 id="future-improvements">Future Improvements</h3>
+<ul>
+<li>Microfluidic monolayer assembly<br />
+</li>
+<li>Spin-coating for uniform films<br />
+</li>
+<li>Angular-resolved dark-field scattering<br />
+</li>
+<li>Coupled Maxwell simulations including substrate<br />
+</li>
+<li>Machine-learning surrogate models for morphology–scattering
+mapping</li>
+</ul>
+<hr />
+<h2 id="summary">10. Summary</h2>
+<p>This experimental investigation:</p>
+<ul>
+<li>Demonstrates scattering suppression using AuNP-coated silica
+spheres<br />
+</li>
+<li>Confirms spectral alignment with plasmonic extinction band<br />
+</li>
+<li>Validates simulation predictions qualitatively<br />
+</li>
+<li>Proves feasibility of plasmonic cloaking concepts in physical
+systems</li>
+</ul>
+<p>This bridges <strong>simulation ↔︎ fabrication ↔︎ measurement</strong>,
+showcasing full-stack experimental and computational capability.</p>
+<hr />
+<h2 id="acknowledgments">Acknowledgments</h2>
+<p>I would like to thank Dr.Zachary Petrek from the Chemistry Department
+for his valuable insight into optimizing AuNP surface functionalization
+and improving nanoparticle yield during the self-assembly process. His
+contributions were essential to the fabrication and characterization
+workflow used in this experimental study.</p>
+<p><strong>Citation (PhD Dissertation):</strong></p>
+
+<blockquote>
+  Khan, M. I. (2021). <em>Tuning far-field light–matter interactions using 
+  three-dimensional plasmonic meta-structures</em>. 
+  Ph.D. Dissertation, University of California, Merced.  
+  <a href="https://escholarship.org/uc/item/62q0s8f8" target="_blank">
+    https://escholarship.org/uc/item/62q0s8f8
+  </a>
+</blockquote>
+
+</section>

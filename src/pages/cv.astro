@@ -3,16 +3,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
 ---
 
-<BaseLayout title="Resume" sideBarActiveItemID="cv">
+<BaseLayout title="Imran Khan | Portfolio " sideBarActiveItemID="cv">
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">Profile</div>
   </div>
 
   <div class="mb-10 text-justify">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Ph.D. physicist specializing in optics, computational modeling, and imaging systems with 4+ years of 
+    industry experience in CD-SEM metrology. Proven ability to design physics-driven algorithms, 
+    build end-to-end Python pipelines, and analyze complex image datasets in high-volume manufacturing environments. 
+    Experienced in simulation, image quality assessment, and tool automation, with a strong 
+    foundation in scattering theory, electromagnetics, and computer vision. 
+    Seeking roles at the intersection of optics, metrology, and AI-driven imaging.
   </div>
 
   <div class="mb-5">
@@ -21,12 +23,12 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
 
   <div class="time-line-container grid gap-4 mb-10">
     <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
+      title="Ph.D., Physics (Optics | Computational Modeling) "
+      subtitle="Aug 2016 to Oct 2021 | University of California, Merced."
     />
     <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
+      title="M.S., Physics"
+      subtitle="2016 | Binghamton University (SUNY) , Binghamton, NY."
     />
   </div>
 
@@ -36,57 +38,101 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
 
   <div class="time-line-container mb-10">
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      title="Metrological Process Engineer">
+      <em>Intel Corporation, Hillsboro, USA. | Nov, 2021 - July, 2025 </em>
+    <!--- Add job experince-- below--> 
+    <ul class="list-disc list-inside mt-3 text-base text-gray-700">
+    <li>Primary tool owner of four CD-SEM systems and co-owner of four additional tools in a high-volume 24/7 manufacturing environment.</li>
+    <li>Maintained SPC charts for fleet-wide metrology tools to monitor tool health and measurement stability.</li>
+    <li>Designed and deployed a Python dashboard for monitoring key SEM parameters (probe current, stigmation, beam alignment), enabling fast anomaly detection.</li>
+    <li>Automated DCCD round-robin analysis with Python, improving consistency checks and reporting accuracy across the SEM fleet.</li>
+    <li>Built a computer vision toolkit for automated SEM image quality assessment (sharpness, CNR, FFT-sharpness, GLCM texture metrics). </li>
+    <li>Developed Python workflows for processing FCCD datasets and integrating results into long-term SPC systems.</li>
+    <li>Collaborated with cross-functional teams to troubleshoot tool drift, optimize alignment, and reduce metrology downtime.</li>
+    <div class="mb-4"></div>
+    </ul>
+    <!--End Intel job experience-->
     </TimeLineElement>
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      title="Graduate Research Scholar">
+      <em>University of California, Merced, California. | Aug, 2016 - Oct, 2021</em>
+    <ul class="list-disc list-inside mt-3 text-base text-gray-700">
+    <b>Computational Modeling & Nano-fabrication of Plasmonic Metastructures:</b>
+    <li>Developed a full-wave computational model combining MFS and Foldy–Lax theory to simulate scattering from 3D plasmonic nanostructures.</li>
+    <li>Implemented Python and MATLAB solvers to compute far-field patterns, extinction spectra, and design parameter sweeps.</li>
+    <li>Performed nano-fabrication of metashell structures and correlated experimental measurements with simulation results.</li>
+    <b>Optical Metrology for Energy Transfer in Nanoclusters:</b>
+    <li>Characterized NSET/FRET dynamics using time-resolved photoluminescence (TRPL).</li>
+    <li>Built and aligned custom optical setups with improved SNR for dilute samples.</li>
+    <div class="mb-4"></div>
+    </ul>
+      
     </TimeLineElement>
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      title="Graduate Research Associate">
+      <em>Universal Instruments Corporation, Conklin, New York. | 2013-2014</em>
+      <ul class="list-disc list-inside mt-3 text-base text-gray-700">
+      <li>Characterized thermomechanical properties of lead-tin-silver alloys for high-temperature electronic packaging.</li>
+      <li>Conducted DSC analysis to determine melting point depression and thermodynamic behavior.</li>
+      <li>Performed SEM-based microstructural analysis to link material composition with grain morphology.</li>
+      <li>Measured mechanical integrity using a Dage 4000 Plus bond tester and co-authored an IMAPS industry publication.</li>
+      <li>Co-authored an industry-facing publication for the International Microelectronics Assembly and Packaging Society (IMAPS), presenting findings to aid in the development of new industrial alloys.</li>
+      <div class="mb-4"></div>
+      </ul>
+      
     </TimeLineElement>
   </div>
 
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Publications(Selected)</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li> 
+      <a href="https://doi.org/10.1364/JOSAA.560629"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue-600 hover:underline"
+      >
+      Khan, M.I., et al., “Scattering by nanoplasmonic mesoscale assemblies,” JOSA A 42, 1244–1253 (2025).  </a>
+    </li>
+    <li>
+      <a href="https://doi.org/10.1364/OE.395840" target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue-600 hover:underline"
+      > 
+    Khan, M.I., et al., “Modeling broadband cloaking using 3D nano-assembled plasmonic meta-structures”, Optics Express, 2020.</a>
+    </li>
+  </ul>
+
+<!--certification block -->
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">Certifications</div>
   </div>
 
-  <ul class="list-disc mx-6 mb-10 grid gap-2">
+  <ul class="list-disc mx-6 mb-10 grid gap-1">
     <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
+      <a href="https://www.coursera.org/account/accomplishments/verify/W5RNMYHV9V7H" target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue-600 hover:underline"
+      > Neural Networks and Deep Learning</a>
     </li>
+    
     <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
+      <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/N6FZMTLC8MJ6" target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue-600 hover:underline"
+      > Machine Learning Specialization</a>
+    </li>
+
+    <li>
+      <a href="https://www.udemy.com/certificate/UC-17d4dbd9-194f-4c5d-91bc-645280d8511c" target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue-600 hover:underline"
+      > Master Python programming by solving scientific projects</a>
     </li>
   </ul>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Skills</div>
-  </div>
-
-  <ul class="list-disc md:columns-5 columns-2 mx-6">
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-  </ul>
+ 
+  
 </BaseLayout>

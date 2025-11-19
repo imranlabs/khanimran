@@ -3,37 +3,73 @@
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
 
+
 export interface Props {
-	title: string;
-	description: string;
-	image?: string;
-	ogType?: string;
+  title?: string;
+  description?: string;
+  image?: string;
 }
 
-const { title, description, image = '/social_img.webp', ogType = 'website' } = Astro.props;
----
+const {
+  title = "Imran Khan | Physicist & Deep Learning Engineer",
+  description = "Portfolio of Imran Khan — a physicist specializing in optics, computational modeling, and AI-driven computer vision. Explore projects in deep learning, image processing, and scientific visualization.",
+  image = "/images/social-preview.jpg"
+} = Astro.props;
 
-<!-- Global Metadata -->
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+const url = "https://khanimran.com";
+
+---
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>{title}</title>
+
+
+<meta name="title" content={title}>
+<meta name="description" content={description}>
+
+<meta property="og:type" content="website">
+<meta property="og:url" content={url}>
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:image" content={image}>
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content={url}>
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={image}>
+
+<meta name="keywords" content="Imran Khan, physics, optics, computational modeling, AI, computer vision, deep learning, machine learning, data science, image processing, portfolio, research, metrology">
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.ico?v=2" sizes="any"><!-- legacy + strong fallback -->
+<link rel="icon" type="image/png" sizes="32x32" href="/prism-32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="/prism-16.png?v=2">
+<link rel="icon" type="image/png" href="/prism.png?v=2"><!-- 256/512 general -->
+<link rel="icon" type="image/png" href="/prism_light.png?v=2" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="/prism_dark.png?v=2"  media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" sizes="180x180" href="/prism_apple.png?v=2">
+<link rel="mask-icon" href="/prism-mask.svg?v=2" color="#0ea5e9"><!-- optional pinned tab -->
+
+
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+
+<meta name="robots" content="index, follow">
+<meta name="author" content="Imran Khan">
 <meta name="generator" content={Astro.generator} />
 
-<!-- Primary Meta Tags -->
-<title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content={ogType} />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Imran Khan",
+  "url": "https://khanimran.com",
+  "jobTitle": "Physicist and Deep Learning Engineer",
+  "description": "Physicist specializing in optics and computational modeling, transitioning into AI and computer vision.",
+  "sameAs": [
+    "https://github.com/imranlabs",
+    "https://www.linkedin.com/in/imrankahn/"
+  ]
+}}
+</script>

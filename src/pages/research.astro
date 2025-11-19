@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+---
+<BaseLayout title = "Research & Simulation" sideBarActiveItemID="research">
+  <div>
+   <div class="text-3xl w-full font-bold mb-5">Research & Simulation</div> 
+    <!--h1 class="text-2xl font-bold mb-4">Research & Simulation</h1> -->
+    <p class="text-base text-gray-700">
+    This section highlights my research work, modeling contributions, and simulation projects. I plan to include code snippets, summaries of results, and visualizations.
+  </p>
+  </div>
+
+<!--creation date Nov-18,2025--> 
+<HorizontalCard
+    title="Scattering by Nanoplasmonic Mesoscale Assemblies"
+    img="/files/images/projects/scattering/schematic.png"
+    desc={`Studied how gold nanoparticle shells reshape the angular scattering of dielectric microspheres. 
+          Using a hybrid MFS + Foldy–Lax model, showed that AuNP coatings suppress Mie sidelobes 
+          and enhance forward scattering through phase decoherence and plasmonic multiple scattering.`}
+    url="/research/scattering"
+    
+    badge="Angular Scattering Modeling"
+  />
+
+
+<!--creation date Nov-17,2025--> 
+<HorizontalCard
+    title="Modeling Broadband Cloaking Using Nano-Assembled Plasmonic Meta-Structures"
+    img="/files/images/projects/broadbandscattering/broadband.png"
+    desc={`Developed a hybrid computational model combining MFS and Foldy–Lax theory to study plasmonic nano-shells. 
+          Demonstrated how dense AuNP coatings cancel Mie scattering through multipole interference, 
+          enabling broadband optical cloaking and tunable far-field response.`}
+    url="/research/broadbandscattering"
+    
+    badge="Computational EM | Plasmonics Cloaking"
+  />
+
+  <!--creation date Nov-18,2025--> 
+<HorizontalCard
+    title="Experimental demonstration of Scattering Suppression in AuNP-Coated Dielectric Microspheres"
+    img="/files/images/projects/cloakexperiment/exp_hero.png"
+    desc={`Experimentally demonstrated scattering suppression in AuNP-coated silica microspheres through nano-fabrication, 
+            SEM characterization, and integrating-sphere measurements. 
+            Validated key trends predicted by plasmonic cloaking simulations, showing reduced scattering intensity in the 400–600 nm band.`}
+    url="/research/cloakexperiment"
+    
+    badge="Experimental Optics | SEM"
+  />
+
+
+
+</BaseLayout>

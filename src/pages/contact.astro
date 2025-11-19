@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Page metadata (adjust as your layout expects)
+const page = {
+  title: "Contact",
+  description: "Get in touch with Imran Khan.",
+};
+
+const sideBarActiveItemID = "contact";
+---
+
+<BaseLayout page={page} sideBarActiveItemID={sideBarActiveItemID}>
+  <section class="max-w-xl mx-auto py-12">
+    <h1 class="text-3xl font-semibold mb-4">Contact</h1>
+
+    <p class="mb-6">
+      Hi, I&apos;m <strong>Imran Khan</strong>. For opportunities, collaborations, or questions about my work in optics, imaging, and computer vision, you can reach me at:
+    </p>
+
+    <p class="mb-2">
+      <span class="font-medium">Email:</span>
+      <a
+        href="mailto:imransmailbox@gmail.com"
+        class="text-primary underline ml-2"
+      >
+        imransmailbox@gmail.com
+      </a>
+    </p>
+  </section>
+</BaseLayout>

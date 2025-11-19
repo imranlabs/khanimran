@@ -1,0 +1,272 @@
+<section class="space-y-4">
+<h2>California Housing Price Prediction: A Comparative ML Workflow</h2>
+ <div>
+  <div class="flex flex-wrap gap-2 pt-1">
+    <span class="inline-flex items-center rounded-full bg-sky-50 px-3 py-1 text-xs font-medium text-sky-700">
+      Python &amp; Scikit-Learn
+    </span>
+    <span class="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
+      Regression &amp; Feature Engineering
+    </span>
+    <span class="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700">
+      Random Forests, XGBoost
+    </span>
+    <span class="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-black-700">
+      Deep Learning &amp; Feature Importance
+    </span>
+  </div>
+</div>
+<h2 id="overview">Overview</h2>
+<p>This project implements a rigorous, end-to-end machine learning
+workflow to predict median house values in California census block
+groups. The primary goal was to systematically compare the performance 
+of diverse modeling techniques—from classical regression to advanced
+boosting(XGBoost, \(R^{2}\): 0.852  &amp; RMSE: 0.442 ) and deep learning—while demonstrating proficiency in
+<strong>feature engineering</strong>, <strong>feature
+selection</strong>, and <strong>model optimization</strong>.</p>
+<p><strong>Tech Stack:</strong> Python, Scikit-Learn, NumPy, Pandas,
+Matplotlib, Pytorch<br />
+<strong>Key Skills:</strong> Regression, Feature Engineering, Random
+Forests, XGBoost, Deep Learning, Feature Importance</p>
+
+<h2 id="links-artifacts">Links &amp; Artifacts</h2>
+<div class="mt-6 flex flex-wrap items-center gap-3 mt-4">
+    <!--github-->
+  <a href="https://github.com/imranlabs/California_Housing_Price_Prediction"
+     target="_blank" rel="noopener" 
+     class="btn btn-outline btn-sm">
+    GitHub
+  </a>
+  <!--Download model-->
+  <a href="/files/cali_housing/cali_housing_best_xgb_model.joblib"
+   download
+   class="btn btn-sm bg-indigo-600 hover:bg-indigo-700 text-white">
+  Download Model
+</a>
+  <!--colab-->
+   <a href="https://colab.research.google.com/github/imranlabs/California_Housing_Price_Prediction/blob/main/California_housing_price.ipynb">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"
+    class="h-7 align-middle">
+  </a>
+<!---house price dist per loc-->
+<figure class="my-6">
+  <img src="/files/images/projects/california_housing/hero.png"
+       alt="House price distribution over location"
+       class="rounded-xl mx-auto shadow-md"/>
+  <figcaption class="text-sm text-center text-gray-500">
+    Geographic distribution of prices (Longitude/Latitude).
+  </figcaption>
+</figure>
+
+  
+</div>
+<h2 id="why-this-project">Why this project</h2>
+<p>Tabular data problems are at the core of many real-world applications. This project demonstrates a complete, 
+reproducible ML workflow — from baseline models to optimized ensemble learning and interpretability <strong>end-to-end, reproducible ML workflow</strong>:
+from baseline → iteration → validation → <strong>performance improvement</strong> → interpretation.</p>
+<h3 id="comparative-results-summary">Comparative Results Summary</h3>
+<p>The iterative process led to a significant 28.6% reduction in
+prediction error (RMSE) compared to the initial Decision Tree model,
+with the XGBoost model achieving the best overall score.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Model</th>
+<th style="text-align: left;">Feature Count</th>
+<th style="text-align: left;">RMSE</th>
+<th style="text-align: left;"><span class="math inline">\(R^{2}\)</span>
+Score</th>
+<th style="text-align: left;"><span
+class="math inline">\(\Delta\)</span> Improvement (RMSE Reduction)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Decision Tree (Baseline)</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;"><span
+class="math inline">\(0.6096\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(0.7194\)</span></td>
+<td style="text-align: left;">Baseline</td>
+</tr>
+<tr>
+<td style="text-align: left;">Random Forest (Selected)</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;"><span
+class="math inline">\(0.5020\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(0.8090\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(+17.7\%\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">XGBoost (Selected)</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">$ 0.4420 $</td>
+<td style="text-align: left;"><span
+class="math inline">\(0.8520\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(+27.5\%\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>XGBoost (with
+Clustering)</strong></td>
+<td style="text-align: left;"><strong><span class="math inline">\(7 +
+14\)</span></strong></td>
+<td style="text-align: left;"><strong><span
+class="math inline">\(0.4355\)</span></strong></td>
+<td style="text-align: left;"><strong><span
+class="math inline">\(0.8567\)</span></strong></td>
+<td style="text-align: left;"><strong><span
+class="math inline">\(+28.6\%\)</span></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PyTorch MLP
+Regressor</strong></td>
+<td style="text-align: left;"><strong><span class="math inline">\(7 +
+14\)</span></strong></td>
+<td style="text-align: left;"><span
+class="math inline">\(0.6630\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(0.6680\)</span></td>
+<td style="text-align: left;">-</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Final Model Performance: The optimized XGBoost Regressor achieved a
+very high <span class="math inline">\(R^{2}\)</span> score of <span
+class="math inline">\(\mathbf{0.8567}\)</span>, explaining over <span
+class="math inline">\(85\%\)</span> of the variance in home prices.</p>
+</blockquote>
+<!--<img src="..." class="rounded-xl mx-auto my-6" alt="..." /><img>-->
+<h2 id="methodology-and-optimization-pipeline">Methodology and
+Optimization Pipeline</h2>
+<p>The project followed an iterative, three-phase approach, prioritizing
+performance gains and model efficiency:</p>
+<h4 id="baseline-and-initial-strategy">1. Baseline and Initial
+Strategy</h4>
+<ul>
+<li><strong>Baseline Models:</strong> Standard <strong>Linear
+Regression</strong> and initial <strong>Decision Tree</strong> models
+established the performance floor.</li>
+<li><strong>Initial Feature Engineering:</strong> An attempt to create
+new, ratio-based features (e.g., <code>bedrooms_per_room</code>) was
+performed. This step was crucial as it demonstrated that the engineered
+features <strong>did not improve performance</strong> on tree models,
+leading to a pivot in strategy.</li>
+</ul>
+<h4 id="strategic-feature-selection-and-ensemble-learning">2. Strategic
+Feature Selection and Ensemble Learning</h4>
+<p>After observing diminishing returns from manual feature engineering, 
+the focus shifted toward model-driven optimization through feature importance and ensemble learning.</p>
+<ul>
+<li><strong>Feature Importance:</strong> A Decision Tree model was used
+to rank feature importance, leading to the elimination of low-impact
+variables. This strategic <strong>feature selection</strong> reduced the
+feature set from 11 to <strong>7</strong>, resulting in a slight
+performance gain and a more efficient model.</li>
+<li><strong>Ensemble Power (Random Forest):</strong> The optimized
+7-feature set was used to train a <strong>Random Forest
+Regressor</strong>, which delivered the first major performance
+leap.</li>
+<li><strong>Advanced Boosting (XGBoost):</strong> An <strong>XGBoost
+Regressor</strong> was applied with aggressive hyperparameter tuning.
+This boosting algorithm achieved the project’s highest accuracy on the
+initial feature set.</li>
+</ul>
+<h4 id="advanced-feature-engineering-deep-learning-benchmark">3.
+Advanced Feature Engineering &amp; Deep Learning Benchmark</h4>
+<ul>
+<li><strong>Location Clustering (K-Means):</strong> Recognizing that
+<code>Latitude</code> and <code>Longitude</code> were among the top predictors,
+<strong>K-Means Clustering</strong> was applied to the coordinates to
+create a new <strong>categorical region feature</strong>. Re-training
+the XGBoost model on this enhanced feature set delivered the final,
+best-performing result.</li>
+<li><strong>Deep Learning Benchmark (PyTorch MLP):</strong> 
+A fully connected Multi-Layer Perceptron (MLP) 
+was implemented in PyTorch to benchmark performance against tree-based ensembles.
+This step demonstrated proficiency with deep learning
+frameworks, data preparation for neural networks (scaling, custom data
+loaders), and benchmarking, even though the XGBoost model maintained
+superior performance.</li>
+</ul>
+<h3 id="technical-stack-and-takeaways">Technical Stack and
+Takeaways</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Tools &amp; Techniques</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Classical ML</strong></td>
+<td style="text-align: left;">Scikit-learn, Random Forest, XGBoost,
+Linear Regression, Decision Tree.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Feature Engineering</strong></td>
+<td style="text-align: left;">Feature Importance analysis, Feature
+Selection, <strong>K-Means Clustering</strong> for spatial feature
+creation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Deep Learning</strong></td>
+<td style="text-align: left;"><strong>PyTorch</strong> (custom
+<code>Dataset</code>, <code>DataLoader</code>, <code>nn.Module</code>
+definition), <span class="math inline">\(\text{nn.MSELoss()}\)</span>,
+<span class="math inline">\(\text{Adam}\)</span> optimizer, GPU/MPS
+device optimization.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Data &amp; Metrics</strong></td>
+<td style="text-align: left;">Pandas, NumPy, RMSE, <span
+class="math inline">\(R^2\)</span> Score.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Model Persistence</strong></td>
+<td style="text-align: left;">Final XGBoost model was saved using
+<code>joblib</code> for deployment.</td>
+</tr>
+</tbody>
+</table>
+<!---actual vs predcited -->
+<figure class="my-6">
+  <img src="/files/images/projects/california_housing/actual_vs_predicted_price.png"
+       alt="Actual vs Predicted house prices"
+       class="rounded-xl mx-auto shadow-md"/>
+  <figcaption class="text-sm text-center text-gray-500">
+    Predicted(XGBoost) vs Actual values with y = x reference; RMSE and R² annotated.
+  </figcaption>
+</figure>
+<h2 id="what-i-learned">What I learned</h2>
+<ul>
+<li><strong>Iterative Optimization:</strong> Demonstrated a principled approach by using
+initial models to guide later, more complex steps (Feature Importance
+over failed Feature Engineering).</li>
+<li><strong>Handling Tabular
+Data:</strong> Confirmed that ensemble and boosting methods (XGBoost)
+are often superior to simple Deep Learning architectures for structured,
+tabular data.</li>
+<li><strong>Cross-Platform Proficiency:</strong>
+Successfully implemented and benchmarked models in both the
+<strong>Scikit-learn/XGBoost</strong> ecosystem and the
+<strong>PyTorch</strong> deep learning framework, demonstrating
+versatility.</li></p>
+</ul>
+</section>

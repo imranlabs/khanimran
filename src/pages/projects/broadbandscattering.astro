@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+// Load your raw HTML from /public or an import. Example uses an import string:
+import rawHtml from "../../content/projects/research/broadbandscatering/broadband_scattering.html?raw";
+---
+
+<BaseLayout title="Modeling Broadband Cloaking Using Nano-Assembled Plasmonic Meta-Structures" sideBarActiveItemID="projects">
+  <!-- MathJax (render TeX delimiters \( \) and \[ \ ]) -->
+  <script id="mathjax-config">
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)'], ['$', '$']], displayMath: [['\\[','\\]'], ['$$','$$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <article class="prose lg:prose-lg mx-auto max-w-3xl px-4 text-justify" set:html={rawHtml}/>
+</BaseLayout>

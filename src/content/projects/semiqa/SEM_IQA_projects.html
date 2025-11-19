@@ -1,0 +1,385 @@
+<section class="space-y-1">
+<h2>Automated Image Quality Assessment (IQA) for SEM Metrology</h2>
+<h2 id="overview">Overview</h2>
+<p>A Python-based toolkit developed to ensure the stability and
+consistency of image quality from Scanning Electron Microscopes (SEM)
+used in high-volume semiconductor manufacturing. By automating the
+measurement of critical image degradation factors (focus, stigmation,
+noise), the project shifts quality control from subjective visual checks
+to objective, quantitative metrics. This directly supports accurate
+Critical Dimension (CD) and defect metrology, where image consistency is
+paramount.</p>
+<p><strong>Tech Stack:</strong> Python, NumPy, OpenCV, scikit-image,
+Matplotlib, SciPy</p>
+<p><strong>Environment:</strong> Jupyter Notebook / Colab for
+interactive analysis</p>
+<h2 id="links-artifacts">Links &amp; Artifacts</h2>
+<div class="mt-5 flex flex-wrap items-center gap-3 mt-4">
+<!--github-->
+  <a href="https://github.com/imranlabs/SEM_image_quality_analysis"
+      target="_blank" rel="noopener" 
+      class="btn btn-outline btn-sm">
+      GitHub
+    </a>
+    <!-- Open in Colab for your main notebook -->
+    <a href="https://colab.research.google.com/github/imranlabs/SEM_image_quality_analysis/blob/main/SEM_IQA.ipynb">
+      <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"
+      class="h-7 align-middle">
+    </a>
+
+</div>
+<h2 id="key-features-technical-achievements">Key Features &amp;
+Technical Achievements</h2>
+<ul>
+<li><p><strong>Automated Image Quality Assessment (IQA):</strong>
+Implemented a suite of both Full-Reference (e.g., Structural Similarity
+Index, SSIM; Peak Signal-to-Noise Ratio, PSNR) and No-Reference (e.g.,
+Laplacian Variance, BRISQUE) metrics. This provides a comprehensive,
+objective score for image quality to quantify the tool health.</p></li>
+<li><p><strong>Domain-Specific Metric Implementation:</strong> Adapted
+the Normalized Variance Focus Score (Normvar), a key technique from
+academic literature, specifically for Gold-on-Carbon (GoC) reference
+images, aligning the tool with industry-standard qualification
+methods.</p></li>
+<li><p><strong>Tool-to-Tool Matching:</strong> Developed histogram
+comparison and Frequency-domain (FFT) analysis to statistically verify
+the consistency of operating parameters across different SEM machines, a
+critical requirement for high-reliability fabs.</p></li>
+<li><p><strong>Simulation of Degradations:</strong> Created functions to
+synthetically generate realistic SEM image flaws (Gaussian Blur for
+defocus, Anisotropic Blur for stigmation, and Poisson/Gaussian noise),
+providing a robust validation suite for the assessment
+algorithms.</p></li>
+</ul>
+<h2 id="impact">Impact</h2>
+<ul>
+<li><p>Improved Manufacturing Yield: Reduced reliance on manual,
+subjective quality checks, leading to faster tool qualification and
+minimized downtime from unstable SEMs.</p></li>
+<li><p>Enhanced Data Reliability: Provided quantitative proof of image
+quality, ensuring that all subsequent metrology and machine learning
+models are trained and run on reliable, consistent input data.</p></li>
+<li><p>Stable image quality is table-stakes for reliable CD/overlay
+metrology. Focus drift, stigmation, detector noise, and operating-point
+changes silently degrade measurements. This project provides a
+repeatable, quantitative way to:</p>
+<ul>
+<li><p>Detect IQ drift early (before it hits SPC).</p></li>
+<li><p>Compare tool-to-tool outputs after maintenance or recipe
+transfers.</p></li>
+<li><p>Create explainable visuals (SSIM maps, FFT energy ratios,
+histogram overlays) for quick, defensible decisions.</p></li>
+</ul></li>
+</ul>
+<h2 id="methods-brief-practical">Methods</h2>
+<h3 id="full-reference">Full-reference</h3>
+<ul>
+<li><strong>SSIM</strong> compares luminance/contrast/structure between
+<strong>reference</strong> and <strong>test</strong> images. Good for
+localizing degradation (SSIM maps).</li>
+<li><strong>PSNR</strong> summarises signal fidelity (dB). Simple but
+useful for quick screening.</li>
+</ul>
+<h3 id="no-reference">No-reference</h3>
+<ul>
+<li><strong>Normalized variance</strong>: cheap focus/sharpness proxy.</li>
+<li><strong>FFT high-frequency ratio</strong>: proportion of energy
+above a radial cutoff; drops as images lose fine detail (defocus,
+stigmation).</li>
+<li><strong>CNR (ROI-based)</strong>: ( = ) over stable ROIs; separates
+contrast shifts vs. noise growth.</li>
+</ul>
+<h3 id="tool-to-tool-matching">Tool-to-tool matching</h3>
+<ul>
+<li><strong>Histogram comparison</strong> (e.g.,
+Bhattacharyya/Chi-square similarity depending on your implementation)
+across matched ROIs or full frames. Pairs nicely with CNR to
+disambiguate contrast vs. noise changes.</li>
+</ul>
+<h2 id="featured-iqa-results">Featured IQA results:</h2>
+<h3 id="gold-on-carbon-image-focus-assesment">Gold on Carbon(GoC) image focus
+assesment</h3>
+<!--GOC image-->
+<figure class="my-6">
+  <img src="/files/images/projects/sem_iqa/GOC_image_focus_assesments.png"
+       alt="GOC image under inspection"
+       class="rounded-xl mx-auto shadow-md"/>
+  <figcaption class="text-sm text-center text-gray-500">
+   GoC SEM reference image evaluated under controlled blur and rotation. 
+    The Normalized Variance (NV) focus score remains largely stable under geometric transformations, 
+    while SSIM and PSNR fluctuate strongly—highlighting NV’s robustness as a focus metric for SEM imaging..
+  </figcaption>
+</figure>
+
+<p class="mt-4">Metric Comparison Across Image Variations
+<div class="overflow-x-auto my-8">
+  <table class="table-auto border-collapse border border-gray-400 mx-auto text-center">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="border border-gray-300 px-3 py-2">Image Variation</th>
+        
+        <th class="border border-gray-300 px-5 py-2">NV Ratio</th>
+        <th class="border border-gray-300 px-5 py-2">PSNR</th>
+        <th class="border border-gray-300 px-5 py-2">SSIM</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="border px-5 py-2">Original</td>
+        <td>1.000</td><td>∞</td><td>1.000</td></tr>
+      <tr><td class="border px-5 py-2">Blurred (σ = 1)</td><td>0.844</td><td>27.361</td><td>0.762</td></tr>
+      <tr><td class="border px-5 py-2">Blurred (σ = 2)</td><td>0.690</td><td>24.378</td><td>0.620</td></tr>
+      <tr><td class="border px-5 py-2">Brightness + 20%</td><td>1.205</td><td>23.288</td><td>0.970</td></tr>
+      <tr><td class="border px-5 py-2">Contrast + 30%</td><td>0.493</td><td>25.854</td><td>0.922</td></tr>
+      <tr><td class="border px-5 py-2">Rotated 90°</td><td>0.940</td><td>12.526</td><td>0.068</td></tr>
+      <tr><td class="border px-5 py-2">Rotated 180°</td><td>1.000</td><td>12.361</td><td>0.061</td></tr>
+      <tr><td class="border px-5 py-2">Rotated 270°</td><td>0.940</td><td>12.525</td><td>0.068</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3 id="findings"><strong>Findings</strong></h3>
+<ol type="1">
+<li><strong>Normalized Variance (NV) ratio</strong> remains relatively
+stable across brightness changes but decreases consistently with
+blur.<br />
+</li>
+<li><strong>PSNR</strong> and <strong>SSIM</strong> are highly sensitive
+to brightness/contrast changes, which are common in SEM imaging but
+don’t necessarily indicate focus quality.<br />
+</li>
+<li><strong>NV</strong> is rotation-invariant, providing consistent
+scores for rotated images.<br />
+</li>
+<li>For <strong>Gold-on-Carbon SEM</strong> images, NV provides a more
+consistent focus measure that aligns with human perception of
+sharpness.</li>
+</ol>
+<h2 id="stigmation">Stigmation</h2>
+<!--Stigmation-->
+<figure class="my-6">
+  <img src="/files/images/projects/sem_iqa/stigmated_image.png"
+      alt="stigmation inspection"
+       class="rounded-xl mx-auto shadow-md"/>
+  <figcaption class="text-sm text-center text-gray-500">
+   Original (left) and Stigmated (right) SEM image with stigmation distortion. A custom distortion using ksize_x=3, ksize_y=1, angle=0.7 was applied.
+   Directional blur lowers SSIM / PSNR, while Normalized Variance and Laplacian sharpness effectively capture anisotropic focus loss.
+  </figcaption>
+</figure>
+
+<h3 id="image-quality-assessment-report">IMAGE QUALITY ASSESSMENT
+REPORT</h3>
+<p><strong>Distortion Type:</strong> <em>Stigmation</em></p>
+<hr />
+<h4 id="main-metrics-comparison">1. Main Metrics Comparison</h4>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 20%" />
+<col style="width: 19%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>Metric</strong></th>
+<th style="text-align: center;"><strong>Current Value</strong></th>
+<th style="text-align: center;"><strong>Ideal Value</strong></th>
+<th style="text-align: left;"><strong>Interpretation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSIM</td>
+<td style="text-align: center;">0.772</td>
+<td style="text-align: center;">1.0000</td>
+<td style="text-align: left;">Higher is better</td>
+</tr>
+<tr>
+<td>PSNR</td>
+<td style="text-align: center;">23.82 dB</td>
+<td style="text-align: center;">∞ dB</td>
+<td style="text-align: left;">Higher is better</td>
+</tr>
+<tr>
+<td>NormVar Focus Ratio</td>
+<td style="text-align: center;">0.938</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: left;">Closer to 1 is better</td>
+</tr>
+<tr>
+<td>Laplacian Sharpness Ratio</td>
+<td style="text-align: center;">0.244</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: left;">Closer to 1 is better</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="detailed-scores-breakdown">2. Detailed Scores Breakdown</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Metric</strong></th>
+<th style="text-align: center;"><strong>Original</strong></th>
+<th style="text-align: center;"><strong>Stigmation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normalized Variance Focus</td>
+<td style="text-align: center;">75.69</td>
+<td style="text-align: center;">71.02</td>
+</tr>
+<tr>
+<td>Laplacian Sharpness</td>
+<td style="text-align: center;">8174.52</td>
+<td style="text-align: center;">1991.11</td>
+</tr>
+<tr>
+<td>BRISQUE Score</td>
+<td style="text-align: center;">44.38</td>
+<td style="text-align: center;">14.576</td>
+</tr>
+</tbody>
+</table>
+<h4 id="key-findings">3. Key Findings</h4>
+<ol type="1">
+<li>BRISQUE is not a suitable metric.<br />
+</li>
+<li>Norm Var : Focus quality has degraded significantly.<br />
+</li>
+<li>Laplacian Sharpness: Image sharpness has been reduced.</li>
+</ol>
+<h2 id="fft-sharpness">FFT Sharpness</h2>
+<ul>
+<li>Comparing sharpness using FFT( Fast Fourier Transform)</li>
+<li>Using simulated SEM like stigmated image for FFT sharness</li>
+</ul>
+<!--FFT sharpness image-->
+<figure class="my-6">
+  <img src="/files/images/projects/sem_iqa/FFT_sharpness.png"
+      alt="fft_bases dharpness"
+       class="rounded-xl mx-auto shadow-md"/>
+  <figcaption class="text-sm text-center text-gray-500">
+  FFT-based sharpness evaluation of SEM images. The power spectrum of the sharp reference image contains prominent high-frequency energy distributed uniformly across orientations, 
+  whereas the blurred or stigmated image displays a contracted spectrum with diminished high-frequency magnitude—quantifying sharpness loss in the frequency domain.
+  </figcaption>
+</figure>
+
+<h3 id="fft-spectrum-analysis-report">FFT Spectrum Analysis Report</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th style="text-align: center;"><strong>Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reference Sharpness</strong></td>
+<td style="text-align: center;">21154.38</td>
+</tr>
+<tr>
+<td><strong>Test Sharpness</strong></td>
+<td style="text-align: center;">15844.23</td>
+</tr>
+<tr>
+<td><strong>Sharpness Ratio</strong></td>
+<td style="text-align: center;">0.749</td>
+</tr>
+<tr>
+<td><strong>Sharpness Difference (Test − Ref)</strong></td>
+<td style="text-align: center;">-5310.15</td>
+</tr>
+<tr>
+<td><strong>Assessment</strong></td>
+<td style="text-align: center;">~ Moderate focus loss</td>
+</tr>
+</tbody>
+</table>
+<h2 id="image-histogram">Image Histogram</h2>
+<p>Histogram compare for tool-to-tool matching</p>
+
+<!---Histogram images-->
+<figure class="my-6">
+  <img src="/files/images/projects/sem_iqa/histogram_compare.png"
+      alt="fft_bases dharpness"
+       class="rounded-xl mx-auto shadow-md"/>
+  <figcaption class="text-sm text-center text-gray-500">
+  Figure 4. Histogram comparison between reference and stigmated SEM images (ksizeₓ = 3, ksizeᵧ = 1, angle = 0.7). 
+  Despite directional blur, the overall intensity distribution remains well-aligned with a high correlation score (≈ 0.85) 
+  and small brightness difference (≈ 0.3 gray levels). The slight contrast reduction (ratio ≈ 0.97) 
+  indicates minor dynamic-range compression consistent with anisotropic blur, 
+  confirming good tonal matching between reference and distorted images.
+  </figcaption>
+</figure>
+
+<div class="not-prose">
+ <pre class="bg-gray-900 text-gray-100 p-4 rounded-md text-sm overflow-x-auto">
+  ========================================
+  HISTOGRAM REPORT
+  ========================================
+  correlation_score : 0.8544051386777778
+  chi_square : 13.265943275829432
+  hellinger_distance : 0.2348046244606338
+  intersection : 10.474023181097436
+  ref_brightness : 59.33144887288411
+  ref_contrast : 67.01170715490987
+  dis_brightness : 59.025578816731766
+  dis_contrast : 64.74474942295193
+  brightness_difference : 0.30587005615234375
+  contrast_ratio : 0.9661707210843404
+  dynamic_range_ref : 255
+  dynamic_range_dis : 255
+  match_quality : Good
+  ========================================
+  </pre>
+</div>
+
+<h2 id="conclusion">Conclusion</h2>
+<ul>
+<li><p>Effective for common failure modes.</p>
+<ul>
+<li><p>Focus/blur &amp; stigmation: Laplacian and FFT-ratio trend down
+as blur increases; SSIM agrees and localizes loss on edges.</p></li>
+<li><p>Noise (shot/read): SSIM/PSNR decline with higher noise; FFT-ratio
+can rise (noise injects high-frequency energy) while Laplacian stays
+relatively stable, helping distinguish noisy-sharp from
+clean-blurred.</p></li>
+<li><p>Operating-point drift: Histogram means/widths and CNR reveal
+gain/offset and contrast changes that don’t always show up in sharpness
+scores.</p></li>
+</ul></li>
+<li><p>Actionable in production. The metrics are quick to compute, easy
+to threshold, and simple to visualize on dashboards. They support spot
+checks, lot start/end health checks, and tool matching after maintenance
+or recipe edits.</p></li>
+<li><p>Auditable and transferable. All steps are documented, with
+deterministic preprocessing (grayscale normalization, fixed ROIs,
+seeds). Because the methods are standard and lightweight, they are easy
+to adopt across teams and tools.</p></li>
+</ul>
+<h2 id="practical-takeaways">Practical takeaways</h2>
+<ul>
+<li><p>Use SSIM + Laplacian + FFT-ratio together: the trio separates
+blur from noise and flags structural loss where it matters (edges and
+features).</p></li>
+<li><p>Track histogram stats for day-to-day tool consistency and after
+any detector/beam parameter changes.</p></li>
+<li><p>When a flag triggers, inspect SSIM maps and FFT views to locate
+the problem (focus/stigmation/operating point).</p></li>
+</ul>
+<h2 id="acknowledgement">Acknowledgement</h2>
+<ul>
+<li><p><a href="https://doi.org/10.1002/jemt.20118">Autofocusing
+algorithm selection in computer microscopy, Yu Sun; S. Duthaler; B.J.
+Nelson</a></p></li>
+<li><p><a href="https://doi.org/10.1038/sdata.2018.172">Aversa, R., Modarres, M., Cozzini, S. et al. 
+The first annotated set of scanning electron microscopy images for nanoscience. Sci Data 5, 180172 (2018).</a></p></li>
+<li><p><a href="https://doi.org/10.1016/j.image.2014.10.009">N.
+Ponomarenko, L. Jin, O. Ieremeiev, V. Lukin, K. Egiazarian, J. Astola,
+B. Vozel, K. Chehdi, M. Carli, F. Battisti, C.-C. Jay Kuo, Image
+database TID2013: Peculiarities, results and perspectives, Signal
+Processing: Image Communication, vol. 30, Jan. 2015,
+pp. 57-77.</a></p></li>
+</ul>
+</section>

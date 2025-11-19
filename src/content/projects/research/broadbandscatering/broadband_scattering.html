@@ -1,0 +1,300 @@
+<h1
+id="modeling-broadband-cloaking-using-nano-assembled-plasmonic-meta-structures">Modeling
+Broadband Cloaking Using Nano-Assembled Plasmonic Meta-Structures</h1>
+<p><strong>Md. Imran Khan</strong></p>
+<hr />
+<h2 id="introduction-motivation">Introduction &amp; Motivation</h2>
+<p>Plasmonic cloaking suppresses the optical scattering signature of an
+object by engineering a shell whose induced response cancels the
+object’s far-field scattering. In the visible and near‑infrared regime,
+this relies on:</p>
+<ul>
+<li>Localized surface plasmon resonances (LSPRs)<br />
+</li>
+<li>Phase-engineered destructive interference<br />
+</li>
+<li>Strong multiple scattering within nanoparticle ensembles</li>
+</ul>
+<p>A dielectric sphere exhibits Mie scattering, producing resonances
+based on refractive index contrast, core size, and wavelength. The goal
+of cloaking is to <strong>erase that optical fingerprint</strong>.</p>
+<h3 id="why-traditional-cloaking-models-fail">Why traditional cloaking
+models fail</h3>
+<p>Classical approaches such as Maxwell–Garnett effective medium theory
+fail for:</p>
+<ul>
+<li>dense, multilayer NP shells<br />
+</li>
+<li>multiple scattering interactions<br />
+</li>
+<li>large core sizes (d ∼ λ)<br />
+</li>
+<li>size- and phase-dispersive AuNP optical responses</li>
+</ul>
+<p>This work solves these limitations using a <strong>hybrid MFS +
+Foldy–Lax multiscale solver</strong> that accurately models:</p>
+<ul>
+<li>full-wave scattering from the core<br />
+</li>
+<li>multiple scattering between hundreds to thousands of AuNPs<br />
+</li>
+<li>shell–core interactions<br />
+</li>
+<li>realistic material response</li>
+</ul>
+<hr />
+<h2 id="physical-principles-behind-plasmonic-cloaking">Physical
+Principles Behind Plasmonic Cloaking</h2>
+<h3 id="destructive-interference">Destructive Interference</h3>
+<p>Let the core produce scattering, $ f_{core} $.<br />
+Let the shell produce scattering, $f_{shell}$.</p>
+<p>Cloaking requires:</p>
+<p> $$ f_{total} = f_{core} + f_{shell} \approx 0$$
+</p>
+<p>This demands:</p>
+<ul>
+<li><strong>Magnitude match</strong> — shell scattering must be
+strong<br />
+</li>
+<li><strong>Phase opposition</strong> — induced polarization must be
+anti-phase<br />
+</li>
+<li><strong>Broadband response</strong> — maintained over a spectral
+window</li>
+</ul>
+<h3 id="why-aunp-shells-work">Why AuNP shells work</h3>
+<p>The extinction spectrum of AuNPs has a broad FWHM around <strong>520
+nm</strong>, enabling broadband cancellation between 400–600 nm. The
+strong scattering and absorption of the AuNPs creates intense local
+fields inside the shell, driving destructive interference with core
+scattering.</p>
+<!--add image : plot of AuNp scattering efficiencies Fig: from the paper-->
+<div class="flex-figures">
+  <figure>
+    <img src="/files/images/projects/broadbandscattering/AuNp_efficinecies.png" 
+    alt="scattering efficiencies" style="width:35%; border-radius:6px;">
+    <figcaption>Figure : Comparisons of the scattering efficiency $\sigma_{E}$ for a 750 nm silica core (square symbols)
+    with that by a core and shell made up of 5 nm AuNPs (triangle symbols) and 20 nm AuNPs
+    (diamond symbols) for filling fractions (a) $f = 0.10$, and (b) $f = 0.30$. A comparison of the
+    extinction for single 5 and 20 nm AuNP is shown in (c).</figcaption>
+  </figure>
+</div>
+<hr />
+<h2 id="governing-equations">3. Governing Equations</h2>
+<p>The system is governed by the scalar Helmholtz equation.</p>
+<h3 id="core-region-d">3.1 Core region ( D )</h3>
+<p>$ \nabla^2 + k_1^2 = 0$</p>
+<h3 id="external-region-e">3.2 External region ( E )</h3>
+<p>[ ( abla^2 + k_0^2)<em>{} = -k_0^2 </em>{n=1}^{N} V_n , _{}(r_n),
+]</p>
+<p>where point scatterers with potential ( V_n ) model AuNPs.</p>
+<hr />
+<h2 id="multiple-scattering-formulation">4. Multiple-Scattering
+Formulation</h2>
+<h3 id="field-decomposition">4.1 Field Decomposition</h3>
+<p>[ <em>{} = </em>{} + <em>B + </em>{n=1}^{N} _n. ]</p>
+<ul>
+<li>( _B ): field scattered by the core<br />
+</li>
+<li>( _n ): field from the nth AuNP</li>
+</ul>
+<h3 id="point-scatterer-response">4.2 Point-Scatterer Response</h3>
+<p>Each AuNP has scattering amplitude:</p>
+<p>[ lpha = ( rac{_s}{4} - (rac{k_0_t}{4}ight)^2 ight)^{1/2} +
+irac{k_0_t}{4}, ]</p>
+<p>embedding all material and size‑dependent behavior.</p>
+<hr />
+<h2 id="method-of-fundamental-solutions-mfs">5. Method of Fundamental
+Solutions (MFS)</h2>
+<p>The core field is expressed as:</p>
+<p>[ <em>{}(r) = </em>{j=1}^{M} c_j^{()} G_1(r - r_j^{}), ]</p>
+<p>where:</p>
+<ul>
+<li>( G_1 ): spherical Helmholtz Green’s function<br />
+</li>
+<li>( r_j^{} ): source points placed just outside the core</li>
+</ul>
+<p>Boundary points ( r_j ) are uniformly distributed using a
+<strong>Fibonacci lattice</strong>, ensuring minimal numerical
+conditioning issues and spectral‑like convergence.</p>
+<hr />
+<h2 id="foldylax-multiple-scattering">6. Foldy–Lax Multiple
+Scattering</h2>
+<p>The exciting field at each NP satisfies:</p>
+<p>[ <em>E(r_n) = </em>{}(r_n) + <em>B(r_n) + </em>{m eq n} lpha_m
+G_0(r_n - r_m) _E(r_m). ]</p>
+<p>This fully couples every nanoparticle to every other
+nanoparticle.</p>
+<h3 id="computational-challenges">Computational challenges</h3>
+<ul>
+<li>Matrix of size ( N imes N )<br />
+</li>
+<li>Dense, non‑diagonal<br />
+</li>
+<li>O(N³) cost with Gaussian elimination</li>
+</ul>
+<hr />
+<h2 id="hybrid-system-assembly">7. Hybrid System Assembly</h2>
+<p>The final linear system includes:</p>
+<ul>
+<li>M boundary equations (continuity)<br />
+</li>
+<li>M derivative boundary equations<br />
+</li>
+<li>N Foldy–Lax equations</li>
+</ul>
+<p>Matrix size:</p>
+<p>[ (2M + N) imes (2M + N). ]</p>
+<hr />
+<h2 id="optical-theorem-for-total-scattering-cross-section">8. Optical
+Theorem for Total Scattering Cross-Section</h2>
+<p>Far-field:</p>
+<p>[ f(,) = rac{1}{4}. ]</p>
+<p>Total cross-section:</p>
+<p>[ _t = rac{4}{k_0} , ig[ f(,) ig]. ]</p>
+<p>This provides efficient broadband evaluation.</p>
+<hr />
+<h2 id="validation">9. Validation</h2>
+<h3 id="mie-theory">9.1 Mie Theory</h3>
+<p>For a test 750 nm silica sphere:</p>
+<ul>
+<li>MFS matches analytic solution within <strong>0.1%</strong><br />
+</li>
+<li>Spectra and angular scattering patterns align perfectly</li>
+</ul>
+<h3 id="experimental-comparison">9.2 Experimental Comparison</h3>
+<p>Matching the work of Mühlig et al. (Sci. Rep. 2013):</p>
+<ul>
+<li>Maxwell–Garnett predicts incorrect spectral position<br />
+</li>
+<li>This model captures correct suppression between 340–390 nm</li>
+</ul>
+<hr />
+<h2 id="results-discussion">10. Results &amp; Discussion</h2>
+<h3 id="scattering-efficiency-of-core-vs-core-shell">10.1 Scattering
+Efficiency of Core vs Core-Shell</h3>
+<pre><code>![placeholder](./images/scattering_efficiency.png)</code></pre>
+<ul>
+<li>Shell removes core’s Mie resonances<br />
+</li>
+<li>Suppression overlaps with AuNP extinction FWHM</li>
+</ul>
+<hr />
+<h3 id="effect-of-np-size">10.2 Effect of NP Size</h3>
+<pre><code>![placeholder](./images/np_size.png)</code></pre>
+<p>Larger AuNPs:</p>
+<ul>
+<li>exhibit stronger plasmonic response<br />
+</li>
+<li>increase both absorption and scattering<br />
+</li>
+<li>deliver deeper suppression</li>
+</ul>
+<hr />
+<h3 id="filling-fraction-dependence">10.3 Filling Fraction
+Dependence</h3>
+<pre><code>![placeholder](./images/filling_fraction_map.png)</code></pre>
+<ul>
+<li>Cloaking begins at f ≈ 0.25<br />
+</li>
+<li>Increasing f broadens and deepens suppression</li>
+</ul>
+<hr />
+<h3 id="scaling-to-larger-cores">10.4 Scaling to Larger Cores</h3>
+<pre><code>![placeholder](./images/core_scaling.png)</code></pre>
+<p>Even for shells around <strong>900 nm cores</strong>, suppression
+remains strong without increasing shell layers.</p>
+<hr />
+<h2 id="mechanistic-interpretation">11. Mechanistic Interpretation</h2>
+<h3 id="multiple-scattering-trap">11.1 Multiple Scattering Trap</h3>
+<p>Dense AuNP layers create:</p>
+<ul>
+<li>high local field intensities<br />
+</li>
+<li>repeated scattering loops<br />
+</li>
+<li>strong absorption channels</li>
+</ul>
+<h3 id="anti-phase-resonant-response">11.2 Anti-Phase Resonant
+Response</h3>
+<p>Shell-induced polarization cancels the core’s multipole
+radiation.</p>
+<h3 id="extinction-bandwidth-determines-cloaking-band">11.3 Extinction
+Bandwidth Determines Cloaking Band</h3>
+<p>Cloaking spectral range is governed by:</p>
+<p>[ _{}() ]</p>
+<p>of a single AuNP.</p>
+<hr />
+<h2 id="limitations-and-future-extensions">12. Limitations and Future
+Extensions</h2>
+<h3 id="current-limitations">Current limitations</h3>
+<ul>
+<li>Scalar approximation<br />
+</li>
+<li>Point‑scatterer assumption<br />
+</li>
+<li>No NP–NP near-field tunneling<br />
+</li>
+<li>O(N³) computational complexity</li>
+</ul>
+<h3 id="future-improvements">Future improvements</h3>
+<ul>
+<li>Vector MFS<br />
+</li>
+<li>Fast multipole acceleration (FMM)<br />
+</li>
+<li>GPU‑accelerated iterative solvers<br />
+</li>
+<li>Polydisperse NP modeling</li>
+</ul>
+<hr />
+<h2 id="applications-across-fields">13. Applications Across Fields</h2>
+<h3 id="optics-photonics">Optics &amp; Photonics</h3>
+<ul>
+<li>cloaking<br />
+</li>
+<li>metasurfaces<br />
+</li>
+<li>nanoantenna scattering design</li>
+</ul>
+<h3 id="semiconductor-metrology">Semiconductor Metrology</h3>
+<ul>
+<li>CD‑SEM scattering models<br />
+</li>
+<li>contamination detection<br />
+</li>
+<li>forward models for inverse imaging</li>
+</ul>
+<h3 id="computer-vision-ai">Computer Vision &amp; AI</h3>
+<ul>
+<li>physics-informed ML<br />
+</li>
+<li>imaging simulations for training pipelines<br />
+</li>
+<li>advanced scattering-based augmentation<br />
+</li>
+<li>explainable AI using wave models</li>
+</ul>
+<hr />
+<h2 id="summary">14. Summary</h2>
+<p>This full technical deep dive captures:</p>
+<ul>
+<li>the physics of plasmonic cloaking<br />
+</li>
+<li>complete derivation of the hybrid solver<br />
+</li>
+<li>numerical engineering details<br />
+</li>
+<li>validation against theory &amp; experiment<br />
+</li>
+<li>broadband cloaking demonstration<br />
+</li>
+<li>scalability to large microspheres</li>
+</ul>
+<p>This work represents a bridge between <strong>wave physics</strong>,
+<strong>nanophotonics</strong>, and <strong>computational
+modeling</strong>, and aligns naturally with your trajectory into
+<strong>AI, CV, and physics-informed machine learning</strong>.</p>
+<hr />
+<h2 id="github-repository">15. GitHub Repository</h2>
+<p>https://github.com/imranlabs/Broadband_Scattering_suppression</p>

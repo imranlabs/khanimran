@@ -1,0 +1,436 @@
+<section class="space-y-4">
+<div class="space-y-1">
+  <h1 class="text-3xl font-semibold tracking-tight text-slate-900">
+    Chest X-Ray Pneumonia Classification
+  </h1>
+  <p class="text-sm text-slate-500">
+    From PCA + SVM baseline to multiclass ResNet-50 with TTA and Grad-CAM
+  </p>
+
+  <div class="flex flex-wrap gap-2 pt-1">
+    <span class="inline-flex items-center rounded-full bg-sky-50 px-3 py-1 text-xs font-medium text-sky-700">
+      Python &amp; PyTorch
+    </span>
+    <span class="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
+      PCA &amp; SVM
+    </span>
+    <span class="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700">
+      ResNet-18 / ResNet-50
+    </span>
+    <span class="inline-flex items-center rounded-full bg-rose-50 px-3 py-1 text-xs font-medium text-black-700">
+      TTA &amp; Grad-CAM
+    </span>
+  </div>
+</div>
+
+<p>
+<section class="space-y-4">
+This project presents a single, coherent journey through pneumonia classification on chest X-rays, starting with a
+<strong>classical machine learning baseline</strong> and progressing to <strong>deep convolutional models</strong> capable
+of multiclass diagnosis. All experiments use the
+<a href="https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia" target="_blank" rel="noopener noreferrer">
+Kaggle Chest X-Ray (Pneumonia)</a> dataset.
+</p>
+
+<p>
+The workflow is organized into two major stages:
+</p>
+<ul>
+  <li><strong>Phase 1:</strong> Normal vs Pneumonia (binary)</li>
+  <li><strong>Phase 2:</strong> Normal vs Viral vs Bacterial pneumonia (multiclass)</li>
+</ul>
+
+<hr>
+
+<h2>Motivation</h2>
+
+<p>
+Chest X-rays are among the most widely used imaging modalities for respiratory illness. In many clinical settings,
+the first question is:
+</p>
+
+<p><em>“Does this patient have pneumonia or not?”</em></p>
+
+<p>
+This project tackles that core question first with a classical PCA + SVM baseline and a deep ResNet-18 binary classifier.
+It then extends to a more challenging—but clinically nuanced—task: differentiating Normal, Viral pneumonia, and Bacterial
+pneumonia from X-ray images alone.
+</p>
+
+<p>
+The goals are to:
+</p>
+<ul>
+  <li>Show a clear progression from classical ML to deep learning</li>
+  <li>Quantitatively compare PCA + SVM vs ResNet-18 on the same binary task</li>
+  <li>Explore multiclass performance with ResNet-34 and ResNet-50</li>
+  <li>Use <strong>Grad-CAM</strong> to visualize how the network reasons</li>
+  <li>Discuss results in the context of real-world radiology practice</li>
+</ul>
+
+<hr>
+
+<h2>Dataset</h2>
+
+<ul>
+  <li><strong>Source:</strong> Kaggle <em>Chest X-Ray Images (Pneumonia)</em></li>
+  <li><strong>Modalities:</strong> Frontal chest X-rays</li>
+  <li><strong>Tasks:</strong>
+    <ul>
+      <li><strong>Binary:</strong> Normal vs Pneumonia</li>
+      <li><strong>Multiclass:</strong> Normal vs Viral vs Bacterial pneumonia</li>
+    </ul>
+  </li>
+  <li><strong>Preprocessing:</strong>
+    <ul>
+      <li>Resize to 224×224 pixels</li>
+      <li>Optional grayscale conversion</li>
+      <li>Normalization to ImageNet mean and standard deviation</li>
+    </ul>
+  </li>
+  <li><strong>Data splits:</strong> train / validation / test, with a stratified 10% validation split created from the train set.</li>
+  <li><strong>Data augmentation (train only):</strong>
+    <ul>
+      <li>Random horizontal flip</li>
+      <li>Small rotations</li>
+      <li>Random affine transforms (translation, shear)</li>
+      <li>Light color jitter</li>
+    </ul>
+  </li>
+</ul>
+
+<p>
+These augmentations encourage the models to become robust to common imaging variations such as patient positioning,
+orientation, and brightness differences.
+</p>
+
+<hr>
+
+<h2>Phase 1 – Classical ML and Binary Deep Learning (Normal vs Pneumonia)</h2>
+
+<h3>1.1 Classical Baseline: PCA → SVM</h3>
+
+<p>
+The first part of the project builds a classical ML pipeline for the binary task of distinguishing
+<strong>Normal vs Pneumonia</strong>:
+</p>
+
+<ul>
+  <li>Convert images to grayscale (if needed) and resize to a fixed resolution</li>
+  <li>Flatten and standardize pixel intensities</li>
+  <li>Apply <strong>Principal Component Analysis (PCA)</strong> to retain ~95–97% of the variance</li>
+  <li>Train an <strong>RBF-kernel SVM</strong> with hyperparameter tuning for <code>C</code> and <code>gamma</code></li>
+</ul>
+
+<!---image of scree plot and PCA dimensonality reduction-->
+
+<div class="flex-figures">
+  <figure>
+    <img src="/files/images/projects/chest_xray/scree_CV_plot.png" alt="Scree and PCA plot" style="width:100%; border-radius:6px;">
+    <figcaption>Figure: Scree plot (left) and cumulative explained variance (right) for PCA. 
+        The scree plot shows that the first few principal components capture the majority of variance, with subsequent components contributing minimally. 
+        The cumulative variance curve indicates that retaining ~97% of the dataset’s variance requires 497 principal components. 
+        This provides an efficient reduced-dimensional representation for classical machine learning while preserving most of 
+        the structure present in the original images.</figcaption>
+  </figure>
+</div>
+
+<ul>
+  <li>Accuracy: ≈ <strong>88%</strong></li>
+  <li>ROC-AUC: ≈ <strong>0.92</strong></li>
+</ul>
+<!---image of ROC AUC curve-->
+<div class="flex-figures">
+  <figure>
+    <img src="/files/images/projects/chest_xray/ROC_AOC.png" alt="ROC_AUC and precision-recall plot" style="width:100%; border-radius:6px;">
+    <figcaption>Figure: ROC curve (left) and Precision–Recall curve (right) for the PCA → SVM baseline on the Normal vs Pneumonia task. 
+        The SVM achieves an AUC of 0.92, indicating strong discrimination between classes, while the PR curve (AP = 0.95) shows high precision across most recall values. 
+        Together, these curves demonstrate that PCA-reduced features support solid classical ML performance before transitioning to deep CNNs.</figcaption>
+        
+  </figure>
+<p><strong>Binary PCA → SVM performance (Normal vs Pneumonia):</strong></p>
+</div>
+
+<p>
+This baseline is fast and interpretable, but it has clear limitations: it relies on global, hand-crafted features that
+struggle to capture subtle lung opacities and diffuse infiltrates.
+</p>
+
+<h3>1.2 Deep Learning: ResNet-18 Binary Classifier</h3>
+
+<p>
+The same binary classification problem is then tackled with a deep convolutional model:
+</p>
+
+<ul>
+  <li><strong>Backbone:</strong> ResNet-18 pretrained on ImageNet</li>
+  <li><strong>Modification:</strong> Replace final fully connected layer with a 2-class output head</li>
+  <li><strong>Loss:</strong> Cross-entropy with class weights to address class imbalance</li>
+  <li><strong>Optimization:</strong> Adam optimizer with learning rate scheduling</li>
+  <li><strong>Training tricks:</strong>
+    <ul>
+      <li>Data augmentation (flip, rotation, affine, color jitter)</li>
+      <li>Validation-based early stopping</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Binary ResNet-18 performance (Normal vs Pneumonia):</strong></p>
+
+<ul>
+  <li>AUC-ROC: ≈ <strong>0.95</strong></li>
+  <li>F1-score: ≈ <strong>0.90</strong></li>
+</ul>
+
+<p>
+Compared to the PCA + SVM pipeline, the ResNet-18 model delivers a clear improvement. It learns spatial and texture
+patterns directly from the images, which is especially important for subtle or atypical pneumonia cases. This
+stage demonstrates why CNNs are now the standard for medical image classification tasks.
+</p>
+<!--add github and colab-->
+<div class="mt-6 flex flex-wrap items-center gap-3 mt-4">
+    <!--github-->
+  <a href="https://github.com/imranlabs/Chest-X-Ray-Pneumonia-Detection"
+     target="_blank" rel="noopener" 
+     class="btn btn-outline btn-sm">
+    GitHub
+  </a>
+  <!--colab-->
+    <a href="https://colab.research.google.com/github/imranlabs/Chest-X-Ray-Pneumonia-Detection/blob/main/Chest_X_Ray_Classical_ML_Deep_Learning_Binary.ipynb">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"
+    class="h-7 align-middle">
+  </a>
+</div>
+<hr>
+
+<h2>Phase 2 – Multiclass Deep Learning (Normal / Viral / Bacterial)</h2>
+
+<p>
+The second stage extends the task to a more clinically nuanced and challenging setting:
+<strong>Normal vs Viral pneumonia vs Bacterial pneumonia</strong>.
+</p>
+
+<h3>2.1 ResNet-34: Establishing a Multiclass Baseline</h3>
+
+<p>
+The multiclass experiments begin with <strong>ResNet-34</strong>:
+</p>
+
+<ul>
+  <li>Pretrained on ImageNet</li>
+  <li>Final fully connected layer adapted for 3 classes</li>
+  <li>Class-weighted cross-entropy loss to balance Normal, Viral, and Bacterial samples</li>
+  <li>Fine-tuning strategies:
+    <ul>
+      <li>Unfreezing only the last residual block (layer4)</li>
+      <li>Unfreezing both layer3 and layer4</li>
+    </ul>
+  </li>
+  <li>Regularization via weight decay (values around <code>1e-3</code> to <code>5e-4</code> explored)</li>
+</ul>
+
+<p><strong>ResNet-34 multiclass performance (typical best run):</strong></p>
+
+<ul>
+  <li>Weighted F1: ≈ <strong>0.839</strong></li>
+  <li>Weighted AUC-ROC: ≈ <strong>0.952</strong></li>
+</ul>
+
+<p>
+These results are strong, but improvements from additional fine-tuning eventually saturate, suggesting that the
+bottleneck is not purely model capacity—it is also the intrinsic visual overlap between Viral and Bacterial pneumonia on X-ray.
+</p>
+<!--add github and colab-->
+<div class="mt-6 flex flex-wrap items-center gap-3 mt-4">
+    <!--github-->
+  <a href="https://github.com/imranlabs/Chest-X-Ray-Pneumonia-Detection"
+     target="_blank" rel="noopener" 
+     class="btn btn-outline btn-sm">
+    GitHub
+  </a>
+  <!--colab-->
+    <a href="https://colab.research.google.com/github/imranlabs/Chest-X-Ray-Pneumonia-Detection/blob/main/Chest_X_Ray_Advanced_Deep_Learning_Multiclass.ipynb">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"
+    class="h-7 align-middle">
+  </a>
+  <!--Download model-->
+  <a href="/files/images/projects/chest_xray/xray_multiclassResnet_50.pth"
+   download
+   class="btn btn-sm bg-indigo-600 hover:bg-indigo-700 text-white">
+  Download Model
+</a>
+
+</div>
+<h3>2.2 ResNet-50 with Strong Regularization and TTA (Final Model)</h3>
+
+<p>
+To explore whether a deeper model can capture finer distinctions, the project moves to
+<strong>ResNet-50</strong>:
+</p>
+
+<ul>
+  <li>Backbone: ResNet-50 pretrained on ImageNet</li>
+  <li>Output head: 3-class fully connected layer</li>
+  <li>Loss: Class-weighted cross-entropy</li>
+  <li>Regularization: Increased <code>weight_decay</code> to <code>2e-3</code> to control overfitting</li>
+  <li>Training scheme: same augmentation and early stopping pipeline as before</li>
+  <li><strong>Test-Time Augmentation (TTA):</strong>
+    <ul>
+      <li>At inference, predictions are made on multiple augmented versions of each image (e.g., original and horizontally flipped)</li>
+      <li>Logits are averaged before computing the final softmax probabilities</li>
+    </ul>
+  </li>
+</ul>
+
+<h4>Final Multiclass Performance (ResNet-50 + Strong Regularization + TTA)</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Accuracy</strong></td><td><strong>85.10%</strong></td></tr>
+    <tr><td><strong>Weighted F1</strong></td><td><strong>0.8525</strong></td></tr>
+    <tr><td><strong>Weighted AUC-ROC</strong></td><td><strong>0.955</strong></td></tr>
+    <tr><td>Virus F1</td><td>0.760</td></tr>
+    <tr><td>Normal F1</td><td>0.8598</td></tr>
+    <tr><td>Bacteria F1</td><td>0.9018</td></tr>
+  </tbody>
+</table>
+
+<h4>Confusion Matrix (Test Set)</h4>
+<!---confusion matrix image-->
+
+<div class="flex-figures">
+  <figure>
+    <img src="/files/images/projects/chest_xray/confusion_matrix_multiclass.png" alt="mutli-class confusion matrix" style="width:100%; border-radius:6px;">
+    <figcaption>Figure: Multiclass confusion matrix for the final ResNet-50 model with TTA. 
+        The classifier achieves strong performance on Normal and Bacterial pneumonia, with most samples correctly assigned to their respective classes. 
+        Viral pneumonia remains the most challenging category, showing moderate confusion with Bacterial cases—a pattern consistent 
+        with the clinical overlap in radiographic appearance between viral and bacterial pneumonia.</figcaption>
+  </figure>
+</div>
+
+<p>
+In this configuration, Normal and Bacterial pneumonia are well-separated, while Viral pneumonia remains the most
+ambiguous class. This is aligned with clinical expectations: viral and bacterial pneumonia often share overlapping
+radiographic patterns, making them difficult to distinguish even for experienced radiologists.
+</p>
+
+<div class="callout">
+  <strong>Effect of TTA:</strong> Evaluating the ResNet-50 model with Test-Time Augmentation further improves the
+  weighted F1 score and AUC, indicating that the model’s predictions are stable under natural image variations and
+  that averaging across augmented views reduces prediction noise near decision boundaries.
+</div>
+
+<hr>
+
+<h2>Grad-CAM Interpretability</h2>
+
+<p>
+To understand <em>where</em> the network is looking when it predicts a given class, Grad-CAM heatmaps are generated
+from the final convolutional layers of the trained models.
+</p>
+
+<ul>
+  <li>For a chosen target class (e.g., Normal, Viral, or Bacterial), gradients of the class score are backpropagated to the last conv layer.</li>
+  <li>Channel-wise importance weights are computed via global average pooling of these gradients.</li>
+  <li>A weighted sum of the feature maps is taken, followed by a ReLU and upsampling to the input image size.</li>
+  <li>The resulting heatmap is normalized and overlaid on the original chest X-ray.</li>
+</ul>
+<!--gradcam images-->
+<div class="flex-figures">
+  <figure>
+    <img src="/files/images/projects/chest_xray/gradcam_normal.png" class ="w-64 rounded-md" alt="Grad-CAM for Normal X-ray" style="width:70%; border-radius:6px;">
+    <figcaption><strong>Normal Chest X-Ray</strong><br>Grad-CAM shows low activation in clear lung fields, consistent with a normal finding.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/files/images/projects/chest_xray/pneumonia_virus_vs_bacteria.png" alt="Grad-CAM for Pneumonia X-ray" style="width:100%; border-radius:6px;">
+    <figcaption><strong>Pneumonia (Viral/Bacterial)</strong><br>Grad-CAM highlights regions of opacity and consolidation that drive the model’s decision.</figcaption>
+  </figure>
+</div>
+
+<p>
+These visualizations confirm that the model is not focusing on irrelevant artifacts, but rather on anatomically
+meaningful lung regions, which is essential for trust and clinical interpretability.
+</p>
+
+<hr>
+
+<h2>Clinical Interpretation and Limitations</h2>
+
+<p>
+The results of this project highlight an important distinction between what is technically achievable with deep learning
+and what is clinically realistic with chest X-ray data alone:
+</p>
+
+<ul>
+  <li><strong>Normal vs Pneumonia:</strong> The ResNet-18 binary model and the ResNet-50 multiclass model both show
+    strong capability for detecting pneumonia, making them potentially useful as triage or decision-support tools.</li>
+  <li><strong>Viral vs Bacterial:</strong> Even with deeper networks, careful regularization, and TTA, the separation
+    between Viral and Bacterial pneumonia remains imperfect. This is expected because pathogen-specific information
+    is only partially encoded in plain radiographs.</li>
+</ul>
+
+<p>
+In real-world practice, differentiating viral from bacterial pneumonia typically requires:
+</p>
+
+<ul>
+  <li>Laboratory tests (e.g., PCR, antigen tests, cultures)</li>
+  <li>Blood biomarkers</li>
+  <li>Detailed clinical history and physical examination</li>
+</ul>
+
+<p>
+Therefore, the most clinically impactful outcome of this work is a robust, interpretable
+<strong>Normal vs Pneumonia</strong> classifier, with the multiclass extension providing further insight into the
+limitations of using imaging alone for etiologic diagnosis.
+</p>
+
+<hr>
+
+<h2>Summary</h2>
+
+<p>
+This project provides a compact but thorough case study in medical image classification, starting from a classical
+PCA + SVM baseline and progressing to modern deep CNNs with multiclass outputs and interpretability:
+</p>
+
+<ul>
+  <li>Classical ML baseline (PCA → SVM) establishes a reference point</li>
+  <li>ResNet-18 significantly improves Normal vs Pneumonia performance</li>
+  <li>ResNet-34 and ResNet-50 handle a more challenging 3-class task</li>
+  <li>Test-Time Augmentation and weight decay are key for stable generalization</li>
+  <li>Grad-CAM visualizations offer clinically meaningful insight into model behavior</li>
+  <li>Final ResNet-50 + TTA model achieves:
+    <ul>
+      <li><strong>85.1% accuracy</strong></li>
+      <li><strong>0.8525 weighted F1</strong></li>
+      <li><strong>0.955 weighted AUC-ROC</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<p>
+Overall, the project demonstrates both technical depth (model design, training strategy, interpretability) and
+scientific reasoning about what chest X-rays can and cannot tell us about the underlying disease process.
+</p>
+<div class="mt-12 pt-6 border-t border-slate-200">
+  <h2 class="text-xl font-semibold text-slate-800 mb-3">
+    Acknowledgments
+  </h2>
+  <p class="text-slate-600 leading-relaxed">
+    The development of this project was supported by several influential resources:
+    Andrew Ng’s <em>Deep Learning Specialization</em>, Aurélien Géron’s
+    <em>Hands-On Machine Learning</em>, Jeremy Howard and Sylvain Gugger’s
+    <em>Deep Learning for Coders</em>
+  </p>
+</div>
+
+
+</section>
