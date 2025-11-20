@@ -1,7 +1,7 @@
 <section class="space-y-3">
 <h1 class="text-3xl font-semibold tracking-tight text-slate-900">Scattering by
 Nanoplasmonic Mesoscale Assemblies</h1>
-<p><strong>Imran Khan</strong></p>
+<p><strong>Imran Khan    </strong></p>
 <hr />
 <h2>1. Introduction &amp; Motivation</h2>
 <p>Nanoplasmonic mesoscale assemblies — dielectric microspheres coated
@@ -35,10 +35,8 @@ ensemble</li>
 </li>
 <li>anisotropy and albedo</li>
 </ul>
-
-<hr />
-<h2>
-2. Physical Intuition: Why Nanoparticle Shells Reshape Angular
+<hr/>
+<h2>2. Physical Intuition: Why Nanoparticle Shells Reshape Angular
 Scattering</h2>
 <p>A bare dielectric microsphere exhibits the classical Mie like scattering
 pattern:</p>
@@ -90,10 +88,9 @@ regimes.</p>
 <div class="flex-figures">
   <figure>
     <img src="/files/images/projects/scattering/schematic.png" 
-    alt="schematics" style="width:50%; border-radius:6px;">
+    alt="schematics" style="width:100%; border-radius:6px;">
     <figcaption>Figure : Core–shell structure represented by a blue sphere (core)
-                    coated with plasmonic AuNPs (shell). The red curve shows the differential scattering cross-section of the uncoated dielectric sphere
-                    (\(\sigma_{d}^{C}\)), while the yellow curve represents the same dielectric core coated
+                    coated with plasmonic AuNPs (shell). The red curve shows the differential scattering cross-section of the uncoated dielectric sphere (\(\sigma_{d}^{C}\)), while the yellow curve represents the same dielectric core coated
                     with AuNPs (\(\sigma_{d}^{CS}\) ). The differential scattering cross-section of a plasmonic composite structure demonstrates a suppressed central lobe
                     and smoother angular side lobes compared to the corresponding bare dielectric sphere for any particular incident wavelength.
     </figcaption>
@@ -103,13 +100,13 @@ regimes.</p>
 <h2>3. Computational Model</h2>
 <p>We simulate the core–shell system using:</p>
 <ul>
-<li>interior field \( \Psi^{int} \)<br />
+<li>interior field \( \Psi^{int} \)
 </li>
-<li>exterior core-scattered field \(\Psi^{core} \)<br />
+<li>exterior core-scattered field \(\Psi^{core} \)
 </li>
-<li>AuNP-scattered field \( \Psi^{NP}_{n}(r) \)<br />
+<li>AuNP-scattered field \( \Psi^{NP}_{n}(r) \)
 </li>
-<li>exciting fields \( \Psi^{E}_{n} \)<br/>
+<li>exciting fields \( \Psi^{E}_{n} \)</li>
 </li>
 <li>incident plane wave \(\Psi^{inc} \)</li>
 </ul>
@@ -151,7 +148,7 @@ for \(m=1,...,M\). We introduce a length \(\mathcal{l} << a\) and express , </p>
 <li>Fibonacci sphere sampling ensures uniform collocation</li>
 </ul>
 <hr />
-<h3 id="aunp-scattering-model">3.2 AuNP Scattering Model</h3>
+<h3 >3.2 AuNP Scattering Model</h3>
 <p>Each AuNP is treated as an isotropic point-scatterer:</p>
 <span class="math display">
     \[\Psi_{n}^{NP}(r) = \alpha_{n} \frac{e^{ik_{0}|r-r_{n}|}}{4\pi |r-r_{n}|} \Psi^{E}_{n}, n = 1,...,N, \]
@@ -208,27 +205,27 @@ Scattering</h3>
 <hr />
 <h2>4. Scattering
 Cross-Sections and Angular Metrics</h2>
-<h3 id="far-field-amplitude">4.1 Far-Field Amplitude</h3>
+<h3>4.1 Far-Field Amplitude</h3>
 <p>
     \[ f(\hat{o},\hat{\mathcal{i}}) = \frac{1}{4\pi} \sum_{m=1}^{M}e^{-ik_{0}(a-\mathcal{l})\hat{o}\cdot\hat{s}_{m}}b_{m}(\mathcal{i})
     + \frac{1}{4\pi} \sum_{n=1}^{N}\alpha_{n}e^{-ik_{0}\hat{o}\cdot r_{n} }\Psi_{n}^{E}(\mathcal{i})
     \]
 </p>
-<h3 id="differential-cross-section">4.2 Differential Cross-Section</h3>
+<h3>4.2 Differential Cross-Section</h3>
 <p>\[ \sigma_{d}(\hat{o}, \hat{\mathcal{i}}) = |f(\hat{o},\hat{\mathcal{i}})|^{2} \]</p>
-<h3 id="total-cross-section-optical-theorem">4.3 Total Cross-Section
+<h3 >4.3 Total Cross-Section
 (Optical Theorem)</h3>
 <p>
     \[ \sigma_{t} = \frac{4\pi}{k_{0}} Im \{f(\hat{\mathcal{i}},\hat{\mathcal{i}})\}
     \] , and 
     \[ \sigma_{s} = \int_{4\pi} \sigma_{d}(\hat{o},\hat{\mathcal{i}})d\hat{o} \]
 </p>
-<h3 id="scattering-albedo">4.4 Scattering Albedo</h3>
+<h3 >4.4 Scattering Albedo</h3>
 <p>
 \[ \bar{\omega}_{0} = \sigma_{s} / \sigma_{t}\]    
 
 </p>
-<h3 id="anisotropy-factor">4.5 Anisotropy Factor</h3>
+<h3 >4.5 Anisotropy Factor</h3>
 <p>
     \[ 
 
@@ -241,12 +238,12 @@ Cross-Sections and Angular Metrics</h2>
     or backward directions, respectively.
 </p>
 <hr />
-<h2 id="results-interpretation">5. Results &amp; Interpretation</h2>
-<h3 id="scattering-efficiency">5.1 Scattering Efficiency</h3>
+<h2 >5. Results &amp; Interpretation</h2>
+<h3 >5.1 Scattering Efficiency</h3>
 <div class="flex-figures">
   <figure>
     <img src="/files/images/projects/scattering/efficiencies.png" 
-    alt="efficiencies" style="width:100%; border-radius:6px;">
+    alt="efficiencies" style="width:100%; max-width:700px; border-radius:6px;">
     <figcaption>Figure : [Top] Scattering efficiency \(\sigma_{E}\) of a 750 nm silica sphere
                         (black square) compared with the plasmonic core–shell structures
                         comprised of the same silica sphere acting as the core, and a concentric
@@ -268,8 +265,7 @@ Cross-Sections and Angular Metrics</h2>
 <li>5 nm NPs exhibit weak spectral influence</li>
 </ul>
 <hr />
-<h3>5.2 Core-Size
-Dependent Suppression/Enhancement</h3>
+<h3>5.2 Core-Size Dependent Suppression/Enhancement</h3>
 <div class="flex-figures">
   <figure>
     <img src="/files/images/projects/scattering/core_dependence.png" 
