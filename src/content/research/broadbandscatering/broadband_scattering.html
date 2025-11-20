@@ -60,9 +60,9 @@ Foldy–Lax multiscale solver</strong> that accurately models:</p>
 <hr />
 <h2 >Physical
 Principles Behind Plasmonic Cloaking</h2>
-<h3>Destructive Interference</h3>
-<p>Let the core produce scattering, $ f_{core} $
-and the shell produce scattering, $f_{shell}$</p>
+<h3 >Destructive Interference</h3>
+<p>Let the core produce scattering, $ f_{core} $<br />
+Let the shell produce scattering, $f_{shell}$</p>
 <p>Cloaking requires:</p>
 
 <p> $$ f_{total} = f_{core} + f_{shell} \approx 0$$
@@ -97,7 +97,8 @@ computed using Methods of Fundamentals of Solutions(MFS).</li>
 and the core  was computed using generalized Foldy-Lax scattering theory
 following a modification.</li>
 <li>Total scattered power by the meta-strucutre was computed using the
-Optical Theorem \(\sigma_{t}=\frac{4\pi}{k_{0}}Im[f(\hat{o},\hat{i})]\)</li>
+Optical Theorem <span
+class="math inline">\(\sigma_{t}=\frac{4\pi}{k_{0}}Im[f(\hat{o},\hat{i})]\)</span></li>
 </ul>
 <h3>Modeling Assumptions:</h3>
 <ul>
@@ -105,14 +106,14 @@ Optical Theorem \(\sigma_{t}=\frac{4\pi}{k_{0}}Im[f(\hat{o},\hat{i})]\)</li>
 scatterer.</li>
 <li>A point scatterer has isotropic scattering pattern.</li>
 <li>Extinction properties of a point scatterer was attributed to a
-parameter, $\alpha$, known as
-strength parameter as well. $$\alpha =
+parameter, <span class="math inline">\(\alpha\)</span>, known as
+strength parameter as well. <span class="math inline">\(\alpha =
 [\frac{\sigma_{s}}{4\pi}-(\frac{k_{0}\sigma_{t}}{4\pi})]^{1/2}
-+\frac{ik_{0}\sigma_{t}}{4\pi}]$$
++\frac{ik_{0}\sigma_{t}}{4\pi}\)]</span> 
 <p>total cross-section of a point scatterer,
-  $\sigma_{t} = \sigma_{s}+\sigma_{a}$</p></li>
-<li>The scattering ($\sigma_{s}$) and
-the absorption ($\sigma_{a}$)
+  <span class="math inline">\(\sigma_{t} = \sigma_{s}+\sigma_{a}\)</span></p></li>
+<li>The scattering (<span class="math inline">\(\sigma_{s}\)</span>) and
+the absorption (<span class="math inline">\(\sigma_{a}\)</span>)
 cross-sections were computed using Rayleigh Scatterig theory.</li>
 </ul>
 </div>
@@ -120,11 +121,12 @@ cross-sections were computed using Rayleigh Scatterig theory.</li>
 <div>
 <h2 >Problem statement
 and solution method</h2>
-<p>A plane wave with wavelength 
-($\lambda$)propagates in the 
-$+\hat{z}$ direction and is incident on a
-structure consisting of a dielectric sphere with radius $a_{0}$ surrounded by 
-$N$ small, metal nanoparticles. The metal
+<p>A plane wave with wavelength <span
+class="math inline">\(\lambda\)</span> propagates in the <span
+class="math inline">\(+\hat{z}\)</span> direction and is incident on a
+structure consisting of a dielectric sphere with radius <span
+class="math inline">\(a_{0}\)</span> surrounded by <span
+class="math inline">\(N\)</span> small, metal nanoparticles. The metal
 nanoparticles may be situated at subwavelength distances away from the
 surface of the dielectric sphere. Hence, the field scattered by this
 structure is the result of strong multiple scattering interactions
@@ -136,48 +138,56 @@ scattering by the dielectric sphere and the <strong>Foldy-Lax</strong> equations
 the multiple scattering by the point particles that surround the
 sphere.</p>
 <p>Suppose that the origin of a coordinate system lies at the center of
-the dielectric sphere. We denote the interior domain by $D = \{ r &lt; a \}$ and the exterior
-domain by $ E = \{ r &gt; a \}$. The
-spherical surface $B = \{ r = a \}$
+the dielectric sphere. We denote the interior domain by <span
+class="math inline">\(D = \{ r &lt; a \}\)</span> and the exterior
+domain by <span class="math inline">\(E = \{ r &gt; a \}\)</span>. The
+spherical surface <span class="math inline">\(B = \{ r = a \}\)</span>
 is interface between the interior and exterior. The wave field in the
-interior is denoted by $\psi^{\text{int}}$ and satisfies the
+interior is denoted by <span
+class="math inline">\(\psi^{\text{int}}\)</span> and satisfies the
 homogeneous reduced wave or Helmholtz equation,</p>
-<p>$\left( \nabla^{2} + k_{1}^{2} \right)
+<p><span class="math display">\[\left( \nabla^{2} + k_{1}^{2} \right)
 \psi^{\text{int}}
-  = 0, \quad \text{in $D$},$ with $k_{1}$ denoting the
+  = 0, \quad \text{in $D$},
+  \]</span> with <span class="math inline">\(k_{1}\)</span> denoting the
 wavenumber for the dielectric sphere. The wave field in the exterior is
-denoted by $\psi^{\text{ext}}$ and
-satisfies 
-  \[ \left( \nabla^{2} + k_{0}^{2}
+denoted by <span class="math inline">\(\psi^{\text{ext}}\)</span> and
+satisfies <span class="math display">\[ \left( \nabla^{2} + k_{0}^{2}
 \right) \psi^{\text{ext}}
   = -k_{0}^{2} \sum_{n = 1}^{N} V_{n} \psi^{\text{ext}}, \quad
-  \text{in $E$}.\]</p>
-<p>Here, \(k_{0}\) is the wavenumber
-for the exterior and \(V_{n}\)
-corresponds to the scattering potential for the \(n\)th metal nanoparticle. We write \(\psi^{\text{ext}}\) as the sum</p>
+  \text{in $E$}.\]</span></p>
+<p>Here, <span class="math inline">\(k_{0}\)</span> is the wavenumber
+for the exterior and <span class="math inline">\(V_{n}\)</span>
+corresponds to the scattering potential for the <span
+class="math inline">\(n\)</span>th metal nanoparticle. We write <span
+class="math inline">\(\psi^{\text{ext}}\)</span> as the sum</p>
 <p>$ \psi^{\text{ext}} = \psi^{\text{inc}} + \psi^{s}$</p>
-<p>with \(\psi^{\text{inc}}\)denoting
-the incident field satisfying \[
+<p>with <span class="math inline">\(\psi^{\text{inc}}\)</span> denoting
+the incident field satisfying <span class="math display">\[
   \left( \nabla^{2} + k_{0}^{2} \right) \psi^{\text{inc}}
-  = 0, \quad \text{in $R^{3}$},\]</p>
-<p>and \(\psi^{\text{s}}\) denoting the
-scattered field satisfying \[ \left(
+  = 0, \quad \text{in $R^{3}$},\]</span></p>
+<p>and <span class="math inline">\(\psi^{\text{s}}\)</span> denoting the
+scattered field satisfying <span class="math display">\[ \left(
 \nabla^{2} + k_{0}^{2} \right) \psi^{\text{s}}
 = -k_{0}^{2} \sum_{n = 1}^{N} V_{n} \psi^{\text{inc}} - k_{0}^{2}
 \sum_{n = 1}^{N} V_{n} \psi^{\text{s}}, \quad \text{in $E$}.
-\]</p>
-<p>We must supplement the equations above with conditions on \(B\) as well as radiation conditions. We
+\]</span></p>
+<p>We must supplement the equations above with conditions on <span
+class="math inline">\(B\)</span> as well as radiation conditions. We
 prescribe that</p>
-<p>\[ \psi^{\text{int}} = \psi^{\text{inc}} +
+<p><span class="math display">\[ \psi^{\text{int}} = \psi^{\text{inc}} +
 \psi^{\text{s}} \quad
-  \text{on $B$}, \] and \[
+  \text{on $B$}, \]</span> and <span class="math display">\[
 \partial_{\nu} \psi^{\text{int}} = \partial_{\nu} \psi^{\text{inc}}
   + \partial_{\nu} \psi^{\text{s}} \quad \text{on $B$},
-\] with \(\partial_{\nu}\)
-denoting the derivative along the normal on \(B\) pointing into 
-\(E\). Additionally, we require that \(\psi^{s}\) satisfies the Sommerfeld
+\]</span> with <span class="math inline">\(\partial_{\nu}\)</span>
+denoting the derivative along the normal on <span
+class="math inline">\(B\)</span> pointing into <span
+class="math inline">\(E\)</span>. Additionally, we require that <span
+class="math inline">\(\psi^{s}\)</span> satisfies the Sommerfeld
 radiation condition. The differential equations supplemented by the
-interface conditions, and the requirement that \(\psi^{\text{s}}\) satisfies the Sommerfeld
+interface conditions, and the requirement that <span
+class="math inline">\(\psi^{\text{s}}\)</span> satisfies the Sommerfeld
 radiation condition constitute a complete mathematical description of
 the problem.</p>
 </div>
@@ -185,77 +195,98 @@ the problem.</p>
 <h2>Interior field</h2>
 <p>To compute the interior field, we make use of the Method of
 Fundamental Solutions (MFS) which is also known as the Discrete Source
-Method. This method relies on knowing Green's function, denoted by \(G_{1}\), which satisfies \begin{equation}
+Method. This method relies on knowing Green's function, denoted by <span
+class="math inline">\(G_{1}\)</span>, which satisfies \begin{equation}
 \left( \nabla^{2} + k_{1}^{2} \right) G_{1} = -\delta(r - r'),
 \end{equation} and the Sommerfeld radiation condition. It is given
 explicitly by \begin{equation} G_{1}(r - r') = \frac{e^{\mathrm{i} k_{1}
 | r - r '|}}{4 \pi | r - r' |}, \end{equation} which is a spherical wave
-centered at \(r&#39;\) propagating in
-the whole space with wavenumber \(k_{1}\).</p>
-<p>The key observation is that when \(r&#39;
-\not\in D\), \(G_{1}\)exactly
-satisfies the differential equation for \(\psi^{\text{int}}\) since \(\delta(r - r&#39;) = 0\)for \(r \in D\) and \(r&#39; \not\in D\). 
-Because of this, we consider a set of \(M\) points \(r_{j}^{\text{int}} \in E\) for\(j = 1, \cdots, M\) and form the following
+centered at <span class="math inline">\(r&#39;\)</span> propagating in
+the whole space with wavenumber <span
+class="math inline">\(k_{1}\)</span>.</p>
+<p>The key observation is that when <span class="math inline">\(r&#39;
+\not\in D\)</span>, <span class="math inline">\(G_{1}\)</span> exactly
+satisfies the differential equation for <span
+class="math inline">\(\psi^{\text{int}}\)</span> since <span
+class="math inline">\(\delta(r - r&#39;) = 0\)</span> for <span
+class="math inline">\(r \in D\)</span> and <span
+class="math inline">\(r&#39; \not\in D\)</span>. Because of this, we
+consider a set of <span class="math inline">\(M\)</span> points <span
+class="math inline">\(r_{j}^{\text{int}} \in E\)</span> for <span
+class="math inline">\(j = 1, \cdots, M\)</span> and form the following
 approximation, $$\psi^{\text{int}}(r) \sum_{j =1}^{M} c^{\text{int}}_{j} G_{1}(r - \rho^{\text{int}}_{j}),r \in D. $$
- This approximation is an exact solution of the differential equation for \(\psi^{\text{int}}\) for any set of points
-\(\rho_{j}^{\text{int}} \in E\)for
-\(j = 1, \cdots, M\). It is an
+ This approximation is an exact solution of the differential equation for <span
+class="math inline">\(\psi^{\text{int}}\)</span> for any set of points
+<span class="math inline">\(\rho_{j}^{\text{int}} \in E\)</span> for
+<span class="math inline">\(j = 1, \cdots, M\)</span>. It is an
 approximation of the solution of this scattering problem because it does
 not exactly satisfy the boundary conditions. Rather, we will require
 that this approximation satisfies the boundary conditions only at a set
-of \(M\) points, which is called a
+of <span class="math inline">\(M\)</span> points, which is called a
 collocation method.</p>
 <p>In practice, we would like to have these points uniformly sample the
-interface \(B\)to make the
+interface <span class="math inline">\(B\)</span> to make the
 approximation of the interface conditions as accurate as possible.
-Suppose the set of \(M\) points \(\rho^{\text{bdy}}_{j} \in B\) for \(j = 1, \cdots, B\) uniformly sample (or
-close to uniformly sample) the sphere of radius \(a_{0}\). Then, we set 
+Suppose the set of <span class="math inline">\(M\)</span> points <span
+class="math inline">\(\rho^{\text{bdy}}_{j} \in B\)</span> for <span
+class="math inline">\(j = 1, \cdots, B\)</span> uniformly sample (or
+close to uniformly sample) the sphere of radius <span
+class="math inline">\(a_{0}\)</span>. Then, we set 
 
 $$\rho^{\text{int}}_{j} = \rho^{\text{bdy}}_{j} + \ell \nu_{j},
 \quad j = 1, \cdots, M, $$
 with 
-\(\nu_{j}\) denoting the unit outward normal
-at \(r_{j}\), and \(\ell &gt; 0\) denoting a user-defined
+<span
+class="math inline">\(\nu_{j}\)</span> denoting the unit outward normal
+at <span class="math inline">\(r_{j}\)</span>, and <span
+class="math inline">\(\ell &gt; 0\)</span> denoting a user-defined
 length parameter which we typically set to be smaller than a
 wavelength.</p>
 </section>
 <section>
 <h2>Exterior field</h2>
-<p>To approximate \(\psi^{\text{ext}}\)
+<p>To approximate <span class="math inline">\(\psi^{\text{ext}}\)</span>
 we make use of Green's identity which essentially states that the
 exterior field is given by a superposition of surface and volume
 sources. Here, surface sources correspond to scattering by the
-dielectric sphere and volume sources correspond to the \(N\) metal nanoparticles. In what follows,
+dielectric sphere and volume sources correspond to the <span
+class="math inline">\(N\)</span> metal nanoparticles. In what follows,
 we approximate the surface sources using the Method of Fundamental
 Solutions and the volume sources using the self-consistent Foldy-Lax
 scattering theory, which is a scalar wave theory closely related to what
 is used in the Discrete Dipole Approximation.</p>
-<p>In what follows, we represent \(\psi^{\text{ext}}\) as the following sum,
-\[\psi^{\text{ext}} = \psi^{\text{inc}} +
+<p>In what follows, we represent <span
+class="math inline">\(\psi^{\text{ext}}\)</span> as the following sum,
+<span class="math display">\[\psi^{\text{ext}} = \psi^{\text{inc}} +
 \underbrace{\psi^{B} + \sum_{n =
-      1}^{N} \Psi_{n}}_{\psi^{\text{s}}}, \] with \(\psi^{B}\) denoting the "surface source"
-field scattered by the dielectric sphere and \(\Psi_{n}\) denoting the "volume source"
-field scattered by the \(n\)th metal
+      1}^{N} \Psi_{n}}_{\psi^{\text{s}}}, \]</span> with <span
+class="math inline">\(\psi^{B}\)</span> denoting the "surface source"
+field scattered by the dielectric sphere and <span
+class="math inline">\(\Psi_{n}\)</span> denoting the "volume source"
+field scattered by the <span class="math inline">\(n\)</span>th metal
 nanoparticle. We describe our approximations for each of these scattered
 fields below.</p>
 <h3 >Field scattered
 by the dielectric sphere</h3>
 <p>We use the Method of Fundamental solutions to compute the field
 scattered by the dielectric sphere. Here, we use the Green's function
-\(G_{0}\) satisfying $$ \left(
+<span class="math inline">\(G_{0}\) satisfying $$ \left(
 \nabla^{2} + k_{0}^{2} \right) G_{0} = -\delta(r - r'), $$ and the
-Sommerfeld radiation condition, which is given explicitly by \[
+Sommerfeld radiation condition, which is given explicitly by <span
+class="math display">\[
   G_{0}(r - r&#39;) = \frac{e^{\mathrm{i} k_{0} | r - r&#39; |}}{4 \pi |
 r -
-    r&#39; |}.\] Just as we have done for the interior field, we
+    r&#39; |}.\]</span> Just as we have done for the interior field, we
 introduce the set of M points, 
 <p>\[\rho_{j}^{\text{ext}} = \rho^{\text{bdy}}_{j} - 
 \ell \nu_{j},\quad j = 1, \cdots, M. \] </p>
- Note that because \(\ell &gt; 0\), it follows that \(\rho_{j}^{\text{ext}} \not\in E\).
-Consequently, the approximation given by 
+ Note that because <span
+class="math inline">\(\ell &gt; 0\)</span>, it follows that <span
+class="math inline">\(\rho_{j}^{\text{ext}} \not\in E\)</span>.
+Consequently, the approximation given by <span class="math display">
 \[
   \psi^{B}(r) \cong \sum_{j = 1}^{M} c_{j}^{\text{ext}} G_{0}(r -
-  \rho_{j}^{\text{ext}}) \] is an exact solution of \[\left(
+  \rho_{j}^{\text{ext}}) \]</span> is an exact solution of \[\left(
 \nabla^{2} + k_{0}^{2} \right) \psi^{B} = 0, \quad r \in E.\] We use the
 approximation given above to approximate the field scattered by the
 dielectric sphere. Because this approximation is a superposition of
@@ -266,17 +297,28 @@ above and the Sommerfeld radiation condition, it is only the interface
 conditions that make it an approximation rather than an exact
 solution.</p>
 
-<h3 >Field scattered by the metal nanoparticles</h3>
-<p>Let us denote the center of the \(n\)th metal nanoparticle by \(R_{n}\). In what follows, we assume that
-each of the\(N\) metal nanoparticles
+<h3 >Field
+scattered by the metal nanoparticles</h3>
+<p>Let us denote the center of the <span
+class="math inline">\(n\)</span>th metal nanoparticle by <span
+class="math inline">\(R_{n}\)</span>. In what follows, we assume that
+each of the <span class="math inline">\(N\)</span> metal nanoparticles
 is small enough that we can account for its scattering properties by a
-scattering coefficient,  \(\alpha_{n}\),
-which may depend on \(\lambda\). It
-follows that the field scattered by the \(n\)th metal nanoparticle is given by 
-\[ \Psi_{n}(r) = \alpha_{n} G_{0}(r - R_{n}) \Psi_{E}(R_{n}),\] with \(G_{0}\) denoting the Green's function
-defined above and \(\Psi_{E}(R_{n})\)
-denoting the exciting field evaluated at \(R_{n}\). Supposing that \(R_{n}\) and \(\alpha_{n}\) for \(n = 1, \cdots, N\) are known, all that
-remains to be determined is \(\Psi_{E}(R_{n})\)for \(n = 1, \cdots, N\).</p>
+scattering coefficient, <span class="math inline">\(\alpha_{n}\)</span>,
+which may depend on <span class="math inline">\(\lambda\)</span>. It
+follows that the field scattered by the <span
+class="math inline">\(n\)</span>th metal nanoparticle is given by 
+\[ \Psi_{n}(r) = \alpha_{n} G_{0}(r - R_{n}) \Psi_{E}(R_{n}),\] with <span
+class="math inline">\(G_{0}\)</span> denoting the Green's function
+defined above and <span class="math inline">\(\Psi_{E}(R_{n})\)</span>
+denoting the exciting field evaluated at <span
+class="math inline">\(R_{n}\)</span>. Supposing that <span
+class="math inline">\(R_{n}\)</span> and <span
+class="math inline">\(\alpha_{n}\)</span> for <span
+class="math inline">\(n = 1, \cdots, N\)</span> are known, all that
+remains to be determined is <span
+class="math inline">\(\Psi_{E}(R_{n})\)</span> for <span
+class="math inline">\(n = 1, \cdots, N\)</span>.</p>
 <p>To determine this exciting field, we use Foldy-Lax theory which we
 describe below. Foldy-Lax theory is a self-consistent multiple
 scattering theory. It is not an exact theory, but it does account for
@@ -285,31 +327,38 @@ provides a useful multiple scattering model. This theory is limited to
 settings in which the metal nanoparticles are not too densely
 distributed over the dielectric sphere so that these scattering elements
 are statistically independent.</p>
-<p>We model the field exciting the \(n\)th metal nanoparticle as the following
-sum, \[
+<p>We model the field exciting the <span
+class="math inline">\(n\)</span>th metal nanoparticle as the following
+sum, <span class="math display">\[
   \Psi_{E}(R_{n}) = \psi^{\text{inc}}(R_{n}) + \psi^{B}(R_{n}) +
   \sum_{\substack{n&#39; = 1\\ n&#39; \neq n}}^{N} \sigma_{n&#39;}
 G_{0}(R_{n} - R_{n&#39;})
-  \Psi_{E}(R_{n&#39;}). \] This equation gives the exciting field
-at \(r_{n}\) as the sum of the incident
-field \(\psi^{\text{inc}}\), the field
-scattered by the dielectric sphere \(\psi^{B}\), and the fields scattered by all
-of the other \(N-1\) metal
-nanoparticles evaluated at \(r_{n}\).
-By rearranging this equation and considering it for each and all \(N\) metal nanoparticles, we obtain the
-\(N \times N\)linear system, 
+  \Psi_{E}(R_{n&#39;}). \]</span> This equation gives the exciting field
+at <span class="math inline">\(r_{n}\)</span> as the sum of the incident
+field <span class="math inline">\(\psi^{\text{inc}}\)</span>, the field
+scattered by the dielectric sphere <span
+class="math inline">\(\psi^{B}\)</span>, and the fields scattered by all
+of the other <span class="math inline">\(N-1\)</span> metal
+nanoparticles evaluated at <span class="math inline">\(r_{n}\)</span>.
+By rearranging this equation and considering it for each and all <span
+class="math inline">\(N\)</span> metal nanoparticles, we obtain the
+<span class="math inline">\(N \times N\)</span> linear system, <span
+class="math display">
 \[
   \Psi_{E}(R_{n}) - \sum_{\substack{n&#39; = 1\\ n&#39; \neq n}}^{N}
   \sigma_{n&#39;} G_{0}(R_{n} - R_{n&#39;}) \Psi_{E}(R_{n&#39;}) =
   \psi^{\text{inc}}(R_{n}) + \psi^{B}(R_{n}), \quad n = 1, \cdots, N.
-\] Upon solution of this linear system, we obtain \(\Psi_{E}(r_{n})\) for \(n = 1, \cdots, N\). This result can then be
-used to evaluate \[
+\]</span> Upon solution of this linear system, we obtain <span
+class="math inline">\(\Psi_{E}(r_{n})\)</span> for <span
+class="math inline">\(n = 1, \cdots, N\)</span>. This result can then be
+used to evaluate <span class="math display">\[
   \Psi(r) = \sum_{n = 1}^{N} \alpha_{n} G_{0}(r - R_{n})
   \Psi_{E}(R_{n}), \quad r \in E.
-\] This field gives the field scattered by the entire set of
-\(N\) metal nanoparticles. Because this
+\]</span> This field gives the field scattered by the entire set of
+<span class="math inline">\(N\)</span> metal nanoparticles. Because this
 field is given as a superposition of Green's functions, each of which
-satisfies the Sommerfeld radiation condition, it follows that (\Psi\) satisfies the Sommerfeld radiation
+satisfies the Sommerfeld radiation condition, it follows that <span
+class="math inline">\(\Psi\)</span> satisfies the Sommerfeld radiation
 condition.</p>
 </section>
 <section >
@@ -320,26 +369,35 @@ equations and the exterior field satisfies the Sommerfeld radiation
 condition. All that remains is to require that these fields satisfy
 interface conditions given in Section 1.</p>
 <p>Let us review what we have so far. The approximation of the interior
-field is given by \[
+field is given by <span class="math display">\[
   \psi^{\text{int}}(r) \cong \sum_{j = 0}^{M} c_{j}^{\text{int}} G_{1}(r
 -
   \rho_{j}^{\text{int}}) \quad r \in D.
-\] The approximation of the exterior field is given by \[
+\]</span> The approximation of the exterior field is given by <span
+class="math display">\[
   \psi^{\text{ext}}(r) \cong \psi^{\text{inc}}(r) +
   \underbrace{\sum_{j = 1}^{M} c_{j}^{\text{ext}} G_{0}(r -
     \rho_{j}^{\text{ext}})}_{\psi^{B}} + \sum_{n = 1}^{N} \alpha_{n}
-  G_{0}(r - R_{n}) \Psi_{E}(R_{n}), \quad r \in E,\] with \(\Psi_{E}(R_{n})\) satisfying \[
+  G_{0}(r - R_{n}) \Psi_{E}(R_{n}), \quad r \in E,\]</span> with <span
+class="math inline">\(\Psi_{E}(R_{n})\)</span> satisfying <span
+class="math display">\[
   \Psi_{E}(R_{n}) - \sum_{\substack{n&#39; = 1\\ n&#39; \neq n}}^{N}
-  \sigma_{n&#39;} G_{0}(R_{n} - R_{n&#39;}) \Psi_{E}(R_{n&#39;}) =
+  \sigma_{n&#39;} G_{0}(R_{n} - R_{n&#39;}) \Psi_{E}(R_{n&#39;}) \]
+  \[ =
   \psi^{\text{inc}}(R_{n}) + \sum_{j = 1}^{M} c_{j}^{\text{ext}}
   G_{0}(R_{n} - \rho_{j}^{\text{ext}}), \quad n = 1, \cdots, N.
-\] The quantities \(c_{j}^{\text{int}}\) for \(j = 1, \cdots, N\), \(c_{j}^{\text{ext}}\)for \(j = 1, \cdots, N\), and \(\Psi_{E}(R_{n})\) for 
-\(n = 1, \cdots, N\) are to be
+\]</span> The quantities <span
+class="math inline">\(c_{j}^{\text{int}}\)</span> for <span
+class="math inline">\(j = 1, \cdots, N\)</span>, <span
+class="math inline">\(c_{j}^{\text{ext}}\)</span> for <span
+class="math inline">\(j = 1, \cdots, N\)</span>, and <span
+class="math inline">\(\Psi_{E}(R_{n})\)</span> for <span
+class="math inline">\(n = 1, \cdots, N\)</span> are to be
 determined.</p>
 <p>By requiring that the interface condition for the fields is satisfied
-exactly on the \(M\) boundary points,
-\(\rho^{\text{bdy}}_{i} \in B\)for
-\(i = 1, \cdots, M\), we find that
+exactly on the <span class="math inline">\(M\)</span> boundary points,
+<span class="math inline">\(\rho^{\text{bdy}}_{i} \in B\)</span> for
+<span class="math inline">\(i = 1, \cdots, M\)</span>, we find that
 <p>\[
   \sum_{j = 0}^{M} c_{j}^{\text{int}} G_{1}(\rho^{\text{bdy}}_{i} -
 \rho_{j}^{\text{int}}) - 
@@ -348,7 +406,7 @@ exactly on the \(M\) boundary points,
   \[ G_{0}(\rho^{\text{bdy}}_{i} - R_{n}) \Psi_{E}(R_{n}) = \psi^{\text{inc}}(\rho^{\text{bdy}}_{i}),\quad i = 1,\cdots, M. \]</p> 
   Similarly, by requiring that the interface
 condition for the normal derivatives of the fields is satisfied exactly
-on the \(M\)boundary points, we find
+on the <span class="math inline">\(M\)</span> boundary points, we find
 that <p>
 \[\sum_{j = 0}^{M} c_{j}^{\text{int}} \partial_{\nu} \\
   G_{1}(\rho^{\text{bdy}}_{i} -
@@ -357,68 +415,84 @@ that <p>
   \[-\sum_{n = 1}^{N} \alpha_{n} \partial_{\nu} G_{0}(\rho^{\text{bdy}}_{i} - R_{n}) 
   \Psi_{E}(R_{n})=\partial_{\nu} \psi^{\text{inc}}(\rho^{\text{bdy}}_{i}), \quad i = 1,
   \cdots, M.\]</p> Finally, by rearranging terms in this equation, we find that
-\[
+<span class="math display">\[
   \Psi_{E}(R_{n}) - \sum_{\substack{n&#39; = 1\\ n&#39; \neq n}}^{N}
   \alpha_{n&#39;} G_{0}(R_{n} - R_{n&#39;}) \Psi_{E}(R_{n&#39;}) \]
   \[- \sum_{j = 1}^{M}
   c_{j}^{\text{ext}} G_{0}(R_{n} - \rho_{j}^{\text{ext}})=
-  \psi^{\text{inc}}(R_{n}) , \quad n = 1, \cdots, N.\] These three equations give \(2MN\) equations for the \(2MN\) unknowns, \(c_{j}^{\text{int}}\) for 
-\(j = 1, \cdots, M\),
-\(c_{j}^{\text{ext}}\) for \(j = 1, \cdots, M\), and \(\Psi_{E}(r_{n})\) for \(n = 1, \cdots,
-N\). These equations can be combined to form a \(2MN \times 2MN\) linear system that can be
+  \psi^{\text{inc}}(R_{n}) , \quad n = 1, \cdots, N.\]</span> These three equations give <span
+class="math inline">\(2MN\)</span> equations for the <span
+class="math inline">\(2MN\)</span> unknowns, <span
+class="math inline">\(c_{j}^{\text{int}}\)</span> for <span
+class="math inline">\(j = 1, \cdots, M\)</span>, <span
+class="math inline">\(c_{j}^{\text{ext}}\)</span> for <span
+class="math inline">\(j = 1, \cdots, M\)</span>, and <span
+class="math inline">\(\Psi_{E}(r_{n})\)</span> for <span
+class="math inline">\(n = 1, \cdots,
+N\)</span>. These equations can be combined to form a <span
+class="math inline">\(2MN \times 2MN\)</span> linear system that can be
 solves using standard numerical linear algebra methods.</p>
 <p>We now present the codes that computes the solution of this linear
 system and uses that result to compute the field scattered by this
 cloaking structure.</p>
+
 </section>
 <section >
 <h2>Computing the total scattering cross-section</h2>
 <p>After solving the system of linear equation described in the last
 section (avobe), thescattered filed is given by,</p>
-<p>\[\psi^{s}(r) = \psi^{B} + \sum_{n=1}^{N}
+<p><span class="math display">\[\psi^{s}(r) = \psi^{B} + \sum_{n=1}^{N}
 \Psi_{n}\approx \sum_{j=1}^{M}c_{j}^{ext}G_{0}(r-r_{j}^{ext}) +
 \sum_{n=1}^{N}\alpha_{n}G_{0}
-(r-r^{NP}_{n})\Psi_{E}(r_{n}^{NP}), r \in E.\]</p>
-<p>The scattered field evaluated at \(\textbf{r}= R\hat{o}\) with \(R=|r|\) and \(\hat{o} = \textbf{r} / |\textbf{r}|\) in
-the far-field corresponding to \(R&gt;&gt;1\) behaves like a spherical wave
+(r-r^{NP}_{n})\Psi_{E}(r_{n}^{NP}), r \in E.\]</span></p>
+<p>The scattered field evaluated at <span
+class="math inline">\(\textbf{r}= R\hat{o}\)</span> with <span
+class="math inline">\(R=|r|\)</span> and <span
+class="math inline">\(\hat{o} = \textbf{r} / |\textbf{r}|\)</span> in
+the far-field corresponding to <span
+class="math inline">\(R&gt;&gt;1\)</span> behaves like a spherical wave
 and is given by,</p>
-<p>\[\psi^{s} \sim f(\hat{o},\hat{i})
-\frac{e^{ik_{0}}R}{R} \]</p>
-<p>Here, \(f(\hat{o},\hat{i})\) is the
+<p><span class="math display">\[\psi^{s} \sim f(\hat{o},\hat{i})
+\frac{e^{ik_{0}}R}{R} \]</span></p>
+<p>Here, <span class="math inline">\(f(\hat{o},\hat{i})\)</span> is the
 scattering amplitude for the scattered field in the far field in the
-direction \(\hat{o}\) when the particle
-is illuminated by a plane wave propagating in the direction \(\hat{i}\) with unit amplitude.</p>
-<p>Suppose we have set \(\psi^{inc}\)
-to be a plane wave of unit amplitude propagating in the direction \(\hat{i}\) and we have used that compute the
+direction <span class="math inline">\(\hat{o}\)</span> when the particle
+is illuminated by a plane wave propagating in the direction <span
+class="math inline">\(\hat{i}\)</span> with unit amplitude.</p>
+<p>Suppose we have set <span class="math inline">\(\psi^{inc}\)</span>
+to be a plane wave of unit amplitude propagating in the direction <span
+class="math inline">\(\hat{i}\)</span> and we have used that compute the
 the solution of the last three equation described in the section above.
-Using \(|R\hat{o}-r^{&#39;}|\sim R-
-\hat{o}.r^{&#39;}\)for \(R&gt;&gt;1\), in the far-field Green's
+Using <span class="math inline">\(|R\hat{o}-r^{&#39;}|\sim R-
+\hat{o}.r^{&#39;}\)</span> for <span
+class="math inline">\(R&gt;&gt;1\)</span>, in the far-field Green's
 function is ,</p>
-<p>\[G_{0}(R\hat{o}-r^{&#39;}) \sim
+<p><span class="math display">\[G_{0}(R\hat{o}-r^{&#39;}) \sim
 e^{ik_{0}\hat{o}.r^{&#39;}}\frac{e^{ik_{0}R}}{4\pi R},
-R&gt;&gt;1\]</p>
-<p>Replacing \(G_{0}\) by the first two
+R&gt;&gt;1\]</span></p>
+<p>Replacing <span class="math inline">\(G_{0}\)</span> by the first two
 equations from this section we get,</p>
-<p>\[\psi^{s}(r) \sim \left[  \frac{1}{4\pi}
+<p><span class="math display">\[\psi^{s}(r) \sim \left[  \frac{1}{4\pi}
 \sum_{j=1}^{M} c_{j}^{ext} e^{ik_{0}\hat{o}.r^{ext}_{j}} +
 \sum_{n=1}^{N} \alpha_n e^{ik_{0}\hat{o}.r^{NP}_{n}}
 \Psi_{E}(r_{n}^{NP})
-\right]\frac{e^{ik_{0}R}}{R}, R&gt;&gt;1\]</p>
+\right]\frac{e^{ik_{0}R}}{R}, R&gt;&gt;1\]</span></p>
 <p>By comparing this last equation with the second equation from
 beginning of this section we find the scattering amplitude using our
 method given as,</p>
-<p>\[f(\hat{o}, \hat{i}) = \frac{1}{4\pi}
+<p><span class="math display">\[f(\hat{o}, \hat{i}) = \frac{1}{4\pi}
 \sum_{j=1}^{M} c_{j}^{ext} e^{ik_{0}\hat{o}.r^{ext}_{j}} +
 \frac{1}{4\pi} \sum_{n=1}^{N} \alpha_n e^{ik_{0}\hat{o}.r^{NP}_{n}}
-\Psi_{E}(r_{n}^{NP}) \]</p>
+\Psi_{E}(r_{n}^{NP}) \]</span></p>
 <p>According to the Optical Theorem of the forward scattering theorem,
 we can compute the total cross-section of the scattering structure
 through evaluation of ,</p>
-<p>\[\sigma_{t} =
-\frac{4\pi}{k_{0}}Im[f(\hat{i},\hat{i})]\]</p>
+<p><span class="math display">\[\sigma_{t} =
+\frac{4\pi}{k_{0}}Im[f(\hat{i},\hat{i})]\]</span></p>
 <p>Now we can compute the total cross-section by substituiting equation
 above the last equation into this formula. Remarkably, the last equation
-of this section allows for the determination of \(\sigma_{t}\) by only measuring scattered
+of this section allows for the determination of <span
+class="math inline">\(\sigma_{t}\)</span> by only measuring scattered
 power in the forward direction.</p>
 </section>
 
