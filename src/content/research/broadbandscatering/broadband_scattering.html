@@ -1,9 +1,9 @@
 <section class="space-y-3">
-<h1 id="modeling-broadband-cloaking-using-nano-assembled-plasmonic-meta-structures">Modeling
+<h1 class="text-3xl font-semibold tracking-tight text-slate-900">Modeling
 Broadband Cloaking Using Nano-Assembled Plasmonic Meta-Structures</h1>
 <p><strong>Imran Khan</strong></p>
 <hr />
-<h2 id="introduction-motivation">Introduction &amp; Motivation</h2>
+<h2>Introduction &amp; Motivation</h2>
 <p>Plasmonic cloaking suppresses the optical scattering signature of an
 object by engineering a shell whose induced response cancels the
 object’s far-field scattering. In the visible and near‑infrared regime,
@@ -33,7 +33,7 @@ of cloaking is to <strong>erase that optical fingerprint</strong>.</p>
   </a> 
 </div>
 
-<h3 id="why-traditional-cloaking-models-fail">Why traditional cloaking
+<h3 >Why traditional cloaking
 models fail</h3>
 <p>Classical approaches such as Maxwell–Garnett effective medium theory
 fail for:</p>
@@ -58,7 +58,7 @@ Foldy–Lax multiscale solver</strong> that accurately models:</p>
 <li>realistic material response</li>
 </ul>
 <hr />
-<h2 id="physical-principles-behind-plasmonic-cloaking">Physical
+<h2 >Physical
 Principles Behind Plasmonic Cloaking</h2>
 <h3 id="destructive-interference">Destructive Interference</h3>
 <p>Let the core produce scattering, $ f_{core} $<br />
@@ -78,7 +78,7 @@ anti-phase<br />
 <li><strong>Broadband response</strong> — maintained over a spectral
 window</li>
 </ul>
-<h3 id="why-aunp-shells-work">Why AuNP shells work</h3>
+<h3 >Why AuNP shells work</h3>
 <p>The extinction spectrum of AuNPs has a broad FWHM around <strong>520
 nm</strong>, enabling broadband cancellation between 400–600 nm. The
 strong scattering and absorption of the AuNPs creates intense local
@@ -87,7 +87,7 @@ scattering.</p>
 
 <hr/>
 <div>
-<h2 id="computational-methods">Computational methods:</h2>
+<h2 >Computational methods:</h2>
 <p>This section briefly states the computational procedure for modeling
 scattering cross-section of a plasmonic meta-structures .</p>
 <ul>
@@ -119,7 +119,7 @@ cross-sections were computed using Rayleigh Scatterig theory.</li>
 </div>
 <!--problem description start-->
 <div>
-<h2 id="a-problem-statement-and-solution-method">Problem statement
+<h2 >Problem statement
 and solution method</h2>
 <p>A plane wave with wavelength <span
 class="math inline">\(\lambda\)</span> propagates in the <span
@@ -191,7 +191,7 @@ class="math inline">\(\psi^{\text{s}}\)</span> satisfies the Sommerfeld
 radiation condition constitute a complete mathematical description of
 the problem.</p>
 </div>
-<section id="2-interior-field" class="cell markdown" id="EaOBh8s01aI6">
+<section >
 <h2>Interior field</h2>
 <p>To compute the interior field, we make use of the Method of
 Fundamental Solutions (MFS) which is also known as the Discrete Source
@@ -243,7 +243,7 @@ class="math inline">\(\ell &gt; 0\)</span> denoting a user-defined
 length parameter which we typically set to be smaller than a
 wavelength.</p>
 </section>
-<section id="3-exterior-field" class="cell markdown" id="5ydQ4WoR1jHN">
+<section>
 <h2>Exterior field</h2>
 <p>To approximate <span class="math inline">\(\psi^{\text{ext}}\)</span>
 we make use of Green's identity which essentially states that the
@@ -277,10 +277,14 @@ class="math display">\[
   G_{0}(r - r&#39;) = \frac{e^{\mathrm{i} k_{0} | r - r&#39; |}}{4 \pi |
 r -
     r&#39; |}.\]</span> Just as we have done for the interior field, we
-introduce the set of M points, \[\rho_{j}^{\text{ext}} = \rho^{\text{bdy}}_{j} - \ell \nu_{j},\quad j = 1, \cdots, M. \] Note that because <span
+introduce the set of M points, 
+<p>\[\rho_{j}^{\text{ext}} = \rho^{\text{bdy}}_{j} - 
+\ell \nu_{j},\quad j = 1, \cdots, M. \] </p>
+ Note that because <span
 class="math inline">\(\ell &gt; 0\)</span>, it follows that <span
 class="math inline">\(\rho_{j}^{\text{ext}} \not\in E\)</span>.
-Consequently, the approximation given by <span class="math display">\[
+Consequently, the approximation given by <span class="math display">
+\[
   \psi^{B}(r) \cong \sum_{j = 1}^{M} c_{j}^{\text{ext}} G_{0}(r -
   \rho_{j}^{\text{ext}}) \]</span> is an exact solution of \[\left(
 \nabla^{2} + k_{0}^{2} \right) \psi^{B} = 0, \quad r \in E.\] We use the
@@ -293,7 +297,7 @@ above and the Sommerfeld radiation condition, it is only the interface
 conditions that make it an approximation rather than an exact
 solution.</p>
 
-<h3 id="32-field-scattered-by-the-metal-nanoparticles">Field
+<h3 >Field
 scattered by the metal nanoparticles</h3>
 <p>Let us denote the center of the <span
 class="math inline">\(n\)</span>th metal nanoparticle by <span
@@ -339,7 +343,8 @@ nanoparticles evaluated at <span class="math inline">\(r_{n}\)</span>.
 By rearranging this equation and considering it for each and all <span
 class="math inline">\(N\)</span> metal nanoparticles, we obtain the
 <span class="math inline">\(N \times N\)</span> linear system, <span
-class="math display">\[
+class="math display">
+\[
   \Psi_{E}(R_{n}) - \sum_{\substack{n&#39; = 1\\ n&#39; \neq n}}^{N}
   \sigma_{n&#39;} G_{0}(R_{n} - R_{n&#39;}) \Psi_{E}(R_{n&#39;}) =
   \psi^{\text{inc}}(R_{n}) + \psi^{B}(R_{n}), \quad n = 1, \cdots, N.
@@ -356,8 +361,7 @@ satisfies the Sommerfeld radiation condition, it follows that <span
 class="math inline">\(\Psi\)</span> satisfies the Sommerfeld radiation
 condition.</p>
 </section>
-<section id="4-interface-conditions" class="cell markdown"
-id="8RSyrtsT1wv8">
+<section >
 <h3>Interface conditions</h3>
 <p>At this point we have introduced approximations for the interior and
 exterior fields. Both are exact solutions of the associated differential
@@ -393,35 +397,29 @@ determined.</p>
 exactly on the <span class="math inline">\(M\)</span> boundary points,
 <span class="math inline">\(\rho^{\text{bdy}}_{i} \in B\)</span> for
 <span class="math inline">\(i = 1, \cdots, M\)</span>, we find that
-<span class="math display">\[
+<p>\[
   \sum_{j = 0}^{M} c_{j}^{\text{int}} G_{1}(\rho^{\text{bdy}}_{i} -
-\rho_{j}^{\text{int}}) -
-  \sum_{j = 1}^{M} c_{j}^{\text{ext}} G_{0}(\rho^{\text{bdy}}_{i} -
-  \rho_{j}^{\text{ext}}) - \sum_{n = 1}^{N} \alpha_{n}
-G_{0}(\rho^{\text{bdy}}_{i} -
-  R_{n}) \Psi_{E}(R_{n}) = \psi^{\text{inc}}(\rho^{\text{bdy}}_{i}),
-\quad i = 1,
-  \cdots, M. \]</span> Similarly, by requiring that the interface
+\rho_{j}^{\text{int}}) - 
+ \sum_{j = 1}^{M} c_{j}^{\text{ext}} G_{0}(\rho^{\text{bdy}}_{i} -
+  \rho_{j}^{\text{ext}}) - \sum_{n = 1}^{N} \alpha_{n} \] 
+  \[ G_{0}(\rho^{\text{bdy}}_{i} - R_{n}) \Psi_{E}(R_{n}) = \psi^{\text{inc}}(\rho^{\text{bdy}}_{i}),\quad i = 1,\cdots, M. \]</p> 
+  Similarly, by requiring that the interface
 condition for the normal derivatives of the fields is satisfied exactly
 on the <span class="math inline">\(M\)</span> boundary points, we find
-that <span class="math display">\[
-  \sum_{j = 0}^{M} c_{j}^{\text{int}} \partial_{\nu}
-G_{1}(\rho^{\text{bdy}}_{i} -
+that <p>
+\[\sum_{j = 0}^{M} c_{j}^{\text{int}} \partial_{\nu} \\
+  G_{1}(\rho^{\text{bdy}}_{i} -
   \rho_{j}^{\text{int}}) - \sum_{j = 1}^{M} c_{j}^{\text{ext}}
-  \partial_{\nu} G_{0}(\rho^{\text{bdy}}_{i} - \rho_{j}^{\text{ext}}) -
-\sum_{n = 1}^{N}
-  \alpha_{n} \partial_{\nu} G_{0}(\rho^{\text{bdy}}_{i} - R_{n})
-\Psi_{E}(R_{n}) =
-  \partial_{\nu} \psi^{\text{inc}}(\rho^{\text{bdy}}_{i}), \quad i = 1,
-\cdots, M.
-\]</span> Finally, by rearranging terms in this equation, we find that
+  \partial_{\nu} G_{0}(\rho^{\text{bdy}}_{i} - \rho_{j}^{\text{ext}})\]
+  \[-\sum_{n = 1}^{N} \alpha_{n} \partial_{\nu} G_{0}(\rho^{\text{bdy}}_{i} - R_{n}) 
+  \Psi_{E}(R_{n})=\partial_{\nu} \psi^{\text{inc}}(\rho^{\text{bdy}}_{i}), \quad i = 1,
+  \cdots, M.\]</p> Finally, by rearranging terms in this equation, we find that
 <span class="math display">\[
   \Psi_{E}(R_{n}) - \sum_{\substack{n&#39; = 1\\ n&#39; \neq n}}^{N}
-  \alpha_{n&#39;} G_{0}(R_{n} - R_{n&#39;}) \Psi_{E}(R_{n&#39;}) -
-\sum_{j = 1}^{M}
+  \alpha_{n&#39;} G_{0}(R_{n} - R_{n&#39;}) \Psi_{E}(R_{n&#39;}) \]
+  \[- \sum_{j = 1}^{M}
   c_{j}^{\text{ext}} G_{0}(R_{n} - \rho_{j}^{\text{ext}})=
-  \psi^{\text{inc}}(R_{n}) , \quad n = 1, \cdots, N.
-\]</span> These three equations give <span
+  \psi^{\text{inc}}(R_{n}) , \quad n = 1, \cdots, N.\]</span> These three equations give <span
 class="math inline">\(2MN\)</span> equations for the <span
 class="math inline">\(2MN\)</span> unknowns, <span
 class="math inline">\(c_{j}^{\text{int}}\)</span> for <span
@@ -438,8 +436,7 @@ system and uses that result to compute the field scattered by this
 cloaking structure.</p>
 
 </section>
-<section id="computing-the-total-scattering-cross-section"
-class="cell markdown">
+<section >
 <h2>Computing the total scattering cross-section</h2>
 <p>After solving the system of linear equation described in the last
 section (avobe), thescattered filed is given by,</p>
@@ -500,7 +497,7 @@ power in the forward direction.</p>
 
 <!--problem descrition end -->
 
-<h3 id="computational-challenges">Computational challenges</h3>
+<h3 >Computational challenges</h3>
 <ul>
 <li>Matrix of size ( N imes N )<br />
 </li>
@@ -509,7 +506,7 @@ power in the forward direction.</p>
 <li>O(N³) cost with Gaussian elimination</li>
 </ul>
 <hr />
-<h2 id="hybrid-system-assembly">Hybrid System Assembly</h2>
+<h2 >Hybrid System Assembly</h2>
 <p>The final linear system includes:</p>
 <ul>
 <li>M boundary equations (continuity)<br />
@@ -522,7 +519,7 @@ power in the forward direction.</p>
 <p>[ (2M + N) imes (2M + N). ]</p>
 <hr />
 
-<h3 id="experimental-comparison">Experimental Comparison</h3>
+<h3>Experimental Comparison</h3>
 <p>Matching the work of Mühlig et al. (Sci. Rep. 2013):</p>
 <ul>
 <li>Maxwell–Garnett predicts incorrect spectral position<br />
@@ -530,14 +527,14 @@ power in the forward direction.</p>
 <li>This model captures correct suppression between 340–390 nm</li>
 </ul>
 <hr />
-<h2 id="results-discussion">Results &amp; Discussion</h2>
-<h3 id="scattering-efficiency-of-core-vs-core-shell">Scattering
+<h2 >Results &amp; Discussion</h2>
+<h3>Scattering
 Efficiency of Core vs Core-Shell</h3>
 <!--Core-vs-coreshell-fwhm-->
 <div class="flex-figures">
   <figure>
     <img src="/files/images/projects/broadbandscattering/scattering_fwhm.png" 
-    alt="scattering-fwhm" style="width:85%; border-radius:6px;">
+    alt="scattering-fwhm" style="width:100%; border-radius:6px;">
     <figcaption>Figure : Comparisons of the scattering efficiency \(\sigma_{E} \) for a 750 nm silica core (square symbols)
                   with that for a core and shell (circle symbols) made up of 10 nm AuNPs for filling fractions
                   (a) \(f = 0.05 \), (b) \(f = 0.15 \), and (c) \( f = 0.30 \). The extinction spectrum for a single 10 nm
@@ -551,12 +548,12 @@ Efficiency of Core vs Core-Shell</h3>
 <li>Suppression overlaps with AuNP extinction FWHM</li>
 </ul>
 <hr />
-<h3 id="effect-of-np-size">Effect of NP Size</h3>
+<h3 >Effect of NP Size</h3>
 <!--add image : plot of AuNp scattering efficiencies Fig: from the paper-->
 <div class="flex-figures">
   <figure>
     <img src="/files/images/projects/broadbandscattering/AuNp_efficinecies.png" 
-    alt="scattering efficiencies" style="width:40%; border-radius:6px;">
+    alt="scattering efficiencies" style="width:100%; border-radius:6px;">
     <figcaption>Figure : Comparisons of the scattering efficiency $\sigma_{E}$ for a 750 nm silica core (square symbols)
                         with that by a core and shell made up of 5 nm AuNPs (triangle symbols) and 20 nm AuNPs
                         (diamond symbols) for filling fractions (a) $f = 0.10$, and (b) $f = 0.30$. A comparison of the
@@ -573,12 +570,12 @@ Efficiency of Core vs Core-Shell</h3>
 <li>deliver deeper suppression</li>
 </ul>
 <hr />
-<h3 id="filling-fraction-dependence">Filling Fraction
+<h3 >Filling Fraction
 Dependence</h3>
 <div class="flex-figures">
   <figure>
     <img src="/files/images/projects/broadbandscattering/filling_frac.png" 
-    alt="filling fraction" style="width:80s%; border-radius:6px;">
+    alt="filling fraction" style="width:100%; border-radius:6px;">
     <figcaption>Figure: A plot of the scattering suppression (scattering efficiency of silica core minus
                 scattering efficiency of plasmonic cloak) as a function of filling fraction \(f\) and wavelength λ
                 for a core diameter of 750 nm and AuNPs with diameter 10 nm.
@@ -591,12 +588,12 @@ Dependence</h3>
 <li>Increasing f broadens and deepens suppression</li>
 </ul>
 <hr />
-<h3 id="scaling-to-larger-cores">Scaling to Larger Cores</h3>
+<h3 >Scaling to Larger Cores</h3>
 
 <div class="flex-figures">
   <figure>
     <img src="/files/images/projects/broadbandscattering/core_size.png" 
-    alt="filling fraction" style="width:80s%; border-radius:6px;">
+    alt="filling fraction" style="width:100%; border-radius:6px;">
     <figcaption>Figure: A plot of the scattering suppression as a function of core diameter d and wavelength
                 λ for a filling fraction of f = 30% and AuNPs with diameter 10 nm.
     </figcaption>
@@ -605,8 +602,8 @@ Dependence</h3>
 <p>Even for shells around <strong>900 nm cores</strong>, suppression
 remains strong without increasing shell layers.</p>
 <hr />
-<h2 id="mechanistic-interpretation">Mechanistic Interpretation</h2>
-<h3 id="multiple-scattering-trap">Multiple Scattering Trap</h3>
+<h2 >Mechanistic Interpretation</h2>
+<h3 >Multiple Scattering Trap</h3>
 <p>Dense AuNP layers create:</p>
 <ul>
 <li>high local field intensities<br />
@@ -615,19 +612,19 @@ remains strong without increasing shell layers.</p>
 </li>
 <li>strong absorption channels</li>
 </ul>
-<h3 id="anti-phase-resonant-response">Anti-Phase Resonant
+<h3 >Anti-Phase Resonant
 Response</h3>
 <p>Shell-induced polarization cancels the core’s multipole
 radiation.</p>
-<h3 id="extinction-bandwidth-determines-cloaking-band">Extinction
+<h3 >Extinction
 Bandwidth Determines Cloaking Band</h3>
 <p>Cloaking spectral range is governed by:</p>
 <p>\[\sigma_{\mathrm{ext}}(\lambda)\]</p>
 <p>of a single AuNP.</p>
 <hr />
-<h2 id="limitations-and-future-extensions">Limitations and Future
+<h2 >Limitations and Future
 Extensions</h2>
-<h3 id="current-limitations">Current limitations</h3>
+<h3 >Current limitations</h3>
 <ul>
 <li>Scalar approximation<br />
 </li>
@@ -637,7 +634,7 @@ Extensions</h2>
 </li>
 <li>O(N³) computational complexity</li>
 </ul>
-<h3 id="future-improvements">Future improvements</h3>
+<h3 >Future improvements</h3>
 <ul>
 <li>Vector MFS<br />
 </li>
@@ -648,8 +645,8 @@ Extensions</h2>
 <li>Polydisperse NP modeling</li>
 </ul>
 <hr />
-<h2 id="applications-across-fields">Applications Across Fields</h2>
-<h3 id="optics-photonics">Optics &amp; Photonics</h3>
+<h2 >Applications Across Fields</h2>
+<h3 >Optics &amp; Photonics</h3>
 <ul>
 <li>cloaking<br />
 </li>
@@ -657,7 +654,7 @@ Extensions</h2>
 </li>
 <li>nanoantenna scattering design</li>
 </ul>
-<h3 id="semiconductor-metrology">Semiconductor Metrology</h3>
+<h3 >Semiconductor Metrology</h3>
 <ul>
 <li>CD‑SEM scattering models<br />
 </li>
@@ -665,7 +662,7 @@ Extensions</h2>
 </li>
 <li>forward models for inverse imaging</li>
 </ul>
-<h3 id="computer-vision-ai">Computer Vision &amp; AI</h3>
+<h3 >Computer Vision &amp; AI</h3>
 <ul>
 <li>physics-informed ML<br />
 </li>
@@ -676,7 +673,7 @@ Extensions</h2>
 <li>explainable AI using wave models</li>
 </ul>
 <hr />
-<h2 id="summary">Summary</h2>
+<h2 >Summary</h2>
 <p>This full technical deep dive captures:</p>
 <ul>
 <li>the physics of plasmonic cloaking<br />
@@ -697,6 +694,6 @@ Extensions</h2>
   Modeling broadband cloaking using 3D nano-assembled plasmonic meta-structures.
   Optics Express.
   </a>
-<h4>
+</h4>
 
 </section>

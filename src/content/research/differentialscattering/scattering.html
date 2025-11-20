@@ -1,9 +1,9 @@
 <section class="space-y-3">
-<h1 id="scattering-by-nanoplasmonic-mesoscale-assemblies">Scattering by
+<h1 class="text-3xl font-semibold tracking-tight text-slate-900">Scattering by
 Nanoplasmonic Mesoscale Assemblies</h1>
 <p><strong>Imran Khan</strong></p>
 <hr />
-<h2 id="introduction-motivation">1. Introduction &amp; Motivation</h2>
+<h2>1. Introduction &amp; Motivation</h2>
 <p>Nanoplasmonic mesoscale assemblies — dielectric microspheres coated
 with disordered gold nanoparticle (AuNP) shells — offer a versatile
 platform for <em>tunable optical scattering</em>, <em>angular
@@ -37,8 +37,7 @@ ensemble</li>
 </ul>
 
 <hr />
-<h2
-id="physical-intuition-why-nanoparticle-shells-reshape-angular-scattering">
+<h2>
 2. Physical Intuition: Why Nanoparticle Shells Reshape Angular
 Scattering</h2>
 <p>A bare dielectric microsphere exhibits the classical Mie like scattering
@@ -52,7 +51,7 @@ pattern:</p>
 </ul>
 <p>Adding a disordered ensemble of AuNPs immediately changes this
 picture.</p>
-<h3 id="the-aunp-shell-introduces-three-key-effects">The AuNP Shell
+<h3>The AuNP Shell
 Introduces Three Key Effects</h3>
 <ol type="1">
 <li><p><strong>Phase decoherence</strong><br />
@@ -101,7 +100,7 @@ regimes.</p>
   </figure>
 </div>
 <hr />
-<h2 id="computational-model">3. Computational Model</h2>
+<h2>3. Computational Model</h2>
 <p>We simulate the core–shell system using:</p>
 <ul>
 <li>interior field \( \Psi^{int} \)<br />
@@ -114,7 +113,7 @@ regimes.</p>
 </li>
 <li>incident plane wave \(\Psi^{inc} \)</li>
 </ul>
-<h3 id="mfs-representation-of-the-core">3.1 MFS Representation of the
+<h3>3.1 MFS Representation of the
 Core</h3>
 <p> We start with a core(dielectric sphere) of radius $a$  
 at the origin of our coordinate system so that  \(|r| < a \) co rresponds to its interior , 
@@ -176,7 +175,7 @@ for \(m=1,...,M\). We introduce a length \(\mathcal{l} << a\) and express , </p>
 <li>optical theorem constraints</li>
 </ul>
 <hr />
-<h3 id="foldylax-multiple-scattering">3.3 Foldy–Lax Multiple
+<h3>3.3 Foldy–Lax Multiple
 Scattering</h3>
 <p>Exciting field at NP (n):</p>
 \[
@@ -185,7 +184,7 @@ Scattering</h3>
 \]
 <p>Here \(G_{0}(R)=e^{ik_{0}R} / (4\pi R)\). This yields a fully dense (N N) system.</p>
 <hr />
-<h3 id="boundary-conditions-block-linear-system">3.4 Boundary Conditions
+<h3>3.4 Boundary Conditions
 → Block Linear System</h3>
 <p>Boundary continuity: </p>
 <p>The field scattered by the nanoplasmonic mesoscale assembly is:</p>
@@ -207,7 +206,7 @@ Scattering</h3>
 [      C    D ] [ψE]   [ 0 ]</code></pre>
 <p>Matrix size: <strong>(2M + N) × (2M + N).</strong></p>
 <hr />
-<h2 id="scattering-cross-sections-and-angular-metrics">4. Scattering
+<h2>4. Scattering
 Cross-Sections and Angular Metrics</h2>
 <h3 id="far-field-amplitude">4.1 Far-Field Amplitude</h3>
 <p>
@@ -247,7 +246,7 @@ Cross-Sections and Angular Metrics</h2>
 <div class="flex-figures">
   <figure>
     <img src="/files/images/projects/scattering/efficiencies.png" 
-    alt="efficiencies" style="width:50%; border-radius:6px;">
+    alt="efficiencies" style="width:100%; border-radius:6px;">
     <figcaption>Figure : [Top] Scattering efficiency \(\sigma_{E}\) of a 750 nm silica sphere
                         (black square) compared with the plasmonic core–shell structures
                         comprised of the same silica sphere acting as the core, and a concentric
@@ -269,12 +268,12 @@ Cross-Sections and Angular Metrics</h2>
 <li>5 nm NPs exhibit weak spectral influence</li>
 </ul>
 <hr />
-<h3 id="core-size-dependent-suppressionenhancement">5.2 Core-Size
+<h3>5.2 Core-Size
 Dependent Suppression/Enhancement</h3>
 <div class="flex-figures">
   <figure>
     <img src="/files/images/projects/scattering/core_dependence.png" 
-    alt="varied_cores" style="width:80%; border-radius:6px;">
+    alt="varied_cores" style="width:100%; border-radius:6px;">
     <figcaption>Figure : Comparison of \( \Delta \sigma_{E} = \sigma_{E}^{CS} - \sigma_{E}^{C}\)
                     for varied core sizes (750, 650, 550, and 450 nm) coated with 20 nm AuNPs with a filling fraction of
                     \(f = 0.3\). The x axis gives the incident wavelength (nm) and the y axis gives the core diameters (nm). 
@@ -291,12 +290,12 @@ Dependent Suppression/Enhancement</h3>
 <li>450 nm → narrow suppression, large enhancement</li>
 </ul>
 <hr />
-<h3 id="differential-cross-section-angular-redistribution">5.3
+<h3>5.3
 Differential Cross-Section: Angular Redistribution</h3>
 <div class="flex-figures">
   <figure>
     <img src="/files/images/projects/scattering/differential.png" 
-    alt="differential cross-section" style="width:70%; border-radius:6px;">
+    alt="differential cross-section" style="width:100%; border-radius:6px;">
     <figcaption>Figure : Polar plots comparing the far-field differential scattering patterns of a 750 nm bare dielectric core (solid black curve) 
                          and plasmonic core–shell assembly comprised of the same core size and 5 nm AuNP shells (dot-dashed green curves) and 
                          20 nm (dashed red curves) both with a filling fraction of \(f = 0.3\). The direction of the incident plane wave is indicated 
@@ -316,11 +315,11 @@ Differential Cross-Section: Angular Redistribution</h3>
 <p>This confirms <strong>phase decoherence + multiple
 scattering</strong>.</p>
 <hr />
-<h3 id="henyeygreenstein-hg-fit">5.4 Henyey–Greenstein (HG) Fit</h3>
+<h3>5.4 Henyey–Greenstein (HG) Fit</h3>
 <div class="flex-figures">
   <figure>
     <img src="/files/images/projects/scattering/hg.png" 
-    alt="h-g fitting" style="width:70%; border-radius:6px;">
+    alt="h-g fitting" style="width:100%; border-radius:6px;">
     <figcaption>Figure : Differential scattering cross-section (log-scale) of a 750 nm
                         bare dielectric sphere (gray solid curve) with the same sphere coated
                         with 20 nm AuNPs with filling fractions of \(f = 0.05\) (solid blue curve)
@@ -337,11 +336,11 @@ scattering</strong>.</p>
 </p>
 <p>Plasmonic coated spheres match HG extremely well.</p>
 <hr />
-<h3 id="anisotropy">5.5 Anisotropy</h3>
+<h3>5.5 Anisotropy</h3>
 <div class="flex-figures">
   <figure>
     <img src="/files/images/projects/scattering/anisotropy.png" 
-    alt="anisptropy" style="width:65%; border-radius:6px;">
+    alt="anisptropy" style="width:100%; border-radius:6px;">
     <figcaption>Figure : [Top] Anisotropy factor \(g\) of a 750 nm bare dielectric core
                         (black squares), and plasmonic core–shell structure using the same core
                         with 20 nm AuNPs (red circles) and 5 nm AuNPs (green triangles) both
@@ -361,20 +360,20 @@ scattering</strong>.</p>
 <li>Holds across all core sizes</li>
 </ul>
 <hr />
-<h2 id="mechanisms-behind-angular-smoothing">6. Mechanisms Behind
+<h2>6. Mechanisms Behind
 Angular Smoothing</h2>
-<h3 id="multiple-scattering-induced-decoherence">6.1 Multiple-Scattering
+<h3>6.1 Multiple-Scattering
 Induced Decoherence</h3>
 <p>Random AuNP distribution breaks phase alignment.</p>
-<h3 id="absorption-dampens-oscillatory-features">6.2 Absorption Dampens
+<h3 >6.2 Absorption Dampens
 Oscillatory Features</h3>
 <p>Intrinsic AuNP absorption reduces partial-wave interference.</p>
-<h3 id="forward-bias-from-plasmonic-radiation">6.3 Forward Bias from
+<h3 >6.3 Forward Bias from
 Plasmonic Radiation</h3>
 <p>AuNPs radiate strongly forward at visible wavelengths.</p>
 <hr />
-<h2 id="limitations-future-work">7. Limitations &amp; Future Work</h2>
-<h3 id="limitations">Limitations</h3>
+<h2>7. Limitations &amp; Future Work</h2>
+<h3 >Limitations</h3>
 <ul>
 <li>scalar wave model<br />
 </li>
@@ -384,7 +383,7 @@ Plasmonic Radiation</h3>
 </li>
 <li>isotropic NP scattering assumption</li>
 </ul>
-<h3 id="future-enhancements">Future Enhancements</h3>
+<h3>Future Enhancements</h3>
 <ul>
 <li>full-vector Maxwell solvers<br />
 </li>
@@ -395,7 +394,7 @@ Plasmonic Radiation</h3>
 <li>physics-informed neural surrogates</li>
 </ul>
 <hr />
-<h2 id="applications">8. Applications</h2>
+<h2>8. Applications</h2>
 <ul>
 <li>metasurface beam shaping<br />
 </li>
@@ -410,7 +409,7 @@ Plasmonic Radiation</h3>
 <li>passive cloaking</li>
 </ul>
 <hr />
-<h2 id="summary">9. Summary</h2>
+<h2 >9. Summary</h2>
 <p>This full technical deep dive demonstrates that:</p>
 <ul>
 <li>AuNP shells dramatically reshape angular scattering<br />
@@ -433,5 +432,5 @@ platform for mesoscale optical modulation.</p>
   Scattering by nanoplasmonic mesoscale assemblies.
   JOSAA
   </a>
-<h4>
+</h4>
 </section>
