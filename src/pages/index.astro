@@ -1,125 +1,189 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import TimeLineElement from "../components/cv/TimeLine.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../lib/createSlug"
 
 const page = {
-  title: "Imran Khan | Optics, Imaging & AI",
+  title: "Imran Khan | Imaging , AI & Optics",
   description:
-    "Ph.D. physicist specializing in optics, computational modeling, SEM metrology, and AI-driven imaging. Explore projects in SEM image quality, chest X-ray classification, California housing regression, and plasmonic scattering simulations.",
+    "Work history and CV for Imran Khan, Ph.D. physicist with experience in CD-SEM metrology at Intel, computer vision, optics, computational modeling, and imaging-focused data analysis and automation.",
 };
 
 const sideBarActiveItemID = "home";
-
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-
-const last_posts = posts.slice(0, 3);
-
-
 ---
 
 <BaseLayout page={page} sideBarActiveItemID={sideBarActiveItemID}>
-  <div class="pb-12 mt-5">
-    <!-- <div class="text-xl py-1">Hey there 👋</div> -->
-    <div class="text-5xl font-bold"> Hi, I’m Imran Khan </div>
-    <div class="text-lg text-gray-500">A physicist by training, exploring the world through computation and light-matter interaction .</div>
-    <!--<div class="text-lg text-gray-500">Nano optics imaging, and deep learning to build intelligent visual systems.</div>-->
-    <div class="py-2">
-      <text class="text-lg">
-        I’ve always been captivated by how nature works and how to explain it —I am curiously exploring and learning from the laws of physics and using intelligent systems and tools. 
-        This site reflects my journey to bridge these two realms, sharing projects, research.
-      </text>
-    </div>
-    <div class="mt-8">
-      <a href="/imran_resume.pdf" download class="btn ml-5" >Download Résumé
-      <a class="btn ml-5" href="https://www.linkedin.com/in/imrankahn/" target="_blank"> Let's connect!</a>
-      <a href="https://github.com/imranlabs" target="_blank" class="btn ml-5">
+  <div class="mb-5">
+  <div class="text-5xl font-bold"> Hi, I’m Imran Khan </div>
+  <div class="text-lg text-gray-500"> Working at the intersection of optics, imaging systems, and AI-driven analysis.</div>
+  </div>
+  <div class="mb-10 text-justify">
+    Ph.D. physicist with a background in optics, computational modeling, and imaging systems, and 4 years of industry experience in CD-SEM metrology at Intel. 
+    My work spans physics-driven modeling, experimental validation, and Python-based data pipelines for imaging, automation, and large-scale analysis. 
+    I am transitioning toward roles that combine physical insight with modern AI and computer vision techniques to build robust, data-driven imaging 
+    and metrology systems.
+  </div>
+
+<!--- Resume download and social-->
+<div class="mt-5">
+      <a href="/imran_resume.pdf" download class="btn ml-3" >Download Résumé
+      <a class="btn ml-3" href="https://www.linkedin.com/in/imrankahn/" target="_blank"> Let's connect!</a>
+      <a href="https://github.com/imranlabs" target="_blank" class="btn ml-3">
         github
       </a>
-    </div>
-
+<div class="h-6"></div>
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Education</div>
   </div>
 
-  <div>
-    <div class="text-3xl w-full font-bold mb-2">Featured AI/CV projects {"</>"}</div>
+  <div class="time-line-container grid gap-2 mb-5">
+    <TimeLineElement
+      title="Ph.D., Physics (Optics | Computational Modeling | Nano fabrication) "
+      subtitle="Aug 2016 to Oct 2021 | University of California, Merced."
+    />
+    <TimeLineElement
+      title="M.S., Physics"
+      subtitle="2016 | Binghamton University (SUNY) , Binghamton, NY."
+    />
   </div>
 
-<div class="space-y-4">
-  <!--Project-3-Nov-17-2025-->
-  <HorizontalCard
-    title="Chest X-Ray Pneumonia Classification"
-    img="/files/images/projects/chest_xray/X_ray_image.png"
-    desc={`End-to-end exploration of pneumonia detection( Normal, Viral, and Bacterial) on chest X-rays using both
-          classical machine learning(PCA, SVM) and deep convolutional networks and transfer learning(Resnet-50).`}
-    url="projects/chestxray"
-    badge="Multi-Class CNN (Normal / Viral / Bacterial)"
-  />
-
- <div class="space-y-4">
-  <!--Project-2-Nov-11-2025-->
-  <HorizontalCard
-    title="Automated Image Quality Assessment (IQA) for SEM Metrology"
-    img="/files/images/projects/sem_iqa/sem_hero.jpg"
-    desc={`SSIM,PSNR,for full reference image quality assesment . 
-        Normalized Variance Focus Score (Normvar), and BRISQUE for No-reference. Domain specific quantification methods such as Histogram comparison and Frequency-domain (FFT)
-        for SEM tool health assesment.`}
-    url="/projects/sem_iqa"
-    badge="SEM Metrology"
-  />
-    </div>
-  <!--<div class="divider my-0"></div>-->
-  <!--Project-1-Nov-4-2025-->
-  <HorizontalCard
-    title="California Housing Price Prediction"
-    img="/files/images/projects/california_housing/hero.png"
-    desc={`A rigorous, end-to-end machine learning
-      workflow to predict median house values in California census block
-      groups. The primary goal was to systematically compare the performance
-      of diverse modeling techniques—from classical regression to advanced
-      boosting.`}
-    url="/projects/california_housing"
-    badge="MLOPS"
-  />
-   
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Featured research projects</div>
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Experience</div>
   </div>
 
-<!--creation date Nov-18,2025--> 
-<HorizontalCard
-    title="Scattering by Nanoplasmonic Mesoscale Assemblies"
-    img="/files/images/projects/scattering/schematic.png"
-    desc={`Studied how gold nanoparticle shells reshape the angular scattering of dielectric microspheres. 
-          Using a hybrid MFS + Foldy–Lax model, showed that AuNP coatings suppress Mie sidelobes 
-          and enhance forward scattering through phase decoherence and plasmonic multiple scattering.`}
-    url="/research/scattering"
-    
-    badge="Angular Scattering Modeling"
-  />
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="Metrological Process Engineer (CD-SEM) at Intel Corporation">
+      <em>Intel Corporation, Hillsboro, USA. | Nov, 2021 - August, 2025 </em>
+    <!--- Add job experince-- below--> 
+    <ul class="list-disc list-inside mt-3 text-base text-gray-700">
 
-  <HorizontalCard
-    title="Modeling Broadband Cloaking Using Nano-Assembled Plasmonic Meta-Structures"
-    img="/files/images/projects/broadbandscattering/broadband.png"
-    desc={`Developed a hybrid computational model combining MFS and Foldy–Lax theory to study plasmonic nano-shells. 
-          Demonstrated how dense AuNP coatings cancel Mie scattering through multipole interference, 
-          enabling broadband optical cloaking and tunable far-field response.`}
-    url="/research/broadbandscattering"
+    <li> <b>Optimized fleet-wide measurement stability</b> for 8 high-precision CD-SEM systems in a 24/7 high-volume manufacturing environment. 
+         Leveraged Statistical Process Control (SPC) and automated calibration logic to minimize measurement drift and maximize yield.</li>
+    <li><b>Engineered an automated anomaly detection</b> system using Python to monitor high-dimensional sensor data (beam parameters, stigmation). 
+        Transitioned the team from reactive troubleshooting to proactive system optimization through real-time data visualization.</li>
+    <li><b>Automated multi-variate statistical pipelines</b> to evaluate tool-to-tool matching and measurement precision for DCCD process. 
+        Reduced data processing time by 75%(from ~5 hrs to less than 1 hour) while improving reporting accuracy for fleet-wide consistency checks.
+        Developed Python workflows for processing FCCD datasets and integrating results into long-term SPC systems.
+        </li>
+    <li><b>Built a Python/OpenCV toolkit</b> for automated SEM image quality assessment (sharpness, CNR, FFT-sharpness, GLCM texture metrics).</li> 
     
-    badge="Computational EM | Plasmonics Cloaking"
-  />
+    <li><b>Collaborated with cross-functional</b> team for SEM metrology stability, coordinating with hardware and software 
+          integration teams to troubleshoot complex electron-optical drift and optimize image acquisition. </li>
+    <div class="mb-4"></div>
+    </ul>
+    <!--End Intel job experience-->
 
-<!--creation date Nov-18,2025--> 
-<HorizontalCard
-    title="Experimental demonstration of Scattering Suppression in AuNP-Coated Dielectric Microspheres"
-    img="/files/images/projects/cloakexperiment/exp_hero.png"
-    desc={`Experimentally demonstrated scattering suppression in AuNP-coated silica microspheres through nano-fabrication, 
-            SEM characterization, and integrating-sphere measurements. 
-            Validated key trends predicted by plasmonic cloaking simulations, showing reduced scattering intensity in the 400–600 nm band.`}
-    url="/research/cloakexperiment"
+    </TimeLineElement>
+    <TimeLineElement
+      title="Graduate Research Scholar">
+      <em>University of California, Merced, California. | Aug, 2016 - Oct, 2021</em>
+    <ul class="list-disc list-inside mt-3 text-base text-gray-700">
+    <b>Computational Modeling & Nano-fabrication of Plasmonic Metastructures:</b>
+    <p>During my PhD, I developed physics-based computational models to study light–matter interactions in three-dimensional plasmonic metastructures, 
+    combining rigorous electromagnetic theory with scalable numerical implementations. 
+    This work focused on understanding how collective scattering, absorption, and disorder in nano-assembled systems can be engineered 
+    to control far-field optical response.</p>
+    <b>Key contributions included: </b>
+    <li>Developed a <b>hybrid full-wave modeling framework</b> combining the Method of Fundamental Solutions (MFS) and Foldy–Lax multiple-scattering 
+     theory to simulate scattering from dielectric cores coated with plasmonic nanoparticle assemblies.</li>
+    <li>Implemented <b>Python and MATLAB solvers</b> to compute far-field angular scattering, extinction and scattering spectra, 
+    anisotropy, and albedo across large design parameter spaces.</li>
+    <li>Performed systematic <b>parameter sweeps</b> (particle size, filling fraction, core geometry) 
+      to identify regimes of scattering suppression, angular redistribution, and broadband cloaking.</li>
+    <li><b>Nano-fabricated core–shell plasmonic structures</b>, characterized geometry using SEM, 
+      and correlated experimental scattering measurements with simulation predictions.</li>
+    <li>Demonstrated strong <b>agreement between modeled and measured optical response</b>, validating 
+    the computational framework and enabling predictive metastructure design.</li>
+
+    <p>My research works resulted in peer-reviewed publications in JOSA A and Optics Express and laid the foundation 
+    for my current interest in <b>surrogate modeling, physics-informed learning, and data-driven approaches</b> for complex imaging and wave-based systems.</p>
     
-    badge="Experimental Optics | SEM"
-  />
+    <b>Optical Metrology for Nanoscale Energy Transfer(UC Merced, 2017-2019)</b>
+    <p>I conducted optical metrology experiments to probe non-radiative energy transfer in DNA-templated gold nanoclusters (AuNCs) and fluorophores. 
+        Using time-resolved photoluminescence (TRPL) and custom-built optical setups, I quantified changes in emission lifetime and intensity to distinguish 
+        FRET-like versus NSET-like transfer mechanisms in atomically precise gold nanoclusters.</p>
+    <li>Designing and aligning a high-stability TRPL measurement system optimized for dilute samples and weak emitters</li>
+    <li>Preparing and characterizing DNA-origami scaffolds with nanometer-precise AuNC/fluorophore placement (5–17 nm separation) 
+        to test distance-dependence limits of energy transfer models.</li>
+    <li>Measuring and analyzing photoluminescence intensity quenching and 
+        lifetime changes to identify whether energy transfer in AuNC systems follows Förster-type (FRET) or nanoparticle-based NSET models</li>
+    <li>Mentoring undergraduate researchers, co-developing experimental protocols, and contributing data to multiple CCBM projects.</li>
+    <b>Collective Motion with Kilobot Swarms (UC Merced, 2016-2017)</b>
+    <p>Worked with large-scale Kilobot swarms (~110 units) to study collective motion and active-matter dynamics, 
+    integrating simulation models with hardware experiments using IR-based control. 
+    Contributed to <b>system revival</b>, <b>firmware debugging</b>, experimental design, and presented results at <b>APS regional and national meetings</b>.</p>
+    </ul>
+      
+    </TimeLineElement>
+    <div class="mb-4"></div>
+    <TimeLineElement
+      title="Graduate Research Associate">
+      <em>Universal Instruments Corporation, Conklin, New York. | 2013-2014</em>
+      <ul class="list-disc list-inside mt-3 text-base text-gray-700">
+      <li>Characterized thermomechanical properties of lead-tin-silver alloys for high-temperature electronic packaging.</li>
+      <li>Conducted DSC analysis to determine melting point depression and thermodynamic behavior.</li>
+      <li>Performed SEM-based microstructural analysis to link material composition with grain morphology.</li>
+      <li>Measured mechanical integrity using a Dage 4000 Plus bond tester and co-authored an IMAPS industry publication.</li>
+      <li>Co-authored an industry-facing publication for the International Microelectronics Assembly and Packaging Society (IMAPS), presenting findings to aid in the development of new industrial alloys.</li>
+      <div class="mb-4"></div>
+      </ul>
+      
+    </TimeLineElement>
+  </div>
 
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Publications(Selected)</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li> 
+      <a href="https://doi.org/10.1364/JOSAA.560629"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue-600 hover:underline"
+      >
+      Khan, M.I., et al., “Scattering by nanoplasmonic mesoscale assemblies,” JOSA A 42, 1244–1253 (2025).  </a>
+    </li>
+    <li>
+      <a href="https://doi.org/10.1364/OE.395840" target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue-600 hover:underline"
+      > 
+    Khan, M.I., et al., “Modeling broadband cloaking using 3D nano-assembled plasmonic meta-structures”, Optics Express, 2020.</a>
+    </li>
+  </ul>
+
+<!--certification block -->
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Certifications</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-1">
+    <li>
+      <a href="https://www.coursera.org/account/accomplishments/verify/W5RNMYHV9V7H" target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue-600 hover:underline"
+      > Neural Networks and Deep Learning</a>
+    </li>
+    
+    <li>
+      <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/N6FZMTLC8MJ6" target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue-600 hover:underline"
+      > Machine Learning Specialization</a>
+    </li>
+
+    <li>
+      <a href="https://www.udemy.com/certificate/UC-17d4dbd9-194f-4c5d-91bc-645280d8511c" target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue-600 hover:underline"
+      > Master Python programming by solving scientific projects</a>
+    </li>
+  </ul>
+
+ 
+  
 </BaseLayout>
