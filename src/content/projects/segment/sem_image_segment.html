@@ -1,0 +1,495 @@
+<section class="space-y-4">
+ <h2 id="sem-microstructure-phase-segmentation-using-deep-learning">SEM
+Microstructure Phase Segmentation using Deep Learning</h2>
+<h2 id="overview">Overview</h2>
+<p>Accurate phase separation in Scanning Electron Microscope (SEM)
+imagery is essential for downstream quantitative metrology tasks such as
+morphology analysis, grain boundary characterization, and defect
+detection. Traditional segmentation approaches based on thresholding or
+manual annotation are often unreliable in the presence of imaging noise,
+low contrast regions, and overlapping material phases.</p>
+<p>This project investigates whether deep learning-based semantic
+segmentation can reliably separate microstructural phases from grayscale
+SEM imagery under severe class imbalance conditions. A multi-class U-Net
+architecture was developed and evaluated using both a custom
+implementation and a transfer learning approach with a pretrained
+ResNet34 encoder.</p>
+<p>The final model achieved:</p>
+<ul>
+<li><strong>Test Mean IoU:</strong> ~0.88</li>
+<li><strong>Test Mean Dice Score:</strong> ~0.91</li>
+</ul>
+<p>indicating strong agreement between predicted and ground truth
+microstructural phase boundaries.</p>
+<p>Dataset used in this study was obtained from the publicly available
+SEM microstructure dataset hosted on Zenodo.</p>
+
+<style>
+.project-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.project-badges img {
+  display: inline-block;
+  margin: 0;
+}
+</style>
+
+<div class="project-badges">
+  <!-- tech stack-->
+  <img src="https://img.shields.io/badge/Python-3.10+-blue" alt="Python badge" />
+  <img src="https://img.shields.io/badge/PyTorch-DeepLearning-red" alt="PyTorch badge" />
+  <img src="https://img.shields.io/badge/Task-Semantic%20Segmentation-orange" alt="Task badge" />
+  <img src="https://img.shields.io/badge/Model-U--Net-purple" alt="Model badge" />
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License badge" />
+
+  <a
+    href="https://colab.research.google.com/github/imranlabs/sem-microstructure-segmentation/blob/main/notebooks/sem_image_segmentation_UNet.ipynb"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="https://colab.research.google.com/assets/colab-badge.svg"
+      alt="Open in Colab"
+    />
+  </a>
+
+  <a
+    href="https://huggingface.co/imranlabs/sem-microstructure-segmentation"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="https://img.shields.io/badge/🤗%20HuggingFace-Model-yellow"
+      alt="Hugging Face model"
+    />
+  </a>
+</div>
+
+
+<hr />
+<h2 id="dataset-engineering--label-integrity">Dataset Engineering &amp;
+Label Integrity</h2>
+<p>Each SEM sample is provided with a corresponding pixel-wise
+segmentation mask where integer IDs represent different material
+phases.</p>
+<p>Before model development, several dataset integrity checks were
+performed:</p>
+<ul>
+<li>Remapping raw label IDs to contiguous class indices</li>
+<li>Verification of valid mask values across the dataset</li>
+<li>Overlay visualization of masks with input SEM images</li>
+<li>Pixel-frequency analysis of each phase class</li>
+<li>Group-wise training/validation split to prevent leakage from
+augmented patches</li>
+</ul>
+<p>Pixel fraction analysis revealed a highly imbalanced distribution
+across classes:</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Approx. Pixel Fraction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Class 0</td>
+<td>~34%</td>
+</tr>
+<tr>
+<td>Class 1</td>
+<td>&lt;1%</td>
+</tr>
+<tr>
+<td>Class 2</td>
+<td>~41%</td>
+</tr>
+<tr>
+<td>Class 3</td>
+<td>~11%</td>
+</tr>
+<tr>
+<td>Class 4</td>
+<td>~13%</td>
+</tr>
+</tbody>
+</table>
+<p>This imbalance was expected to negatively affect model performance
+for minority phases and motivated the use of class-weighted loss
+functions during training.</p>
+
+<!--- Data overview image -->
+
+<style>
+.project-figure {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.project-figure img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.project-figure figcaption {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 8px;
+}
+</style>
+<figure class="project-figure">
+  <img
+    src="/files/images/projects/sem_img_segment/image_mask_overlay.png"
+    alt="SEM microstructure segmentation overview showing original image, remapped mask labels, and model overlay"
+  />
+
+  <figcaption>
+    <strong>Figure:</strong> Example visualization from the SEM microstructure segmentation dataset. 
+    Left: original grayscale SEM image. 
+    Middle: ground-truth segmentation mask with remapped class IDs (0–4). 
+    Right: overlay visualization combining the mask with the original image.
+  </figcaption>
+</figure>
+
+<hr />
+<h2 id="baseline-model-u-net-from-scratch">Baseline Model: U-Net from
+Scratch</h2>
+<p>A minimal U-Net architecture was implemented from scratch using
+PyTorch to establish a performance baseline.</p>
+<p>Training Setup:</p>
+<ul>
+<li>Input: Grayscale SEM image (1 channel)</li>
+<li>Output: 5-class segmentation mask</li>
+<li>Loss Function: Hybrid Cross Entropy + Dice Loss</li>
+<li>Class Weights: Computed from pixel frequency distribution</li>
+<li>Optimizer: AdamW</li>
+</ul>
+<p>Initial training results indicated:</p>
+<ul>
+<li>Strong performance on dominant classes</li>
+<li>Near-zero IoU for minority phases</li>
+</ul>
+<p>This behavior confirmed that standard convolutional feature learning
+was insufficient to capture rare microstructural patterns from limited
+training data.</p>
+<hr />
+<h2
+id="transfer-learning-u-net-with-pretrained-resnet34-encoder">Transfer
+Learning: U-Net with Pretrained ResNet34 Encoder</h2>
+<p>To improve generalization across underrepresented phases, transfer
+learning was applied using a pretrained ResNet34 encoder from the
+ImageNet dataset.</p>
+<p>Adaptations included:</p>
+<ul>
+<li>Replicating grayscale SEM input to 3 channels</li>
+<li>Freezing encoder weights for initial training epochs</li>
+<li>Training decoder layers independently</li>
+<li>Gradual encoder unfreezing</li>
+<li>Reduced learning rate during fine-tuning</li>
+<li>ReduceLROnPlateau scheduler</li>
+<li>Early stopping based on validation IoU</li>
+</ul>
+<p>Loss Function:</p>
+<p>$\mathcal{L} = 0.6 \cdot \text{CrossEntropy} + 0.4 \cdot
+\text{DiceLoss}$</p>
+<p>This training schedule resulted in improved convergence and
+significantly higher IoU values across previously underperforming
+classes.</p>
+<hr />
+<h2 id="evaluation--model-validation">Evaluation &amp; Model
+Validation</h2>
+<p>Model performance was evaluated using several complementary
+metrics:</p>
+<h3 id="pixel-wise-metrics">Pixel-wise Metrics</h3>
+<ul>
+<li>Mean Intersection over Union (mIoU)</li>
+<li>Mean Dice Score</li>
+</ul>
+<h3 id="confusion-matrix-normalized-">Confusion Matrix (Normalized
+%)</h3>
+<p>Provides insight into inter-class confusion at the pixel level.</p>
+<p>Example observations:</p>
+<ul>
+<li>Class 1 occasionally misclassified as Class 0</li>
+<li>Class 3 shows boundary confusion with adjacent phases</li>
+<li>Majority classes exhibit &gt;90% prediction accuracy</li>
+</ul>
+
+<!--- Confusion matrix image -->
+<figure class="project-figure">
+  <img
+    src="/files/images/projects/sem_img_segment/confusion_matrix.png"
+    alt="Confusion matrix for 5-class SEM microstructure segmentation model"
+  />
+
+  <figcaption>
+<strong>Figure:</strong> Global pixel-wise confusion matrix (%) for the trained 5-class segmentation model.
+Diagonal elements represent correct predictions for each microstructural phase, while off-diagonal
+entries correspond to misclassified pixels. High diagonal dominance demonstrates strong class
+separability for most phases, whereas moderate confusion between certain classes reflects visually
+similar texture or boundary regions in SEM microstructure images.
+</figcaption>
+</figure>
+
+<hr />
+<h3 id="boundary-f1-score">Boundary F1 Score</h3>
+<p>To assess morphological edge fidelity, boundary-aware F1 score was
+computed between predicted masks and ground truth segmentation.</p>
+<p>This metric is particularly relevant in SEM-based metrology workflows
+where accurate phase boundary delineation directly influences morphology
+and dimensional measurements.</p>
+<hr />
+<h3 id="class-frequency-vs-iou-analysis">Class Frequency vs IoU
+Analysis</h3>
+<p>A correlation plot between class pixel frequency and IoU was
+generated to examine model sensitivity to data imbalance.</p>
+<p>Results indicate:</p>
+<ul>
+<li>Improved IoU for minority classes after transfer learning</li>
+<li>Reduced performance gap between dominant and rare phases</li>
+<li>Balanced segmentation capability across phase types</li>
+</ul>
+<hr />
+<h3 id="qualitative-overlay-results">Qualitative Overlay Results</h3>
+<p>Model predictions were visually compared against ground truth masks
+using alpha-overlay visualization.</p>
+<p>Displayed examples include:</p>
+<ol>
+<li>Ground Truth segmentation</li>
+<li>Model prediction</li>
+<li>Overlay comparison</li>
+</ol>
+<p>These qualitative results demonstrate consistent alignment between
+predicted and actual phase boundaries.</p>
+<hr />
+<h2 id="artifacts--reproducibility">Artifacts &amp; Reproducibility</h2>
+<ul>
+<li>Trained model weights (<code>.pt</code>) available for download</li>
+<li>Full implementation and training pipeline provided in GitHub
+repository</li>
+<li>Evaluation scripts for IoU, Dice, Confusion Matrix, and Boundary F1
+included</li>
+<!--Model download link from huggingface-->
+
+<style>
+.progect-models {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.progect-models img {
+  display: inline-block;
+  margin: 0;
+}
+</style>
+ <div class="progect-models">
+<a
+    href="https://colab.research.google.com/github/imranlabs/sem-microstructure-segmentation/blob/main/notebooks/sem_image_segmentation_UNet.ipynb"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="https://colab.research.google.com/assets/colab-badge.svg"
+      alt="Open in Colab"
+    />
+  </a>
+
+  <a
+    href="https://huggingface.co/imranlabs/sem-microstructure-segmentation"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="https://img.shields.io/badge/🤗%20HuggingFace-Model-yellow"
+      alt="Hugging Face model"
+    />
+  </a>
+ </div>
+</ul>
+<hr />
+<h1 id="conclusion">Conclusion</h1>
+<p>This project developed and evaluated a deep learning pipeline for
+multi-class semantic segmentation of Scanning Electron Microscopy (SEM)
+images, targeting five microstructural phases: Matrix, Carbide, Void,
+Reprecipitate, and Dilution zone. A UNet architecture with a pretrained
+ResNet-34 encoder was trained on an augmented dataset and evaluated on a
+held-out test set of 54 images.</p>
+<h2 id="performance-summary">Performance Summary</h2>
+<p>The model demonstrated strong segmentation performance across the
+test set. Evaluated at the image level to avoid batch-size bias, the
+model achieved the following aggregate results:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Mean</th>
+<th>Std</th>
+<th>Min</th>
+<th>Max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mIoU</td>
+<td>0.872</td>
+<td>0.088</td>
+<td>0.723</td>
+<td>0.958</td>
+</tr>
+<tr>
+<td>mDice</td>
+<td>0.912</td>
+<td>0.079</td>
+<td>0.759</td>
+<td>0.978</td>
+</tr>
+<tr>
+<td>mBF1</td>
+<td>0.728</td>
+<td>0.027</td>
+<td>0.678</td>
+<td>0.773</td>
+</tr>
+</tbody>
+</table>
+<p>The mean Intersection over Union (mIoU) of <strong>0.872</strong> and
+mean Dice score of <strong>0.912</strong> confirm that the model
+produces highly accurate pixel-wise segmentation masks across the
+majority of test images. The mean Boundary F1 (mBF1) of
+<strong>0.728</strong> reflects moderate precision at class boundaries,
+which is expected given the fine structural detail and low contrast
+between adjacent phases in SEM imagery.</p>
+<h2 id="per-class-analysis">Per-Class Analysis</h2>
+<p>The pixel-wise confusion matrix revealed notable differences in
+per-class difficulty:</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Correctly Classified (%)</th>
+<th>Primary Confusion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Matrix</td>
+<td>97.3</td>
+<td>Dilution (1.97%)</td>
+</tr>
+<tr>
+<td>Carbide</td>
+<td>75.4</td>
+<td>Matrix (22.3%)</td>
+</tr>
+<tr>
+<td>Void</td>
+<td>98.9</td>
+<td>Reprecipitate (1.14%)</td>
+</tr>
+<tr>
+<td>Reprecipitate</td>
+<td>94.6</td>
+<td>Void (2.78%)</td>
+</tr>
+<tr>
+<td>Dilution</td>
+<td>93.3</td>
+<td>Matrix (4.84%)</td>
+</tr>
+</tbody>
+</table>
+<p>The Void and Matrix classes achieved near-perfect classification
+rates, likely due to their visually distinct appearance in SEM images.
+The Carbide class was the most challenging, with 22.3% of Carbide pixels
+misclassified as Matrix. This is consistent with the visual similarity
+between fine carbide precipitates and the surrounding matrix at certain
+imaging conditions, and is reflected in the lowest per-class IoU
+observed during evaluation.</p>
+<h2 id="best-and-worst-performing-images">Qualitative Evaluation on Held-Out Test Data</h2>
+<p>The best performing image group (mIoU = 0.961) consisted of contrast-
+and brightness-augmented variants of the same base image
+(<code>sem700_x256_y288</code>), suggesting the model handles
+photometric variation well. </p>
+
+<figure class="project-figure">
+  <img
+    src="/files/images/projects/sem_img_segment/test_best.png"
+    alt="Best performing segmentation example with high IoU"
+  />
+
+  <figcaption>
+    <strong>Figure:</strong> Best-performing prediction on the held-out test set
+    (mIoU ≈ 0.961).  
+    Left: original grayscale SEM microstructure image.  
+    Middle: ground-truth segmentation mask with remapped class IDs (0–4).  
+    Right: predicted segmentation overlay.  
+    The strong agreement between the predicted regions and the ground-truth mask
+    indicates that the model successfully captures the dominant structural
+    boundaries and phase distributions present in the microstructure.
+  </figcaption>
+</figure>
+
+<p> The lowest scoring images
+(<code>sem800_x0_y256</code> with VerticalFlip and GridDistortion
+augmentations) achieved mIoU = 0.710, indicating that geometric
+distortions — particularly grid distortion — remain a challenge for
+precise boundary delineation, consistent with the relatively lower mBF1
+scores observed overall.</p>
+
+<figure class="project-figure">
+  <img
+    src="/files/images/projects/sem_img_segment/test_worst.png"
+    alt="Lower performing segmentation example showing subtle misclassifications"
+  />
+
+  <figcaption>
+    <strong>Figure:</strong> Lower-performing prediction example from the held-out
+    test set (mIoU ≈ 0.71).  
+    Left: original grayscale SEM image.  
+    Middle: ground-truth segmentation mask.  
+    Right: predicted overlay visualization.  
+    The overall microstructure is visually similar to the high-performing case,
+    but subtle boundary differences lead to localized misclassification of
+    certain regions. These errors likely arise from limited representation of
+    similar morphological patterns in the training dataset, suggesting that
+    additional labeled samples could further improve segmentation performance.
+  </figcaption>
+</figure>
+
+
+<h2 id="limitations-and-future-work">Limitations and Future Work</h2>
+<p>Despite strong overall performance, several limitations remain. The
+Carbide class presents a persistent source of confusion with the Matrix
+class, which could be addressed through targeted strategies such as
+increased augmentation for underrepresented classes, harder negative
+mining, or incorporating higher resolution inputs to preserve
+fine-grained carbide morphology. The mBF1 scores, while acceptable,
+suggest that boundary precision could be improved through boundary-aware
+loss functions or post-processing refinement such as conditional random
+fields (CRF).</p>
+<p>Future work could explore applying the pretrained pipeline to new SEM
+imaging conditions, extending the class set to additional
+microstructural phases, and deploying the model as a real-time inference
+service — for which the FastAPI and Docker integration planned as the
+next stage of this project provides a natural foundation.</p>
+<hr />
+<h2 id="acknowledgement">Acknowledgement</h2>
+<p>SEM microstructure dataset used in this work was obtained from the
+publicly available Zenodo repository.</p>
+<p>Safdar, M. (2025). Scanning Electron Microscopy (SEM) Dataset of
+Additively Manufactured Ni-WC Metal Matrix Composites for Semantic
+Segmentation (Version 1) [Data set]. Zenodo. <a
+href="https://doi.org/10.5281/zenodo.17315241"
+class="uri">https://doi.org/10.5281/zenodo.17315241</a></p>
+<p>All credit for dataset creation and annotation belongs to the
+original contributors.</p>
+<hr />
+
+</section>
+

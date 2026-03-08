@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+// Load your raw HTML from /public or an import. Example uses an import string:
+import rawHtml from "../../content/projects/segment/sem_image_segment.html?raw";
+---
+<!--import rawHtml from "../../content/projects/semiqa/SEM_IQA_projects.html?raw"; -->
+<!-- import rawHtml from "../../content/projects/sem_img_seg/sem_image_segment.html?raw"; -->
+<BaseLayout title="SEM Microstructure Phase Segmentation using Deep Learning" sideBarActiveItemID="projects">
+  <!-- MathJax (render TeX delimiters \( \) and \[ \ ]) -->
+  <script id="mathjax-config">
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)'], ['$', '$']], displayMath: [['\\[','\\]'], ['$$','$$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <article class="prose lg:prose-lg mx-auto max-w-3xl px-4 text-justify" set:html={rawHtml}/>
+</BaseLayout>
