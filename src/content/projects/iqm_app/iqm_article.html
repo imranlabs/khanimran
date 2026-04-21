@@ -1,0 +1,351 @@
+<section class="space-y-4">
+<h2>From Jupyter Notebook to
+Production: Building a Full-Stack SEM Image Quality Tool</h2>
+<h3>How a metrology
+engineer crossed the gap between domain expertise and software
+engineering</h3>
+
+<style>
+.project-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.project-badges img {
+  height: 20px;
+  width: auto;
+}
+</style>
+
+<div class="project-badges">
+  <a href="https://sem-iqm-tool.streamlit.app" target="_blank">
+    <img src="https://img.shields.io/badge/Live%20App-sem--iqm--tool.streamlit.app-ff4b4b?logo=streamlit" alt="Live App" />
+  </a>
+  <a href="https://sem-iqa-backend.onrender.com/docs" target="_blank">
+    <img src="https://img.shields.io/badge/Backend-Render-46E3B7?logo=render" alt="Backend on Render" />
+  </a>
+  <a href="https://python.org" target="_blank">
+    <img src="https://img.shields.io/badge/Python-3.14.3%20%28frontend%29%20%7C%203.13%20%28backend%29-blue?logo=python" alt="Python versions" />
+  </a>
+  <a href="https://fastapi.tiangolo.com" target="_blank">
+    <img src="https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi" alt="FastAPI" />
+  </a>
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License" />
+</div>
+
+<p>A SEM (Scanning Electron Microscope) can resolve features as small as ~2 nm. While a standard
+scanning electron microscope is used for general observation, a CD-SEM
+is optimized specifically for industrial automation and non-destructive
+measurement — the workhorse of dimensional metrology in semiconductor
+manufacturing.</p>
+<p>Image quality (IQ) analysis provides a non-invasive way to verify
+that a tool is performing within its nanometer-scale tolerances before
+it begins processing high-value production wafers. Think of it as a
+health check for the instrument itself — quantifying IQ tells you about
+detector efficiency, electron column stability, and the overall physical
+state of the tool without touching a single production wafer.</p>
+<p>There is a second, equally important role IQ plays in the fab: fleet
+matching. In a high-volume manufacturing environment, multiple CD-SEM
+tools measure the same features across thousands of wafers. If Tool A
+and Tool B report different critical dimensions for the same structure,
+process engineers don't know whether they're seeing a real process shift
+or a tool artifact. IQ-based fleet matching is a more systematic and
+diagnostic approach than ad hoc adjustments or simply comparing CD
+results after the fact — it catches the root cause rather than the
+symptom.</p>
+<p>Despite its importance, IQ analysis in practice often lives in
+Jupyter notebooks — powerful for exploration, but inaccessible to anyone
+outside the immediate team and impossible to run consistently at
+scale.</p>
+<p><em>"This is the story of how a Jupyter notebook became a FastAPI
+backend, a Streamlit frontend, and a Docker-containerized service
+deployed to the public web."</em></p>
+<p><strong>The Metrics — Why One Is Never Enough</strong></p>
+<p>The most commonly used full-reference metric is PSNR (Peak
+Signal-to-Noise Ratio), which compares the maximum signal power of an
+image against its background noise. It is straightforward to compute but
+has a well-known limitation — its results often don't align with how
+humans actually perceive image quality. A slightly blurred image and a
+noisy but sharp image can produce similar PSNR scores despite looking
+very different to a trained eye.</p>
+<p>This is where SSIM (Structural Similarity Index) adds critical value.
+Rather than comparing raw pixel values, SSIM models human visual
+perception by evaluating three local properties simultaneously:
+luminance (average brightness), contrast (variation in intensity), and
+structure (the underlying spatial patterns after removing brightness and
+contrast effects). Two images can have identical brightness and contrast
+but completely different structural content — SSIM catches that.
+Together, PSNR and SSIM give a more complete picture of image fidelity
+than either alone.</p>
+<p>For focus quality specifically, Normvar (Normalized Variance) is a
+fast and reliable metric. A well-focused image contains more
+high-contrast edges and fine textures, producing a wider spread of pixel
+intensities than a blurry image. Normvar quantifies that spread,
+normalized by mean intensity so that brighter images don't score
+artificially higher. It aligns well with human perception of focus and
+blur — but it has a blind spot.</p>
+<p>Consider a subtly stigmated image. Stigmation is an anisotropic blur
+caused by asymmetry in the electron beam's focusing lens — the image
+appears sharp in one direction but slightly smeared in the perpendicular
+direction. To the naked eye, and often to Normvar, this looks like a
+clean image. But the FFT magnitude spectrum tells a different story
+immediately — the energy distribution becomes elongated and asymmetric,
+a clear signature of directional blur. The Laplacian ratio, which
+ignores flat regions and focuses exclusively on edges and fine detail,
+also catches this degradation where Normvar misses it.</p>
+<p>This is not a failure of any individual metric. It reflects a
+fundamental reality of SEM image quality: different failure modes
+corrupt images differently. A degrading detector affects contrast and
+noise statistics. A dirty aperture causes diffuse blurring that Normvar
+detects well. An unstable gun column produces stigmation that FFT
+detects best. No single metric covers all failure modes — which is
+exactly why this tool computes all of them together.</p>
+<p>One metric deliberately included but prominently caveated is BRISQUE
+(Blind/Referenceless Image Spatial Quality Evaluator). BRISQUE was
+trained on natural scene statistics — the statistical properties that
+characterize photographs of the physical world. SEM images violate
+nearly every assumption BRISQUE makes: they are grayscale,
+high-contrast, geometrically simple, and corrupted by electron physics
+rather than JPEG compression or camera noise. In testing, BRISQUE scores
+for SEM images show little correlation with actual image quality. It is
+included in the tool for completeness and for users working with natural
+images, but its limitations for SEM are clearly documented.</p>
+<p><strong>From Notebook to Production</strong></p>
+<p>While working as a metrology process engineer, I developed scripts to
+analyze SEM image quality and make data-driven decisions about tool
+health. They worked well — for me. Running them meant opening a Jupyter
+Notebook, setting up the environment, and executing cells in the right
+order. For colleagues without a Python background, that barrier was
+effectively insurmountable. The motivation for building an app was
+simple: make the analysis accessible to anyone, without requiring
+knowledge of Python, the underlying image processing techniques, or the
+physics of electron beam formation.</p>
+<p>The search for a robust backend platform led me to FastAPI. Three
+things made it the right choice. First, performance — FastAPI is built
+on asynchronous Python, meaning it can handle multiple image analysis
+requests concurrently rather than queuing them one at a time. Second,
+automatic documentation — Swagger UI is generated from the code itself,
+which meant I could test every endpoint interactively without writing a
+single line of test client code. Third, Pydantic integration — type
+hints on every request and response mean that if my code sends or
+receives data types that don't match the schema, FastAPI raises an
+exception immediately. That constraint saved hours of debugging and
+served as living documentation of what each endpoint expects and
+returns.</p>
+<p>The containerization decision came naturally once I understood the
+"it works on my machine" problem. Docker packages the entire runtime —
+Python version, dependencies, system libraries, OpenCV models — into a
+portable image that runs identically on my laptop, on a colleague's
+machine, and on a cloud server. For a tool that depends on specific
+OpenCV contrib modules and a particular set of scientific Python
+libraries, that consistency isn't a convenience, it's a requirement.</p>
+<p>The two-repository architecture — one for the backend, one for the
+frontend — came from thinking about the Jupyter Notebook workflow
+itself. In a notebook, computation and display are interleaved: you run
+a cell, you see the result. In a production app those two concerns need
+to be separated. The backend repository handles everything the
+notebook's computation cells did: loading images, converting to
+grayscale, running the analysis functions, returning structured results.
+The frontend repository handles everything the output cells did:
+displaying results, rendering plots, giving the user controls. That
+separation also meant I could deploy them independently — the backend on
+Render using its production Docker configuration, the frontend on
+Streamlit Community Cloud which runs Python 3.14.3 natively — no Docker
+configuration required on that side."</p>
+<p>One architectural decision worth explaining is the two-endpoint
+design. The full analysis pipeline has two distinct characteristics: the
+core metrics (SSIM, PSNR, Normvar, Laplacian, CNR, histogram comparison)
+return lightweight scalar values almost instantly, while the FFT
+analysis returns large two-dimensional magnitude arrays for
+visualization. Combining them into a single endpoint would mean every
+request carries the FFT payload even if the user never looks at the FFT
+tab — wasted bandwidth on every call. Splitting them into
+<code>/api/v1/analyze</code> and <code> /api/v1/fft </code> keeps the primary response fast and
+lean, while the FFT data loads independently. The three-tab UI in the
+frontend mirrors this split directly.</p>
+<p><strong>Lessons From Building It</strong></p>
+<p>Having domain knowledge and being able to write Python can only take
+you so far when the goal is delivering a tool for the masses. I knew how
+to analyze SEM images. I could read documentation for FastAPI, Docker,
+and Streamlit independently. What I underestimated was the gap between
+understanding each piece in isolation and wiring them together into a
+coherent, deployable system. That wiring — and the debugging it required
+— was the real education.</p>
+<p>Some bugs were humbling in their simplicity. The BRISQUE
+functionality requires an OpenCV model file to run. In the notebook, the
+path was configured relative to wherever the script was executed from.
+When the same code ran inside a Docker container, the working directory
+was different and the model file couldn't be found. The fix was a single
+line — <code>Path(__file__).parent / "opencv_models" </code> — an absolute path
+anchored to the location of the Python file itself rather than wherever
+the process happened to start. One line. Hours to find.</p>
+<p>A subtler bug appeared only after deploying to production: a
+<code>ValueError</code> caused by a nan value being passed to the JSON serializer.
+Python's json module simply cannot serialize nan — it's not valid JSON.
+The root cause was a division by zero in one of the metric functions
+when processing a particular image. The fix required a recursive
+sanitizer that walks the entire response dictionary and replaces any
+non-finite float with None before serialization. What looked like a
+serialization bug was actually a signal about an unhandled edge case
+deep in the analysis pipeline.</p>
+<p>Docker networking produced its own confusion. I assumed that because
+both containers were running on my machine, localhost would connect
+them. It doesn't — each container has its own isolated network stack,
+its own localhost. Docker Compose creates a private bridge network and
+assigns each service a hostname matching its service name. The frontend
+reaches the backend not at <code>localhost:8000</code> but at<code> http://backend:8000</code>.
+Understanding that mental model — containers as isolated machines on a
+shared private network — unlocked the whole deployment architecture.</p>
+<p>The second major learning was about AI-assisted development. I used
+Claude as a coding collaborator throughout this project and I want to be
+transparent about that, because the conversation around AI tools in
+engineering is often framed badly — either "AI wrote everything" or "I
+never use AI." Neither reflects how I actually worked.</p>
+<p>The domain expertise, the architectural decisions, the metric
+selection, the debugging intuition — those came from me. What Claude
+provided was acceleration: helping scaffold boilerplate, explaining
+unfamiliar patterns, and catching bugs I had stared at too long to see.
+The analogy I keep coming back to is my Casio FX scientific calculator.
+Growing up studying physics, I memorized constants, worked through
+quadratic equations by hand, looked up tables. When I got the Casio FX,
+things changed dramatically — I could compute roots faster, plug in
+constants without tables, write expressions for repeated calculations.
+But the calculator didn't solve physics problems. I still had to
+understand the problem, choose the right approach, and interpret the
+result. The calculator removed arithmetic friction so I could focus on
+the physics.</p>
+<p>Claude did the same thing for software engineering. It removed the
+syntax friction — the boilerplate, the API lookups, the scaffolding — so
+I could focus on the architecture, the science, and the decisions that
+actually matter. If anything, working this way deepened my
+understanding, because I had to direct, validate, and question every
+piece of generated code. You can't do that without understanding what
+you're building.</p>
+<p><strong>The Result — and What's Next</strong></p>
+<p>The live app is at <a
+href="https://sem-iqm-tool.streamlit.app"><strong>https://sem-iqm-tool.streamlit.app</strong></a>.</p>
+<p>The interface is organized around how a metrology engineer would
+naturally approach an analysis. The first thing you want to see is the
+images themselves and the key numbers — so the Metrics tab leads with
+side-by-side thumbnails of the reference and test images, followed by
+SSIM, PSNR, NV ratio, Laplacian ratio, and CNR as metric cards, and a
+horizontal bar chart showing their relative scores at a glance.</p>
+<p>The screenshots below illustrate a real test case: a reference image
+compared against a version with subtle artificial stigmation applied
+using a rotation kernel (ksize_x=2, ksize_y=1, angle=0.2). The
+difference between the two images is essentially invisible to the naked
+eye.</p>
+
+<!--Figure 1-->
+
+<figure class="project-figure">
+  <img
+    src="/files/images/projects/iqm_app/metrics.png"
+    style = "width:90%; height:auto;"
+    alt= "Screenshot of the SEM Image Quality Metrics Tool showing the Metrics tab with 
+    side-by-side reference and test SEM images, quality score cards for SSIM, PSNR, 
+    NV ratio, Laplacian ratio and CNR, and a horizontal bar chart comparing the scores."
+  />
+
+  <figcaption>
+    <strong>Figure 1:</strong> Metrics tab showing a reference image compared against a 
+    subtly stigmated test image (rotation kernel: ksize_x=2, ksize_y=1, angle=0.2). 
+    While SSIM, PSNR, and NV ratio rate the test image as acceptable, 
+    the Laplacian ratio flags measurable sharpness degradation — a degradation 
+    invisible to the naked eye. 
+  </figcaption>
+</figure>
+
+<p>Most metrics rate the test image as acceptable. The Laplacian ratio,
+however, flags it as poor — exactly the sensitivity to subtle
+anisotropic blur that we discussed in the metrics section. The download
+button at the bottom of the tab exports a timestamped CSV report of the
+full analysis.
+The Histogram tab shows overlapping pixel intensity distributions for
+both images alongside a tool-matching summary. In this test case the
+Hellinger distance between reference and test is 0.169 — close enough
+that histogram matching alone would not have flagged the stigmation.</p>
+
+<!--Figure 2-->
+<figure class="project-figure">
+  <img
+    src="/files/images/projects/iqm_app/histogram.png"
+    style = "width: 80%; height: auto;"
+    alt= "Screenshot of the SEM Image Quality Metrics Tool Histogram tab showing overlapping 
+          reference and test image intensity distribution plots and a tool-matching summary 
+          table with Hellinger distance, brightness difference and contrast ratio metrics."
+  />
+
+  <figcaption>
+    <strong>Figure 2:</strong> The Histogram tab showing overlapping pixel intensity 
+            distributions for the reference (blue) and subtly stigmated test image (red). 
+            The Hellinger distance of 0.169 indicates close histogram similarity — histogram matching alone would not have 
+            flagged this degradation, demonstrating why frequency-domain analysis is necessary for detecting 
+            subtle anisotropic blur.
+  </figcaption>
+</figure>
+
+
+<p>The FFT tab is where the degradation becomes unambiguous. The
+sharpness ratio of the test image is approximately 0.95, and the
+difference spectrum shows a brighter central region — a direct indicator
+that the test image has shifted toward lower spatial frequencies,
+meaning it is slightly more blurred than the reference.</p>
+
+<!--Figure 3-->
+<figure class="project-figure">
+  <img
+    src="/files/images/projects/iqm_app/fft.png"
+    style = "width: 89%; height: auto;"
+    alt= "Screenshot of the SEM Image Quality Metrics Tool FFT tab showing three side-by-side 
+          heatmap panels — reference FFT magnitude spectrum, test image FFT magnitude spectrum, 
+          and difference spectrum — with sharpness score cards displayed above the plots."
+  />
+  <figcaption>
+    <strong>Figure 3:</strong> The FFT tab showing magnitude spectra for the reference image (left), subtly 
+    stigmated test image (center), and their difference (right, coolwarm scale). 
+    The sharpness ratio of ~0.95 confirms mild high-frequency energy loss in the test image. 
+    The brighter central region in the test spectrum indicates a shift toward 
+    lower spatial frequencies — the frequency-domain signature of anisotropic blur 
+    that was invisible to both the naked eye and histogram comparison.
+  </figcaption>
+</figure>
+
+
+<p>This three-metric combination — Laplacian catches it, histogram
+misses it, FFT confirms it — is a practical demonstration of why no
+single metric is sufficient for SEM image quality assessment.</p>
+<p><strong>Current limitations and next steps</strong></p>
+<p>Both the backend (Render) and frontend (Streamlit Community Cloud)
+run on free tiers. First-time visitors after a period of inactivity may
+experience a 30–60 second wake-up delay — a characteristic of free tier
+hosting rather than a performance issue with the application itself.</p>
+<p>The current version analyzes one image pair per session. The next
+version would add batch processing for analyzing multiple pairs in a
+single run, session history for tracking tool health over time, and
+asyncio.to_thread to offload CPU-bound computation from the async event
+loop — making the backend properly scalable under concurrent load.</p>
+
+<p>The most useful thing I built in this project isn't the app — it's
+the understanding of how domain expertise and software engineering
+reinforce each other. A metrology engineer who can deploy a production
+service thinks differently about what tools are possible. A software
+engineer who understands electron optics thinks differently about what
+the data actually means. The gap between those two perspectives is where
+genuinely useful tools get built.</p>
+<p>If you work in semiconductor metrology, electron microscopy, or any
+field where image quality matters — try the app with your own images. It
+works on any grayscale or RGB image pair, not just SEM. I'd be glad to
+hear what you find.</p>
+<p>The frontend code is open source on GitHub. The backend and core
+analysis package remain private, but the architecture, the metric
+selection rationale, and the deployment approach are all documented here
+and in the repository README.</p>
+<p><em>Imran Khan — <a href="https://khanimran.com">khanimran.com</a> ·
+<a href="https://linkedin.com/in/imrankahn">LinkedIn</a></em></p>
+<p>Demo images adapted from: Aversa et al. (2017). Scientific Reports.
+<a
+href="https://doi.org/10.1038/s41598-017-13565-z">https://doi.org/10.1038/s41598-017-13565-z</a></p>
+</section>
