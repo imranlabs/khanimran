@@ -10,7 +10,35 @@ import rawHtml from "../../content/research/broadbandscatering/broadband_scatter
   <script id="mathjax-config">
     window.MathJax = {
       tex: { inlineMath: [['\\(','\\)'], ['$', '$']], displayMath: [['\\[','\\]'], ['$$','$$']] },
-      svg: { fontCache: 'global' }
+      svg: { 
+        fontCache: 'global',
+        mtextInheritFont: true
+      },
+      chtml: {
+        linebreaks: { automatic: false }  // KEY FIX: Prevent line breaks
+      },
+      startup: {
+        pageReady: () => {
+          return MathJax.startup.defaultPageReady().then(() => {
+            // Force styles after rendering
+            const style = document.createElement('style');
+            style.textContent = `
+              mjx-container[display="false"],
+              mjx-container:not([display="true"]) {
+                white-space: nowrap !important;
+                display: inline !important;
+                vertical-align: baseline !important;
+              }
+              mjx-container[display="true"] {
+                display: block !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+              }
+            `;
+            document.head.appendChild(style);
+          });
+        }
+      }
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>

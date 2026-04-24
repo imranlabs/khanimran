@@ -1,56 +1,16 @@
 .time-line-container>div:last-child .education__time>.education__line {
     display: none;
 }
-
 .container {
   display: flex;
-  flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+  flex-wrap: wrap;
 }
-
 .item {
-  flex: 1; /* Items take equal space and grow/shrink as needed */
-  min-width: 100px; /* Optional: ensures items don't get too small */
+  flex: 1;
+  min-width: 200px;
 }
-/* below lines are added to prevent math expression folding*/
-/* Math expression fixes - prevent line breaking */
-.math.inline,
-.katex,
-.katex-display,
-.MathJax,
+
+/* MathJax inline math alignment */
 mjx-container {
-  white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-/* Ensure inline math stays on one line with proper alignment */
-.math.inline,
-mjx-container[display="false"],
-mjx-container:not([display="true"]) {
-  white-space: nowrap;
-  vertical-align: baseline; /* Fix alignment */
-}
-
-/* Display math (block equations) can scroll if too wide */
-.katex-display,
-.math.display,
-mjx-container[display="true"] {
-  display: block;
-  overflow-x: auto;
-  overflow-y: hidden;
-  max-width: 100%;
-  margin: 1em 0;
-  padding: 0.5em 0;
-}
-
-/* Prevent math from breaking inside paragraphs */
-p .math,
-p mjx-container {
-  white-space: nowrap;
-  vertical-align: baseline; /* Fix alignment */
-}
-
-/* For very long equations, allow horizontal scroll */
-.MathJax {
-  white-space: nowrap;
+  vertical-align: baseline;
 }
