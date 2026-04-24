@@ -9,5 +9,6 @@
 
 .item {
   flex: 1; /* Items take equal space and grow/shrink as needed */
-  min-width: 200px; /* Optional: ensures items don't get too small */
+  min-width: 100px; /* Optional: ensures items don't get too small */
 }
+/* below lines are added to prevent math expression folding*/

@@ -1,5 +1,4 @@
 <section class="space-y-3">
-
 <h1 class="text-3xl font-semibold tracking-tight text-slate-900">Modeling
 Broadband Cloaking Using Nano-Assembled Plasmonic Meta-Structures</h1>
 <p><strong>Imran Khan</strong></p>
@@ -59,8 +58,7 @@ Foldy–Lax multiscale solver</strong> that accurately models:</p>
 <li>realistic material response</li>
 </ul>
 <hr />
-<h2 >Physical
-Principles Behind Plasmonic Cloaking</h2>
+<h2 >Physical Principles Behind Plasmonic Cloaking</h2>
 <h3 >Destructive Interference</h3>
 <p>Let the core and shell produces scattering, $ f_{core} $ and $f_{shell}$</p>
 <p>Cloaking requires:</p>
@@ -85,7 +83,7 @@ strong scattering and absorption of the AuNPs creates intense local
 fields inside the shell, driving destructive interference with core
 scattering.</p>
 
-<hr/>
+
 <div>
 <h2 >Computational methods:</h2>
 <p>This section briefly states the computational procedure for modeling
@@ -111,7 +109,7 @@ strength parameter as well. <span class="math inline">\(\alpha =
 [\frac{\sigma_{s}}{4\pi}-(\frac{k_{0}\sigma_{t}}{4\pi})]^{1/2}
 +\frac{ik_{0}\sigma_{t}}{4\pi}\)]</span> where 
 total cross-section of a point scatterer,
-  <span class="math inline">\(\sigma_{t} = \sigma_{s}+\sigma_{a}\)</span></li>
+<span class="math inline">\(\sigma_{t} = \sigma_{s}+\sigma_{a}\)</span></li>
 <li>The scattering (<span class="math inline">\(\sigma_{s}\)</span>) and
 the absorption (<span class="math inline">\(\sigma_{a}\)</span>)
 cross-sections were computed using Rayleigh Scatterig theory.</li>
@@ -121,9 +119,9 @@ cross-sections were computed using Rayleigh Scatterig theory.</li>
 <div>
 <h2 >Problem statement
 and solution method</h2>
-<p>A plane wave with wavelength <span
-class="math inline">\(\lambda\)</span> propagates in the <span
-class="math inline">\(+\hat{z}\)</span> direction and is incident on a
+<p>A plane wave with wavelength 
+$\lambda$ propagates in the 
+$+\hat{z}$ direction and is incident on a
 structure consisting of a dielectric sphere with radius <span
 class="math inline">\(a_{0}\)</span> surrounded by <span
 class="math inline">\(N\)</span> small, metal nanoparticles. The metal
@@ -196,9 +194,10 @@ the problem.</p>
 <p>To compute the interior field, we make use of the Method of
 Fundamental Solutions (MFS) which is also known as the Discrete Source
 Method. This method relies on knowing Green's function, denoted by <span
-class="math inline">\(G_{1}\)</span>, which satisfies \begin{equation}
-\left( \nabla^{2} + k_{1}^{2} \right) G_{1} = -\delta(r - r'),
-\end{equation} and the Sommerfeld radiation condition. It is given
+class="math inline">\(G_{1}\)</span>, which satisfies 
+<span class="math display">\[
+\left( \nabla^{2} + k_{1}^{2} \right) G_{1} = -\delta(r - r')\]</span>
+the Sommerfeld radiation condition. It is given
 explicitly by \begin{equation} G_{1}(r - r') = \frac{e^{\mathrm{i} k_{1}
 | r - r '|}}{4 \pi | r - r' |}, \end{equation} which is a spherical wave
 centered at <span class="math inline">\(r&#39;\)</span> propagating in
