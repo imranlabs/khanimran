@@ -61,8 +61,8 @@ Foldy–Lax multiscale solver</strong> that accurately models:</p>
 <h2 >Physical
 Principles Behind Plasmonic Cloaking</h2>
 <h3 >Destructive Interference</h3>
-<p>Let the core produce scattering, $ f_{core} $<br />
-Let the shell produce scattering, $f_{shell}$</p>
+<p>Let the core and shell produces scattering respectively as , $f_{core}$ and $f_{shell}$. 
+
 <p>Cloaking requires:</p>
 
 <p> $$ f_{total} = f_{core} + f_{shell} \approx 0$$
@@ -97,8 +97,8 @@ computed using Methods of Fundamentals of Solutions(MFS).</li>
 and the core  was computed using generalized Foldy-Lax scattering theory
 following a modification.</li>
 <li>Total scattered power by the meta-strucutre was computed using the
-Optical Theorem <span
-class="math inline">\(\sigma_{t}=\frac{4\pi}{k_{0}}Im[f(\hat{o},\hat{i})]\)</span></li>
+Optical Theorem: </br>
+$$ \sigma_{t}=\frac{4\pi}{k_{0}}Im[f(\hat{o},\hat{i})]$$
 </ul>
 <h3>Modeling Assumptions:</h3>
 <ul>
@@ -106,14 +106,16 @@ class="math inline">\(\sigma_{t}=\frac{4\pi}{k_{0}}Im[f(\hat{o},\hat{i})]\)</spa
 scatterer.</li>
 <li>A point scatterer has isotropic scattering pattern.</li>
 <li>Extinction properties of a point scatterer was attributed to a
-parameter, <span class="math inline">\(\alpha\)</span>, known as
-strength parameter as well. <span class="math inline">\(\alpha =
-[\frac{\sigma_{s}}{4\pi}-(\frac{k_{0}\sigma_{t}}{4\pi})]^{1/2}
-+\frac{ik_{0}\sigma_{t}}{4\pi}\)]</span> 
+parameter, $\alpha$, known as
+strength parameter as well. Defined, 
+$$ 
+\alpha =[\frac{\sigma_{s}}{4\pi}-(\frac{k_{0}\sigma_{t}}{4\pi})]^{1/2}
++\frac{ik_{0}\sigma_{t}}{4\pi}
+$$
 <p>total cross-section of a point scatterer,
-  <span class="math inline">\(\sigma_{t} = \sigma_{s}+\sigma_{a}\)</span></p></li>
-<li>The scattering (<span class="math inline">\(\sigma_{s}\)</span>) and
-the absorption (<span class="math inline">\(\sigma_{a}\)</span>)
+  $\sigma_{t} = \sigma_{s}+\sigma_{a}$</p></li>
+<li>The scattering ($\sigma_{s}$) and
+the absorption ($\sigma_{a}$)
 cross-sections were computed using Rayleigh Scatterig theory.</li>
 </ul>
 </div>
@@ -121,8 +123,8 @@ cross-sections were computed using Rayleigh Scatterig theory.</li>
 <div>
 <h2 >Problem statement
 and solution method</h2>
-<p>A plane wave with wavelength <span
-class="math inline">\(\lambda\)</span> propagates in the <span
+<p>A plane wave with wavelength 
+$\lambda$ propagates in the <span
 class="math inline">\(+\hat{z}\)</span> direction and is incident on a
 structure consisting of a dielectric sphere with radius <span
 class="math inline">\(a_{0}\)</span> surrounded by <span
