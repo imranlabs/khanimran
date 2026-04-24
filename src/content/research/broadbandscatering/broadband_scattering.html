@@ -443,73 +443,58 @@ cloaking structure.</p>
 <h2>Computing the total scattering cross-section</h2>
 <p>After solving the system of linear equation described in the last
 section (above), the scattered filed is given by,</p>
-<p>$$
-\psi^{s}(r) = \psi^{B} + \sum_{n=1}^{N}
+<p><span class="math display">\[\psi^{s}(r) = \psi^{B} + \sum_{n=1}^{N}
 \Psi_{n}\approx \sum_{j=1}^{M}c_{j}^{ext}G_{0}(r-r_{j}^{ext}) +
 \sum_{n=1}^{N}\alpha_{n}G_{0}
-(r-r^{NP}_{n})\Psi_{E}(r_{n}^{NP}), r \in E 
-$$
-
-</p>
-<p>The scattered field evaluated at 
-$\textbf{r}= R\hat{o}$ with 
-$R=|r|$ and 
-$\hat{o} = \textbf{r} / |\textbf{r}|$in
-the far-field corresponding to $ R&gt;&gt;1$ behaves like a spherical wave
+(r-r^{NP}_{n})\Psi_{E}(r_{n}^{NP}), r \in E.\]</span></p>
+<p>The scattered field evaluated at <span
+class="math inline">\(\textbf{r}= R\hat{o}\)</span> with <span
+class="math inline">\(R=|r|\)</span> and <span
+class="math inline">\(\hat{o} = \textbf{r} / |\textbf{r}|\)</span> in
+the far-field corresponding to <span
+class="math inline">\(R&gt;&gt;1\)</span> behaves like a spherical wave
 and is given by,</p>
-<p>$\psi^{s} \sim f(\hat{o},\hat{i})
-\frac{e^{ik_{0}}R}{R} $</p>
-<p>Here, $f(\hat{o},\hat{i})$ is the
+<p><span class="math display">\[\psi^{s} \sim f(\hat{o},\hat{i})
+\frac{e^{ik_{0}}R}{R} \]</span></p>
+<p>Here, <span class="math inline">\(f(\hat{o},\hat{i})\)</span> is the
 scattering amplitude for the scattered field in the far field in the
-direction $\hat{o}$ when the particle
-is illuminated by a plane wave propagating in the direction $\hat{i}$ with unit amplitude.</p>
-<p>Suppose we have set $\psi^{inc}$
-to be a plane wave of unit amplitude propagating in the direction $\hat{i}$ and we have used that compute the
+direction <span class="math inline">\(\hat{o}\)</span> when the particle
+is illuminated by a plane wave propagating in the direction <span
+class="math inline">\(\hat{i}\)</span> with unit amplitude.</p>
+<p>Suppose we have set <span class="math inline">\(\psi^{inc}\)</span>
+to be a plane wave of unit amplitude propagating in the direction <span
+class="math inline">\(\hat{i}\)</span> and we have used that compute the
 the solution of the last three equation described in the section above.
-Using $|R\hat{o}-r^{&#39;}|\sim R-
-\hat{o}.r^{&#39;} $for $R&gt;&gt;1$, in the far-field Green's
+Using <span class="math inline">\(|R\hat{o}-r^{&#39;}|\sim R-
+\hat{o}.r^{&#39;}\)</span> for <span
+class="math inline">\(R&gt;&gt;1\)</span>, in the far-field Green's
 function is ,</p>
-<p>$$
-  
-G_{0}(R\hat{o}-r^{&#39;}) \sim
+<p><span class="math display">\[G_{0}(R\hat{o}-r^{&#39;}) \sim
 e^{ik_{0}\hat{o}.r^{&#39;}}\frac{e^{ik_{0}R}}{4\pi R},
-R&gt;&gt;1
-
-$$ 
-</p>
-<p>Replacing $G_{0}$ by the first two
+R&gt;&gt;1\]</span></p>
+<p>Replacing <span class="math inline">\(G_{0}\)</span> by the first two
 equations from this section we get,</p>
-<p>
-
-$$
-\psi^{s}(r) \sim \left[  \frac{1}{4\pi}
+<p><span class="math display">\[\psi^{s}(r) \sim \left[  \frac{1}{4\pi}
 \sum_{j=1}^{M} c_{j}^{ext} e^{ik_{0}\hat{o}.r^{ext}_{j}} +
 \sum_{n=1}^{N} \alpha_n e^{ik_{0}\hat{o}.r^{NP}_{n}}
 \Psi_{E}(r_{n}^{NP})
-\right]\frac{e^{ik_{0}R}}{R}, R&gt;&gt;1
-$$ 
-</p>
+\right]\frac{e^{ik_{0}R}}{R}, R&gt;&gt;1\]</span></p>
 <p>By comparing this last equation with the second equation from
 beginning of this section we find the scattering amplitude using our
 method given as,</p>
-<p>$$ 
-f(\hat{o}, \hat{i}) = \frac{1}{4\pi}
+<p><span class="math display">\[f(\hat{o}, \hat{i}) = \frac{1}{4\pi}
 \sum_{j=1}^{M} c_{j}^{ext} e^{ik_{0}\hat{o}.r^{ext}_{j}} +
 \frac{1}{4\pi} \sum_{n=1}^{N} \alpha_n e^{ik_{0}\hat{o}.r^{NP}_{n}}
-\Psi_{E}(r_{n}^{NP}) 
-$$ </p>
+\Psi_{E}(r_{n}^{NP}) \]</span></p>
 <p>According to the Optical Theorem of the forward scattering theorem,
 we can compute the total cross-section of the scattering structure
 through evaluation of ,</p>
-<p>
-$$
-\sigma_{t} = \frac{4\pi}{k_{0}}Im[f(\hat{i},\hat{i})]
-
-$$</p>
+<p><span class="math display">\[\sigma_{t} =
+\frac{4\pi}{k_{0}}Im[f(\hat{i},\hat{i})]\]</span></p>
 <p>Now we can compute the total cross-section by substituiting equation
 above the last equation into this formula. Remarkably, the last equation
-of this section allows for the determination of 
-$\sigma_{t}$by only measuring scattered
+of this section allows for the determination of <span
+class="math inline">\(\sigma_{t}\)</span> by only measuring scattered
 power in the forward direction.</p>
 </section>
 
@@ -517,11 +502,11 @@ power in the forward direction.</p>
 
 <h3 >Computational challenges</h3>
 <ul>
-<li>Matrix of size ( $N \times N$ )<br />
+<li>Matrix of size <span class="math inline">\( N \times N \)</span> <br />
 </li>
 <li>Dense, non‑diagonal<br />
 </li>
-<li>O(N³) cost with Gaussian elimination</li>
+<li><span class="math inline"> \(O(N^{3})\)</span>  cost with Gaussian elimination</li>
 </ul>
 <hr />
 <h2 >Hybrid System Assembly</h2>
@@ -534,7 +519,7 @@ power in the forward direction.</p>
 <li>N Foldy–Lax equations</li>
 </ul>
 <p>Matrix size:</p>
-<p>$(2M + N) \times (2M + N)$</p>
+<p>(\(2M + N) \times (2M + N).\)</p>
 <hr />
 
 <h3>Experimental Comparison</h3>
@@ -637,7 +622,7 @@ radiation.</p>
 <h3 >Extinction
 Bandwidth Determines Cloaking Band</h3>
 <p>Cloaking spectral range is governed by:</p>
-<p>$sigma_{\mathrm{ext}}(\lambda)$</p>
+<p>$\sigma_{\mathrm{ext}}(\lambda)$</p>
 <p>of a single AuNP.</p>
 <hr />
 <h2 >Limitations and Future
