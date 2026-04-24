@@ -12,3 +12,45 @@
   min-width: 100px; /* Optional: ensures items don't get too small */
 }
 /* below lines are added to prevent math expression folding*/
+/* Math expression fixes - prevent line breaking */
+.math.inline,
+.katex,
+.katex-display,
+.MathJax,
+mjx-container {
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Ensure inline math stays on one line with proper alignment */
+.math.inline,
+mjx-container[display="false"],
+mjx-container:not([display="true"]) {
+  white-space: nowrap;
+  vertical-align: baseline; /* Fix alignment */
+}
+
+/* Display math (block equations) can scroll if too wide */
+.katex-display,
+.math.display,
+mjx-container[display="true"] {
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  margin: 1em 0;
+  padding: 0.5em 0;
+}
+
+/* Prevent math from breaking inside paragraphs */
+p .math,
+p mjx-container {
+  white-space: nowrap;
+  vertical-align: baseline; /* Fix alignment */
+}
+
+/* For very long equations, allow horizontal scroll */
+.MathJax {
+  white-space: nowrap;
+}
