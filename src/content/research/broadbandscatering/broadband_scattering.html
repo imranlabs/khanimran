@@ -1,4 +1,5 @@
-<section class="space-y-3">
+<section class="space-y-2">
+
 <h1 class="text-3xl font-semibold tracking-tight text-slate-900">Modeling
 Broadband Cloaking Using Nano-Assembled Plasmonic Meta-Structures</h1>
 <p><strong>Imran Khan</strong></p>
@@ -61,14 +62,10 @@ Foldy–Lax multiscale solver</strong> that accurately models:</p>
 <h2 >Physical
 Principles Behind Plasmonic Cloaking</h2>
 <h3 >Destructive Interference</h3>
-<p>Let the core and shell produces scattering respectively as , 
-<span class="math inline">\(f_{core}\)</span> and <span class="math inline">\(f_{shell}\)</span> . </p>
-
+<p>Let the core and shell produces scattering, $ f_{core} $ and $f_{shell}$</p>
 <p>Cloaking requires:</p>
 
-<p> <span class="math display"> \[f_{total} = f_{core} + f_{shell} \approx 0\]
-  
-</span>
+<p> $$ f_{total} = f_{core} + f_{shell} \approx 0$$
 </p>
 <p>This demands:</p>
 <ul>
@@ -100,10 +97,8 @@ computed using Methods of Fundamentals of Solutions(MFS).</li>
 and the core  was computed using generalized Foldy-Lax scattering theory
 following a modification.</li>
 <li>Total scattered power by the meta-strucutre was computed using the
-Optical Theorem: </br>
-<span class="math display">
-\[ \sigma_{t}=\frac{4\pi}{k_{0}}Im[f(\hat{o},\hat{i})] \]
-</span>
+Optical Theorem <span
+class="math inline">\(\sigma_{t}=\frac{4\pi}{k_{0}}Im[f(\hat{o},\hat{i})]\)</span></li>
 </ul>
 <h3>Modeling Assumptions:</h3>
 <ul>
@@ -111,23 +106,29 @@ Optical Theorem: </br>
 scatterer.</li>
 <li>A point scatterer has isotropic scattering pattern.</li>
 <li>Extinction properties of a point scatterer was attributed to a
-parameter, <span class="math inline">\(aplha \)</span>, known as strength parameter as well. Defined, 
-<span class="math display">
-\[\alpha =[\frac{\sigma_{s}}{4\pi}-(\frac{k_{0}\sigma_{t}}{4\pi})]^{1/2}
-+\frac{ik_{0}\sigma_{t}}{4\pi}]
-\] </span>
-<li>total cross-section of a point scatterer,
-  <span class="math inline">\(\sigma_{t} = \sigma_{s}+\sigma_{a}\) </span></p></li>
-<li>The scattering <span class="math inline">\((\sigma_{s})\)</span> and the absorption <span class="math inline">\((\sigma_{a})\)</span>
+parameter, <span class="math inline">\(\alpha\)</span>, known as
+strength parameter as well. <span class="math inline">\(\alpha =
+[\frac{\sigma_{s}}{4\pi}-(\frac{k_{0}\sigma_{t}}{4\pi})]^{1/2}
++\frac{ik_{0}\sigma_{t}}{4\pi}\)]</span> where 
+total cross-section of a point scatterer,
+  <span class="math inline">\(\sigma_{t} = \sigma_{s}+\sigma_{a}\)</span></li>
+<li>The scattering (<span class="math inline">\(\sigma_{s}\)</span>) and
+the absorption (<span class="math inline">\(\sigma_{a}\)</span>)
 cross-sections were computed using Rayleigh Scatterig theory.</li>
 </ul>
 </div>
 <!--problem description start-->
 <div>
-<h2 >Problem statement and solution method</h2>
-<p>A plane wave with wavelength <span class="math inline">\(\lambda \)</span> propagates in the <span class="math inline">\(+\hat{z}\)</span> direction and is incident on a
-structure consisting of a dielectric sphere with radius <span class="math inline">\(a_{0}\)</span> surrounded by <span
-class="math inline">\(N\)</span> small, metal nanoparticles. The metal nanoparticles may be situated at subwavelength distances away from the surface of the dielectric sphere. Hence, the field scattered by this
+<h2 >Problem statement
+and solution method</h2>
+<p>A plane wave with wavelength <span
+class="math inline">\(\lambda\)</span> propagates in the <span
+class="math inline">\(+\hat{z}\)</span> direction and is incident on a
+structure consisting of a dielectric sphere with radius <span
+class="math inline">\(a_{0}\)</span> surrounded by <span
+class="math inline">\(N\)</span> small, metal nanoparticles. The metal
+nanoparticles may be situated at subwavelength distances away from the
+surface of the dielectric sphere. Hence, the field scattered by this
 structure is the result of strong multiple scattering interactions
 between each and all of the components of the structure. In what
 follows, we describe a method to compute the field scattered by this
@@ -136,11 +137,18 @@ particular, we use the method of fundamental solutions(<strong>MFS</strong>) to 
 scattering by the dielectric sphere and the <strong>Foldy-Lax</strong> equations to model
 the multiple scattering by the point particles that surround the
 sphere.</p>
-<p>Suppose that the origin of a coordinate system lies at the center of the dielectric sphere. We denote the interior domain by <span
-class="math inline">\(D = \{ r &lt; a \}\)</span> and the exterior domain by <span class="math inline">\(E = \{ r &gt; a \}\)</span>. The spherical surface <span class="math inline">\(B = \{ r = a \}\)</span>
-is interface between the interior and exterior. The wave field in the interior is denoted by <span
-class="math inline">\(\psi^{\text{int}}\)</span> and satisfies the homogeneous reduced wave or Helmholtz equation,</p> <p><span class="math display">\[\left( \nabla^{2} + k_{1}^{2} \right)
-\psi^{\text{int}} = 0, \quad \text{in $D$},
+<p>Suppose that the origin of a coordinate system lies at the center of
+the dielectric sphere. We denote the interior domain by <span
+class="math inline">\(D = \{ r &lt; a \}\)</span> and the exterior
+domain by <span class="math inline">\(E = \{ r &gt; a \}\)</span>. The
+spherical surface <span class="math inline">\(B = \{ r = a \}\)</span>
+is interface between the interior and exterior. The wave field in the
+interior is denoted by <span
+class="math inline">\(\psi^{\text{int}}\)</span> and satisfies the
+homogeneous reduced wave or Helmholtz equation,</p>
+<p><span class="math display">\[\left( \nabla^{2} + k_{1}^{2} \right)
+\psi^{\text{int}}
+  = 0, \quad \text{in $D$},
   \]</span> with <span class="math inline">\(k_{1}\)</span> denoting the
 wavenumber for the dielectric sphere. The wave field in the exterior is
 denoted by <span class="math inline">\(\psi^{\text{ext}}\)</span> and
@@ -432,7 +440,7 @@ cloaking structure.</p>
 <section >
 <h2>Computing the total scattering cross-section</h2>
 <p>After solving the system of linear equation described in the last
-section (above), the scattered filed is given by,</p>
+section (avobe), thescattered filed is given by,</p>
 <p><span class="math display">\[\psi^{s}(r) = \psi^{B} + \sum_{n=1}^{N}
 \Psi_{n}\approx \sum_{j=1}^{M}c_{j}^{ext}G_{0}(r-r_{j}^{ext}) +
 \sum_{n=1}^{N}\alpha_{n}G_{0}
@@ -492,11 +500,11 @@ power in the forward direction.</p>
 
 <h3 >Computational challenges</h3>
 <ul>
-<li>Matrix of size <span class="math inline">\( N \times N \)</span> <br />
+<li>Matrix of size ( N imes N )<br />
 </li>
 <li>Dense, non‑diagonal<br />
 </li>
-<li><span class="math inline"> \(O(N^{3})\)</span>  cost with Gaussian elimination</li>
+<li>O(N³) cost with Gaussian elimination</li>
 </ul>
 <hr />
 <h2 >Hybrid System Assembly</h2>
@@ -509,11 +517,11 @@ power in the forward direction.</p>
 <li>N Foldy–Lax equations</li>
 </ul>
 <p>Matrix size:</p>
-<p>(\(2M + N) \times (2M + N).\)</p>
+<p>(2M + N) X (2M + N)</p>
 <hr />
 
 <h3>Experimental Comparison</h3>
-<p>Matching the work of Mühlig et al. (Sci. Rep. 2013):</p>
+<p>Matching the work of Mühlig et al. (Sci. Rep. 2013):</p>
 <ul>
 <li>Maxwell–Garnett predicts incorrect spectral position<br />
 </li>
@@ -528,9 +536,9 @@ Efficiency of Core vs Core-Shell</h3>
   <figure>
     <img src="/files/images/projects/broadbandscattering/scattering_fwhm.png" 
     alt="scattering-fwhm" style="width:100%; border-radius:6px;">
-    <figcaption>Figure : Comparisons of the scattering efficiency $\sigma_{E}$ for a 750 nm silica core (square symbols)
+    <figcaption>Figure : Comparisons of the scattering efficiency \(\sigma_{E} \) for a 750 nm silica core (square symbols)
                   with that for a core and shell (circle symbols) made up of 10 nm AuNPs for filling fractions
-                  (a) $f = 0.05$, (b) $f = 0.15$, and (c) $ f = 0.30$. The extinction spectrum for a single 10 nm
+                  (a) \(f = 0.05 \), (b) \(f = 0.15 \), and (c) \( f = 0.30 \). The extinction spectrum for a single 10 nm
                   AuNP is shown in (d), with its FWHM band highlighted in blue in (a) - (d).
     </figcaption>
   </figure>
@@ -570,7 +578,7 @@ Dependence</h3>
     <img src="/files/images/projects/broadbandscattering/filling_frac.png" 
     alt="filling fraction" style="width:100%; border-radius:6px;">
     <figcaption>Figure: A plot of the scattering suppression (scattering efficiency of silica core minus
-                scattering efficiency of plasmonic cloak) as a function of filling fraction $f$ and wavelength $\lambda$
+                scattering efficiency of plasmonic cloak) as a function of filling fraction \(f\) and wavelength λ
                 for a core diameter of 750 nm and AuNPs with diameter 10 nm.
     </figcaption>
   </figure>
@@ -588,7 +596,7 @@ Dependence</h3>
     <img src="/files/images/projects/broadbandscattering/core_size.png" 
     alt="filling fraction" style="width:100%; border-radius:6px;">
     <figcaption>Figure: A plot of the scattering suppression as a function of core diameter d and wavelength
-                $\lambda$ for a filling fraction of $f = 30\%$ and AuNPs with diameter 10 nm.
+                λ for a filling fraction of f = 30% and AuNPs with diameter 10 nm.
     </figcaption>
   </figure>
 </div>
@@ -625,7 +633,7 @@ Extensions</h2>
 </li>
 <li>No NP–NP near-field tunneling<br />
 </li>
-<li>$O(N^3)$ computational complexity</li>
+<li>O(N³) computational complexity</li>
 </ul>
 <h3 >Future improvements</h3>
 <ul>
