@@ -61,11 +61,14 @@ Foldy–Lax multiscale solver</strong> that accurately models:</p>
 <h2 >Physical
 Principles Behind Plasmonic Cloaking</h2>
 <h3 >Destructive Interference</h3>
-<p>Let the core and shell produces scattering respectively as , $f_{core}$ and $f_{shell}$. 
+<p>Let the core and shell produces scattering respectively as , 
+<span class="math inline">\(f_{core}\)</span> and <span class="math inline">\(f_{shell}\)</span> . 
 
 <p>Cloaking requires:</p>
 
-<p> $$ f_{total} = f_{core} + f_{shell} \approx 0$$
+<p> <span class="math display"> \[f_{total} = f_{core} + f_{shell} \approx 0\]
+  
+</span>
 </p>
 <p>This demands:</p>
 <ul>
@@ -98,7 +101,9 @@ and the core  was computed using generalized Foldy-Lax scattering theory
 following a modification.</li>
 <li>Total scattered power by the meta-strucutre was computed using the
 Optical Theorem: </br>
-$$ \sigma_{t}=\frac{4\pi}{k_{0}}Im[f(\hat{o},\hat{i})]$$
+<span class="math display">
+\[ \sigma_{t}=\frac{4\pi}{k_{0}}Im[f(\hat{o},\hat{i})] \]
+</span>
 </ul>
 <h3>Modeling Assumptions:</h3>
 <ul>
@@ -108,14 +113,14 @@ scatterer.</li>
 <li>Extinction properties of a point scatterer was attributed to a
 parameter, $\alpha$, known as
 strength parameter as well. Defined, 
-$$ 
-\alpha =[\frac{\sigma_{s}}{4\pi}-(\frac{k_{0}\sigma_{t}}{4\pi})]^{1/2}
-+\frac{ik_{0}\sigma_{t}}{4\pi}
-$$
+<span class="math display">
+\[\alpha =[\frac{\sigma_{s}}{4\pi}-(\frac{k_{0}\sigma_{t}}{4\pi})]^{1/2}
++\frac{ik_{0}\sigma_{t}}{4\pi}]
+\] </span>
 <p>total cross-section of a point scatterer,
-  $\sigma_{t} = \sigma_{s}+\sigma_{a}$</p></li>
-<li>The scattering ($\sigma_{s}$) and
-the absorption ($\sigma_{a}$)
+  <span class="math inline">\(\sigma_{t} = \sigma_{s}+\sigma_{a}\) </span></p></li>
+<li>The scattering <span class="math inline">\((\sigma_{s})\)</span> and
+the absorption <span class="math inline">\((\sigma_{a})\)</span>
 cross-sections were computed using Rayleigh Scatterig theory.</li>
 </ul>
 </div>
