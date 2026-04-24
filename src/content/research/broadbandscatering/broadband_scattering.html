@@ -62,7 +62,7 @@ Foldy–Lax multiscale solver</strong> that accurately models:</p>
 Principles Behind Plasmonic Cloaking</h2>
 <h3 >Destructive Interference</h3>
 <p>Let the core and shell produces scattering respectively as , 
-<span class="math inline">\(f_{core}\)</span> and <span class="math inline">\(f_{shell}\)</span> . 
+<span class="math inline">\(f_{core}\)</span> and <span class="math inline">\(f_{shell}\)</span> . </p>
 
 <p>Cloaking requires:</p>
 
@@ -111,31 +111,23 @@ Optical Theorem: </br>
 scatterer.</li>
 <li>A point scatterer has isotropic scattering pattern.</li>
 <li>Extinction properties of a point scatterer was attributed to a
-parameter, $\alpha$, known as
-strength parameter as well. Defined, 
+parameter, <span class="math inline">\(aplha \)</span>, known as strength parameter as well. Defined, 
 <span class="math display">
 \[\alpha =[\frac{\sigma_{s}}{4\pi}-(\frac{k_{0}\sigma_{t}}{4\pi})]^{1/2}
 +\frac{ik_{0}\sigma_{t}}{4\pi}]
 \] </span>
-<p>total cross-section of a point scatterer,
+<li>total cross-section of a point scatterer,
   <span class="math inline">\(\sigma_{t} = \sigma_{s}+\sigma_{a}\) </span></p></li>
-<li>The scattering <span class="math inline">\((\sigma_{s})\)</span> and
-the absorption <span class="math inline">\((\sigma_{a})\)</span>
+<li>The scattering <span class="math inline">\((\sigma_{s})\)</span> and the absorption <span class="math inline">\((\sigma_{a})\)</span>
 cross-sections were computed using Rayleigh Scatterig theory.</li>
 </ul>
 </div>
 <!--problem description start-->
 <div>
-<h2 >Problem statement
-and solution method</h2>
-<p>A plane wave with wavelength 
-$\lambda$ propagates in the <span
-class="math inline">\(+\hat{z}\)</span> direction and is incident on a
-structure consisting of a dielectric sphere with radius <span
-class="math inline">\(a_{0}\)</span> surrounded by <span
-class="math inline">\(N\)</span> small, metal nanoparticles. The metal
-nanoparticles may be situated at subwavelength distances away from the
-surface of the dielectric sphere. Hence, the field scattered by this
+<h2 >Problem statement and solution method</h2>
+<p>A plane wave with wavelength <span class="math inline">\(\lambda \)</span> propagates in the <span class="math inline">\(+\hat{z}\)</span> direction and is incident on a
+structure consisting of a dielectric sphere with radius <span class="math inline">\(a_{0}\)</span> surrounded by <span
+class="math inline">\(N\)</span> small, metal nanoparticles. The metal nanoparticles may be situated at subwavelength distances away from the surface of the dielectric sphere. Hence, the field scattered by this
 structure is the result of strong multiple scattering interactions
 between each and all of the components of the structure. In what
 follows, we describe a method to compute the field scattered by this
@@ -144,18 +136,11 @@ particular, we use the method of fundamental solutions(<strong>MFS</strong>) to 
 scattering by the dielectric sphere and the <strong>Foldy-Lax</strong> equations to model
 the multiple scattering by the point particles that surround the
 sphere.</p>
-<p>Suppose that the origin of a coordinate system lies at the center of
-the dielectric sphere. We denote the interior domain by <span
-class="math inline">\(D = \{ r &lt; a \}\)</span> and the exterior
-domain by <span class="math inline">\(E = \{ r &gt; a \}\)</span>. The
-spherical surface <span class="math inline">\(B = \{ r = a \}\)</span>
-is interface between the interior and exterior. The wave field in the
-interior is denoted by <span
-class="math inline">\(\psi^{\text{int}}\)</span> and satisfies the
-homogeneous reduced wave or Helmholtz equation,</p>
-<p><span class="math display">\[\left( \nabla^{2} + k_{1}^{2} \right)
-\psi^{\text{int}}
-  = 0, \quad \text{in $D$},
+<p>Suppose that the origin of a coordinate system lies at the center of the dielectric sphere. We denote the interior domain by <span
+class="math inline">\(D = \{ r &lt; a \}\)</span> and the exterior domain by <span class="math inline">\(E = \{ r &gt; a \}\)</span>. The spherical surface <span class="math inline">\(B = \{ r = a \}\)</span>
+is interface between the interior and exterior. The wave field in the interior is denoted by <span
+class="math inline">\(\psi^{\text{int}}\)</span> and satisfies the homogeneous reduced wave or Helmholtz equation,</p> <p><span class="math display">\[\left( \nabla^{2} + k_{1}^{2} \right)
+\psi^{\text{int}} = 0, \quad \text{in $D$},
   \]</span> with <span class="math inline">\(k_{1}\)</span> denoting the
 wavenumber for the dielectric sphere. The wave field in the exterior is
 denoted by <span class="math inline">\(\psi^{\text{ext}}\)</span> and
