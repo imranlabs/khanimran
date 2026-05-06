@@ -6,9 +6,9 @@ import { getCollection } from "astro:content";
 import createSlug from "../lib/createSlug"
 
 const page = {
-  title: "Imran Khan | Imaging , AI & Optics",
+  title: "Imran Khan | Optics, Imaging & AI",
   description:
-    "Work history and CV for Imran Khan, Ph.D. physicist with experience in CD-SEM metrology at Intel, computer vision, optics, computational modeling, and imaging-focused data analysis and automation.",
+    "Portfolio of Imran Khan, Ph.D. optical physicist and semiconductor metrology engineer with experience at Intel in CD-SEM metrology, optical system design, and applied computer vision for imaging and measurement.",
 };
 
 const sideBarActiveItemID = "home";
@@ -17,26 +17,133 @@ const sideBarActiveItemID = "home";
 <BaseLayout page={page} sideBarActiveItemID={sideBarActiveItemID}>
   <div class="mb-5">
   <div class="text-5xl font-bold"> Hi, I’m Imran Khan </div>
-  <div class="text-lg text-gray-500"> Working at the intersection of optics, imaging systems, and AI-driven analysis.</div>
+  <div class="text-lg text-gray-500"> Optical physicist and metrology engineer working at the intersection of optics, imaging systems, and applied AI.</div>
   </div>
   <div class="mb-10 text-justify">
-    Applied scientist and engineer with training in physics and optics and industry experience in semiconductor metrology at Intel. 
-    My work focuses on imaging system characterization, sensor performance analysis, 
-    and Python-based data pipelines for large-scale experimental and manufacturing data. 
-    I have experience developing physics-informed algorithms, numerical models, and image-based analytics, 
-    with a growing focus on computer vision methods for scientific and industrial imaging. 
-    I’m interested in applied research and engineering roles where imaging systems, physical insight, and modern data-driven techniques come together.
+    Ph.D. optical physicist and former CD-SEM metrology engineer with experience spanning 
+    first-principles optical modeling, custom instrument design, and production-deployed imaging 
+    analytics. My work centers on imaging system characterization, measurement uncertainty, 
+    and Python-based data pipelines for inspection and metrology — extended now with applied 
+    computer vision and deep learning for scientific and industrial imaging. 
+    I'm interested in roles where physical understanding of imaging systems and modern data-driven methods 
+    come together: optical metrology, semiconductor inspection, computational imaging, and machine vision.
   </div>
 
 <!--- Resume download and social-->
+
+
 <div class="mt-5">
       <a href="/Imran_Khan_Resume.pdf" download class="btn ml-3" >Download Résumé
       <a class="btn ml-3" href="https://www.linkedin.com/in/imrankahn/" target="_blank"> Let's connect!</a>
       <a href="https://github.com/imranlabs" target="_blank" class="btn ml-3">
         github
       </a>
-<div class="h-6"></div>
+
+<div style="height: 20px;"></div>
+<div class="text-2xl font-bold"> Featured Projects</div>
+<!--April-21-2026-project-5-->
+ <HorizontalCard
+  title="SEM Image Quality Assessment Web App"
+  img="/files/images/projects/iqm_app/app_ico.jpg"
+    desc={`Full-stack web application for SEM imaging sensor diagnostics, 
+    implementing full-reference (SSIM, PSNR) and no-reference 
+    (BRISQUE, Laplacian sharpness, FFT high-frequency energy) image quality 
+    metrics with interactive visualizations. Dockerized FastAPI backend on 
+    Render and Streamlit frontend on Streamlit Community Cloud, 
+    deployed across a two-repo architecture`}
+  url="projects/iqm_app"
+  
+  badge="FastAPI | Streamlit | Docker | OpenCV | SEM Metrology"
+/>
+<HorizontalCard
+  title="SEM Microstructure Segmentation with U-Net"
+  img="/files/images/projects/sem_img_segment/seg_ico.png"
+    desc={`Semantic segmentation pipeline for SEM microstructure images using U-Net. 
+        Implemented both a U-Net model from scratch and a pretrained ResNet34 encoder via transfer learning. 
+        Addressed class imbalance with weighted Cross-Entropy and Dice loss, and evaluated performance using 
+        mIoU, Dice score, confusion matrix, and boundary analysis.`}
+  url="projects/sem_img_seg"
+  badge="5-Class Semantic Segmentation (U-Net / ResNet34)"
+/>
+
+<!---experinece--->
   <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Experience</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="Metrology Process Engineer (CD-SEM) at Intel Corporation">
+      <em>Intel Corporation, Hillsboro, USA. | Nov, 2021 - August, 2025 </em>
+    <!--- Add job experince-- below--> 
+    <ul class="list-disc list-inside mt-3 text-base text-gray-700">
+
+    <p>Owned imaging system performance, sensor analytics, and measurement stability for 
+    advanced CD-SEM metrology equipment in high-volume semiconductor manufacturing. 
+    Drove cross-functional engineering investigations spanning hardware, software, 
+    and process integration to improve fleet-wide gauge capability, reduce measurement 
+    drift, and shift the team from reactive troubleshooting toward data-driven, proactive maintenance.</p>
+
+    <li> Developed and deployed a Python-based image quality analysis pipeline applying multiple IQA algorithms (sharpness, CNR, FFT high-frequency energy, GLCM) to characterize SEM imaging sensor performance and resolve a recurring measurement drift issue that had been managed reactively for over 3–4 years — transitioning a team of 5 engineers from reactive troubleshooting to proactive, data-driven maintenance.</li>
+    
+    <li> Managed fleet-wide gauge capability and measurement stability through SPC, automated calibration logic, and GR&R studies to sustain Cp/Cpk targets and minimize measurement drift across advanced process nodes.</li>
+    <li>Independently developed and deployed the workgroup's first long-term SPC trend monitoring pipeline using SQLPathfinder and Python — enabling fleet-wide longitudinal visibility into metrology performance and cutting data processing time by 80%.</li>
+    <li>Performed structured root cause investigations on electron-optical drift and imaging anomalies; coordinated corrective actions across hardware, software, and process integration teams.</li>
+    <div class="mb-4"></div>
+    </ul>
+    <!--End Intel job experience-->
+
+    </TimeLineElement>
+   <TimeLineElement
+  title="Graduate Research Scholar">
+  <em>University of California, Merced, California. | Aug, 2016 - Oct, 2021</em>
+
+  <p class="mt-3 text-base text-gray-700">
+    PhD research at the intersection of optical physics, computational electromagnetics, and experimental metrology — focused on
+    light–matter interactions in plasmonic nano-structures and nanoscale energy transfer.
+  </p>
+
+  <b class="block mt-4 text-gray-800">Computational Modeling of Plasmonic Metastructures</b>
+  <ul class="list-disc list-inside mt-2 text-base text-gray-700">
+    <li>Developed a <b>hybrid full-wave electromagnetic modeling framework</b> combining the Method of Fundamental Solutions (MFS) and
+      Foldy–Lax multiple-scattering theory to simulate scattering from dielectric cores coated with plasmonic nanoparticle assemblies.</li>
+    <li>Implemented <b>Python and MATLAB solvers</b> to compute far-field scattering, extinction spectra, anisotropy, and albedo across
+      large parameter spaces; identified regimes of scattering suppression, angular redistribution, and broadband cloaking.</li>
+    <li><b>Nano-fabricated core–shell plasmonic structures</b> and validated simulation predictions against experimental scattering
+      measurements, with strong agreement across visible and near-IR wavelengths.</li>
+    <li>Published in <b>JOSA A</b> and <b>Optics Express</b>; foundational to my current interest in
+      <b>surrogate modeling, physics-informed learning, and data-driven methods</b> for imaging and wave-based systems.</li>
+  </ul>
+
+  <b class="block mt-4 text-gray-800">Optical Metrology for Nanoscale Energy Transfer (2017–2019)</b>
+  <ul class="list-disc list-inside mt-2 text-base text-gray-700">
+    <li><b>Designed, built, and qualified a custom high-stability TRPL optical measurement system</b> optimized for dilute samples
+      and weak emitters; defined specifications, aligned optical components, and developed calibration protocols.</li>
+    <li>Probed non-radiative energy transfer in DNA-templated gold nanoclusters using time-resolved photoluminescence to distinguish
+      FRET-type from NSET-type transfer mechanisms across 5–17 nm separations.</li>
+    <li>Mentored undergraduate researchers and contributed data to multiple CCBM projects.</li>
+  </ul>
+   </TimeLineElement>
+      
+    
+    <div class="mb-4"></div>
+    <TimeLineElement
+      title="Graduate Research Associate">
+      <em>Universal Instruments Corporation, Conklin, New York. | 2013-2014</em>
+      
+      <ul class="list-disc list-inside mt-3 text-base text-gray-700">
+      <li>Characterized thermomechanical properties of lead-tin-silver alloys for high-temperature electronic packaging.</li>
+      <li>Conducted DSC analysis to determine melting point depression and thermodynamic behavior.</li>
+      <li>Performed SEM-based microstructural analysis to link material composition with grain morphology.</li>
+      <li>Measured mechanical integrity using a Dage 4000 Plus bond tester and co-authored an IMAPS industry publication.</li>
+      <li>Co-authored an industry-facing publication for the International Microelectronics Assembly and Packaging Society (IMAPS), presenting findings to aid in the development of new industrial alloys.</li>
+      
+      </ul>
+    </TimeLineElement>
+  </div>
+<!---Education-->
+
+  <div class="mb-3">
     <div class="text-3xl w-full font-bold">Education</div>
   </div>
 
@@ -50,96 +157,7 @@ const sideBarActiveItemID = "home";
       subtitle="2016 | Binghamton University (SUNY) , Binghamton, NY."
     />
   </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Experience</div>
-  </div>
-
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Metrological Process Engineer (CD-SEM) at Intel Corporation">
-      <em>Intel Corporation, Hillsboro, USA. | Nov, 2021 - August, 2025 </em>
-    <!--- Add job experince-- below--> 
-    <ul class="list-disc list-inside mt-3 text-base text-gray-700">
-
-    <p>Worked on imaging system performance and sensor analytics for advanced semiconductor metrology equipment operating in high-volume manufacturing. 
-    Focused on improving measurement stability, sensor reliability, and system-level diagnostics through data-driven analysis and 
-    cross-functional engineering collaboration.</p>
-
-    <li> Improved measurement stability across a 
-        fleet of high-precision imaging tools by implementing automated calibration and Statistical Process Control (SPC) workflows to reduce drift and long-term variability.</li>
-    <li>Developed Python-based analytics to monitor high-dimensional sensor and system signals, 
-          enabling early detection of anomalies and shifting the team from reactive troubleshooting toward proactive performance monitoring.
-        </li>
-    <li>Built automated multivariate analysis pipelines for tool 
-       performance comparison and precision evaluation, significantly reducing data processing time while improving consistency and reporting accuracy.</li> 
-    <li>Designed image quality assessment workflows using Python and OpenCV to quantify sharpness, contrast, frequency-domain behavior, 
-       and texture metrics for imaging system performance validation.</li>
-    <li> Collaborated with hardware, electrical, and software teams to investigate optical and signal integrity issues, 
-        contributing to root cause analysis and optimization of imaging system acquisition parameters.</li>
-    <div class="mb-4"></div>
-    </ul>
-    <!--End Intel job experience-->
-
-    </TimeLineElement>
-    <TimeLineElement
-      title="Graduate Research Scholar">
-      <em>University of California, Merced, California. | Aug, 2016 - Oct, 2021</em>
-    <ul class="list-disc list-inside mt-3 text-base text-gray-700">
-    <b>Computational Modeling & Nano-fabrication of Plasmonic Metastructures:</b>
-    <p>During my PhD, I developed physics-based computational models to study light–matter interactions in three-dimensional plasmonic metastructures, 
-    combining rigorous electromagnetic theory with scalable numerical implementations. 
-    This work focused on understanding how collective scattering, absorption, and disorder in nano-assembled systems can be engineered 
-    to control far-field optical response.</p>
-    <b>Key contributions included: </b>
-    <li>Developed a <b>hybrid full-wave modeling framework</b> combining the Method of Fundamental Solutions (MFS) and Foldy–Lax multiple-scattering 
-     theory to simulate scattering from dielectric cores coated with plasmonic nanoparticle assemblies.</li>
-    <li>Implemented <b>Python and MATLAB solvers</b> to compute far-field angular scattering, extinction and scattering spectra, 
-    anisotropy, and albedo across large design parameter spaces.</li>
-    <li>Performed systematic <b>parameter sweeps</b> (particle size, filling fraction, core geometry) 
-      to identify regimes of scattering suppression, angular redistribution, and broadband cloaking.</li>
-    <li><b>Nano-fabricated core–shell plasmonic structures</b>, characterized geometry using SEM, 
-      and correlated experimental scattering measurements with simulation predictions.</li>
-    <li>Demonstrated strong <b>agreement between modeled and measured optical response</b>, validating 
-    the computational framework and enabling predictive metastructure design.</li>
-
-    <p>My research works resulted in peer-reviewed publications in JOSA A and Optics Express and laid the foundation 
-    for my current interest in <b>surrogate modeling, physics-informed learning, and data-driven approaches</b> for complex imaging and wave-based systems.</p>
-    
-    <b>Optical Metrology for Nanoscale Energy Transfer(UC Merced, 2017-2019)</b>
-    <p>I conducted optical metrology experiments to probe non-radiative energy transfer in DNA-templated gold nanoclusters (AuNCs) and fluorophores. 
-        Using time-resolved photoluminescence (TRPL) and custom-built optical setups, I quantified changes in emission lifetime and intensity to distinguish 
-        FRET-like versus NSET-like transfer mechanisms in atomically precise gold nanoclusters.</p>
-    <li>Designing and aligning a high-stability TRPL measurement system optimized for dilute samples and weak emitters</li>
-    <li>Preparing and characterizing DNA-origami scaffolds with nanometer-precise AuNC/fluorophore placement (5–17 nm separation) 
-        to test distance-dependence limits of energy transfer models.</li>
-    <li>Measuring and analyzing photoluminescence intensity quenching and 
-        lifetime changes to identify whether energy transfer in AuNC systems follows Förster-type (FRET) or nanoparticle-based NSET models</li>
-    <li>Mentoring undergraduate researchers, co-developing experimental protocols, and contributing data to multiple CCBM projects.</li>
-    <b>Collective Motion with Kilobot Swarms (UC Merced, 2016-2017)</b>
-    <p>Worked with large-scale Kilobot swarms (~110 units) to study collective motion and active-matter dynamics, 
-    integrating simulation models with hardware experiments using IR-based control. 
-    Contributed to <b>system revival</b>, <b>firmware debugging</b>, experimental design, and presented results at <b>APS regional and national meetings</b>.</p>
-    </ul>
-      
-    </TimeLineElement>
-    <div class="mb-4"></div>
-    <TimeLineElement
-      title="Graduate Research Associate">
-      <em>Universal Instruments Corporation, Conklin, New York. | 2013-2014</em>
-      
-      <ul class="list-disc list-inside mt-3 text-base text-gray-700">
-      <li>Characterized thermomechanical properties of lead-tin-silver alloys for high-temperature electronic packaging.</li>
-      <li>Conducted DSC analysis to determine melting point depression and thermodynamic behavior.</li>
-      <li>Performed SEM-based microstructural analysis to link material composition with grain morphology.</li>
-      <li>Measured mechanical integrity using a Dage 4000 Plus bond tester and co-authored an IMAPS industry publication.</li>
-      <li>Co-authored an industry-facing publication for the International Microelectronics Assembly and Packaging Society (IMAPS), presenting findings to aid in the development of new industrial alloys.</li>
-      <div class="mb-4"></div>
-      </ul>
-      
-    </TimeLineElement>
-  </div>
-
+  <!---publication--->
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">Publications(Selected)</div>
   </div>
